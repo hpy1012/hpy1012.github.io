@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Radio2Chef">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Radio2Chef&#39;s Profile"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Radio2Chef&#39;s Profile"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="website" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>page - Radio2Chef&#39;s Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+            <h1 id="main-title" class="title">Radio2Chef's Profile</h1>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/05/Java-关于注解/">
+                Java 关于注解
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-05</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>什么是注解？</p>
+<p>Annotations, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.</p>
+<p>这段话来自<a href="https://docs.oracle.com/javase/tutorial/java/annotations/" target="_blank" rel="external">Java官方教程</a>，说明注解Annotation是一种元数据，为程序提供数据，但它并不是程序的一部分（是有点难以理解，大概就是一种注入数据的感觉，跟spring的IOC有点像）。<br>注解不会对他们注解完的代码有直接影响。</p>
+<ul>
+<li><p><strong>注解的形式：</strong></p>
+<p>1.最简单的形式: <code>@Enity</code> 在注解的名字前加一个 @ </p>
+<p>2.可以带参数<code>@Author(name=&quot;hpy&quot;,date=&quot;2015-12-05&quot;)class Myclass{...}</code></p>
+<p>3.如果只有一个参数叫做value，可以省略name字段<code>@SuppressWarnings(&quot;unchecked&quot;)void myMethod(){...}</code></p>
+<p>4.可以同时支持多个注解<code>@Author(name = &quot;Jane Doe&quot;)@EBook class MyClass{...}</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>我们能在哪里用注解:</strong></p>
+<p>1.类实例化的时候： new @interned Myobject();</p>
+<p>2.类型转换：myString = (@NonNull String)str;</p>
+<p>3.implements 的时候：class UnmodifiableList<t> implements @Readonly List&lt;@Readonly T&gt; { … }</t></p>
+<p>4.抛出异常声明的时候：void monitorTemperature() throws @Critical TemperatureException { … }</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>四个元注解：</strong></p>
+<p><strong>1.@Target</strong>–说明了Annotation所修饰的范围：Annotation可被用于packages、types(类、接口、枚举、Annotation类型)、类型成员(方法、构造方法、成员变量、枚举值)、方法参数和本地变量（循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+<p><strong>作用：用于描述注解的使用范围</strong></p>
+<p><strong>取值有：</strong></p>
+<p>1.CONSTRUCTOR:用于描述构造器<br>　　2.FIELD:用于描述域<br>　　3.LOCAL_VARIABLE:用于描述局部变量<br>　　4.METHOD:用于描述方法<br>　　5.PACKAGE:用于描述包<br>　　6.PARAMETER:用于描述参数<br>　　7.TYPE:用于描述类、接口(包括注解类型) 或enum声明</p>
+<p>ex:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NoDBColumn &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注解 Table 可以用于注解类、接口(包括注解类型) 或 enum 声明,而注解 NoDBColumn 仅可用于注解类的成员变量。</p>
+<pre><code>**2.@Retention:**--定义了该 Annotation 被保留的时间长短：某些 Annotation 仅出现在源代码中，而被编译器丢弃；而另一些被编译在class文件中；编译在 class 文件中的 Annotation 可能会被虚拟机忽略，而另一些在 class 被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个 meta-Annotation 可以 Annotation 的“生命周期”限制。
+
+**作用：表示需要在什么级别保存该注释信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效**        
+
+**取值（RetentionPoicy）有：**
+
+1.SOURCE:在源文件中有效（即源文件保留）
+2.CLASS:在class文件中有效（即class保留）
+3.RUNTIME:在运行时有效（即运行时保留）
+</code></pre><p>Retention meta-annotation类型有唯一的value作为成员，它的取值来自java.lang.annotation.RetentionPolicy的枚举类型值。具体实例如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Column &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> "fieldName"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">setFuncName</span><span class="params">()</span> <span class="keyword">default</span> "setField"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFuncName</span><span class="params">()</span> <span class="keyword">default</span> "getField"</span>; </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">defaultDBValue</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Column注解的的RetentionPolicy的属性值是RUTIME,这样注解处理器可以通过反射，获取到该注解的属性值，从而去做一些运行时的逻辑处理。</p>
+<pre><code>**3.@Documented:**
+
+@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Column &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> "fieldName"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">setFuncName</span><span class="params">()</span> <span class="keyword">default</span> "setField"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFuncName</span><span class="params">()</span> <span class="keyword">default</span> "getField"</span>; </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">defaultDBValue</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>**4.@Inherited:**
+
+@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。
+</code></pre><p>　　注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</p>
+<p>　　当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> peida</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Greeting &#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> FontColor&#123; BULE,RED,GREEN&#125;;</div><div class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">FontColor <span class="title">fontColor</span><span class="params">()</span> <span class="keyword">default</span> FontColor.GREEN</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><strong>自定义注解：</strong></li>
+</ul>
+<p>　　使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。@interface用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
+<p>定义注解格式： public @interface 注解名 {定义体}</p>
+<pre><code>注解参数的可支持数据类型：
+
+1.所有基本数据类型（int,float,boolean,byte,double,char,long,short)2.String类型
+3.Class类型
+4.enum类型
+5.Annotation类型
+6.以上所有类型的数组
+</code></pre><p>Annotation类型里面的参数该怎么设定: </p>
+<pre><code>1.只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型
+
+2.参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String;　
+
+3.如果只有一个参数成员,最好把参数名称设为&quot;value&quot;,后加小括号.例:下面的例子FruitName注解就只有一个参数成员。
+</code></pre><p>　　简单的自定义注解和使用注解实例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> annotation;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.annotation.Documented;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.Target;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 水果名称注解</div><div class="line"> * <span class="doctag">@author</span> peida</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> FruitName &#123;</div><div class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>定义了注解，并在需要的时候给相关类，类属性加上注解信息，如果没有响应的注解信息处理流程，注解可以说是没有实用价值。如何让注解真真的发挥作用，主要就在于注解处理方法。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/01/Android-RecyclerView创建使用/">
+                Android RecyclerView创建使用
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-01</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <ul>
+<li><p>1.引入相关的包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.android.support:appcompat-v7:24.2.1'</span></div><div class="line">compile <span class="string">'com.android.support:design:24.2.1'</span></div><div class="line">compile <span class="string">'com.android.support:recyclerview-v7:24.2.1'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>2.创建Adapter。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.hpy1012.study.adapter;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.app.Application;</div><div class="line"><span class="keyword">import</span> android.graphics.Rect;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.RecyclerView;</div><div class="line"><span class="keyword">import</span> android.view.LayoutInflater;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.view.ViewGroup;</div><div class="line"><span class="keyword">import</span> android.widget.Button;</div><div class="line"><span class="keyword">import</span> android.widget.EditText;</div><div class="line"><span class="keyword">import</span> android.widget.LinearLayout;</div><div class="line"><span class="keyword">import</span> android.widget.Toast;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.hpy1012.study.MyApp;</div><div class="line"><span class="keyword">import</span> com.hpy1012.study.Mybean;</div><div class="line"><span class="keyword">import</span> com.hpy1012.study.R;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">import</span> butterknife.BindView;</div><div class="line"><span class="keyword">import</span> butterknife.ButterKnife;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by hpy1012 on 2016/12/1.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRecyclerViewAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">MyRecyclerViewAdapter</span>.<span class="title">ViewHolder</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> List&lt;Mybean&gt; mBeanList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> View mView;</div><div class="line">    <span class="keyword">private</span> ViewHolder mViewHolder;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 在创建adapter时,传入数据。</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> list</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRecyclerViewAdapter</span><span class="params">(List&lt;Mybean&gt; list)</span> </span>&#123;</div><div class="line">        mBeanList = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 更新数据时更新UI</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> list</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateData</span><span class="params">(List&lt;Mybean&gt; list)</span> </span>&#123;</div><div class="line">        mBeanList = list;</div><div class="line">        notifyDataSetChanged();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        <span class="comment">//实例化展示的view</span></div><div class="line">        mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview, parent,<span class="keyword">false</span>);</div><div class="line">        <span class="comment">//实例化ViewHolder</span></div><div class="line">        mViewHolder = <span class="keyword">new</span> ViewHolder(mView);</div><div class="line">        <span class="keyword">return</span> mViewHolder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 在这里绑定数据</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> holder</div><div class="line">     * <span class="doctag">@param</span> position</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="comment">//把list里的单个对象塞给tag,方便以后操作</span></div><div class="line">        holder.itemView.setTag(mBeanList.get(position));</div><div class="line">        holder.btn.setText(mBeanList.get(position).getButton());</div><div class="line">        holder.et1.setText(mBeanList.get(position).getEdittext1());</div><div class="line">        holder.et2.setText(mBeanList.get(position).getEdittext2());</div><div class="line">        holder.btn.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                Toast.makeText(MyApp.getInstance(),holder.btn.getText(),Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 有多少个item</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mBeanList == <span class="keyword">null</span> ? <span class="number">0</span> : mBeanList.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * findById的操作由butterknife来实现</div><div class="line">     * 这里将ViewHolder定义为static 是为了避免相互引用，假如逻辑复杂后，在ViewHolder中有耗时操作，会出现内存泄漏。</div><div class="line">     */</div><div class="line">  <span class="keyword">static</span>  <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        <span class="meta">@BindView</span>(R.id.btn)</div><div class="line">        Button btn;</div><div class="line">        <span class="meta">@BindView</span>(R.id.et_1)</div><div class="line">        EditText et1;</div><div class="line">        <span class="meta">@BindView</span>(R.id.et_2)</div><div class="line">        EditText et2;</div><div class="line">        <span class="meta">@BindView</span>(R.id.linearLayout)</div><div class="line">        LinearLayout linearLayout;</div><div class="line"></div><div class="line">       ViewHolder(View itemView) &#123;</div><div class="line">            <span class="keyword">super</span>(itemView);</div><div class="line">            ButterKnife.bind(<span class="keyword">this</span>, itemView);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	 <span class="comment">/**</span></div><div class="line">     * 设置行间样式的类</div><div class="line">     */</div><div class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpaceItemDecoration</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ItemDecoration</span></span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mSpace;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mTop;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mBottom;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mLeft;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mRight;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SpaceItemDecoration</span><span class="params">(<span class="keyword">int</span> space)</span></span>&#123;</div><div class="line">            mSpace=space;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SpaceItemDecoration</span><span class="params">(<span class="keyword">int</span> top,<span class="keyword">int</span> bottom,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</div><div class="line">            mTop=top;</div><div class="line">            mBottom=bottom;</div><div class="line">            mLeft=left;</div><div class="line">            mRight=right;</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItemOffsets</span><span class="params">(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)</span> </span>&#123;</div><div class="line">           <span class="comment">//outRect.top outRect.bottom outRect.right outRect.left</span></div><div class="line">            <span class="keyword">if</span>(mSpace!=<span class="number">0</span>)&#123;</div><div class="line">                outRect.top=mSpace;</div><div class="line">                outRect.bottom=mSpace;</div><div class="line">                outRect.right=mSpace;</div><div class="line">                outRect.left=mSpace;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                outRect.top=mTop;</div><div class="line">                outRect.bottom=mBottom;</div><div class="line">                outRect.right=mRight;</div><div class="line">                outRect.left=mLeft;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意：mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview, parent,false); </p>
+<p>顺便解释下这个函数：LayoutInflater.inflate(int resource,ViewGroup root,boolean attachToRoot)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * Inflate a new view hierarchy from the specified xml resource. Throws</div><div class="line">    * &#123;<span class="doctag">@link</span> InflateException&#125; if there is an error.</div><div class="line">    * </div><div class="line">    * <span class="doctag">@param</span> resource ID for an XML layout resource to load (e.g.,</div><div class="line">    *        &lt;code&gt;R.layout.main_page&lt;/code&gt;)</div><div class="line">    * <span class="doctag">@param</span> root Optional view to be the parent of the generated hierarchy (if</div><div class="line">    *        &lt;em&gt;attachToRoot&lt;/em&gt; is true), or else simply an object that</div><div class="line">    *        provides a set of LayoutParams values for root of the returned</div><div class="line">    *        hierarchy (if &lt;em&gt;attachToRoot&lt;/em&gt; is false.)</div><div class="line">    * <span class="doctag">@param</span> attachToRoot Whether the inflated hierarchy should be attached to</div><div class="line">    *        the root parameter? If false, root is only used to create the</div><div class="line">    *        correct subclass of LayoutParams for the root view in the XML.</div><div class="line">    * <span class="doctag">@return</span> The root View of the inflated hierarchy. If root was supplied and</div><div class="line">    *         attachToRoot is true, this is root; otherwise it is the root of</div><div class="line">    *         the inflated XML file.</div><div class="line">    */</div></pre></td></tr></table></figure>
+<p>resource:要加载的资源ID。<br>root:<strong>当 attachToRoot 为 false的时候，这个函数返回的是xml的根布局。为true的时候，并且root存在的时候，将xml装载到root下。</strong></p>
+<ul>
+<li>3.在Activity中的代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">      <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">      setContentView(R.layout.activity_main);</div><div class="line">      ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">      initData();</div><div class="line">      initView();</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">   * 生成数据</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</div><div class="line">      context = <span class="keyword">this</span>.getApplicationContext();</div><div class="line">      Mybean mybean1 = <span class="keyword">new</span> Mybean();</div><div class="line">      mybean1.setButton(<span class="string">"mybean1_button"</span>);</div><div class="line">      mybean1.setEdittext1(<span class="string">"mybean1_edittex1"</span>);</div><div class="line">      mybean1.setEdittext2(<span class="string">"mybean1_edittex2"</span>);</div><div class="line">      Mybean mybean2 = <span class="keyword">new</span> Mybean();</div><div class="line">      mybean2.setButton(<span class="string">"mybean2_button"</span>);</div><div class="line">      mybean2.setEdittext1(<span class="string">"mybean2_edittex1"</span>);</div><div class="line">      mybean2.setEdittext2(<span class="string">"mybean2_edittex2"</span>);</div><div class="line">      list.add(mybean1);</div><div class="line">      list.add(mybean2);</div><div class="line">  &#125;</div><div class="line"><span class="comment">/**</span></div><div class="line">   * 注入数据，绘画</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initView</span><span class="params">()</span> </span>&#123;</div><div class="line">      mAdapter = <span class="keyword">new</span> MyRecyclerViewAdapter(list);</div><div class="line">      <span class="comment">//这里使用线性布局</span></div><div class="line">      recyclerView.setLayoutManager(<span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>));</div><div class="line"><span class="comment">//这里设置间</span></div><div class="line">      MyRecyclerViewAdapter.SpaceItemDecoration spaceItemDecoration = <span class="keyword">new</span> MyRecyclerViewAdapter.SpaceItemDecoration(<span class="number">50</span>);</div><div class="line">      recyclerView.addItemDecoration(spaceItemDecoration);</div><div class="line">      recyclerView.setAdapter(mAdapter);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/01/Android-预览遇到的小问题/">
+                Android 预览遇到的小问题
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-01</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>在调试RecyclerView的时候发现预览不了：Exception raised during rendering: Unable to locate mode 0</p>
+<p>原来用的是25version的support包，也没有单独加上recyclerview的包，结果就是上面的报错。<br>把版本调到24.2.1就可以了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.android.support:appcompat-v7:24.2.1'</span></div><div class="line">   compile <span class="string">'com.android.support:design:24.2.1'</span></div><div class="line">   compile <span class="string">'com.android.support:recyclerview-v7:24.2.1'</span></div></pre></td></tr></table></figure></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/01/Android-焦点问题/">
+                Android 焦点问题
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-01</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>在维护一个项目过程中,发现一个listview中的item里包含一个edittext和一个button,会出现一个抢焦点的情况。</p>
+<p>edittext有一个强焦点，使得item本身变得无法相应点击事件，</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/11/29/IntentFilter-Matching-Rules/">
+                IntentFilter Matching Rules
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-29</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>IntentFilter Matching Rules were rules about <strong>implicit</strong> Intent.</p>
+<p>IntentFilter contains three kinds of filtering information–<strong>action | category | data.</strong></p>
+<p>action:It must exists in Intent and same as one of <strong>Filter Rules</strong>.(Android system has been predefined some actions)<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.c"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>There is java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setAction(<span class="string">"com.hpy.action.b"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<p>category:Intent could have no category, yet no matter how many categories they have to completely matched one to one when category exists in Intent.<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">intent.addCategory(<span class="string">"com.hpy.category.a"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.hpy.category.b"</span>);</div></pre></td></tr></table></figure></p>
+<p>“android.intent.category.DEFAULT” is a default value when we used<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">	startActivity(intent);</div><div class="line"><span class="comment">//or</span></div><div class="line">	startActivityForResult(intent);</div></pre></td></tr></table></figure></p>
+<p>data:It is similar to action in matching rules,but it’s more complex.<br>It’s contains of two parts.One is <strong>mimeType</strong> means media type(image/jpeg,audio/mpeg4-generic or video/*).The other one is URI.</p>
+<p>There is URI sturcture:<br>    <code>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/[path]|[pathprefix]|[pathpattern]</code><br>like these:<br>    <code>content://com.hpy.project:200/folder/subfolder/etc</code><br>    <code>http://www.baidu.com:80/serach/info</code></p>
+<p>ex:(complete data)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">intent.setDataAndType(Uri.pares(<span class="string">"file://abc"</span>),<span class="string">"image/png"</span>)</div></pre></td></tr></table></figure></p>
+<p>xml:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"video/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"audio/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Can’t use <code>setType()</code> after <code>setData()</code> and vice versa, source code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> Intent <span class="title">setData</span><span class="params">(Uri data)</span></span>&#123;</div><div class="line">		mData = data;</div><div class="line">		mType = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/11/28/Tips-valueOf-paresDouble/">
+                Tips - valueOf() & paresXxx()
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-28</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>valueOf() return a <strong>Object</strong> of somelike Integer or Double etc.</p>
+<p>paresXxx() return a <strong>basic data types</strong></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/11/23/Android--Handle/">
+                Android--Handle
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-23</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h5 id="What’s-“Handle”"><a href="#What’s-“Handle”" class="headerlink" title="What’s “Handle”?"></a>What’s “Handle”?</h5><p>Handle is a <strong>mechanism</strong> about updating UI, also can processing message.ex:All Activities’s life cycly callback through it.According to diffrerent message,do the corresponding branch processing.<br>As Android Documents:<br><strong>There are two main uses for a Handler:(1) to schedule messages and runnables to be executed as some point in the future; and (2) to enqueue an action to be performed on a different thread than your own.</strong></p>
+<h5 id="Why-should-we-use-it"><a href="#Why-should-we-use-it" class="headerlink" title="Why should we use it?"></a>Why should we use it?</h5><p>Because Android generally updates UI in the mainthread,however in the real world, we need to access UI in sub thread.</p>
+<h5 id="Principle-of-Message-mechanism"><a href="#Principle-of-Message-mechanism" class="headerlink" title="Principle of Message mechanism"></a>Principle of Message mechanism</h5><p>Message mechanism inculds 3 department</p>
+<p><strong>-Looper:</strong></p>
+<p>Class used to run a message loop for a thread. Threads by default do not have a message loop associated with them; to create one, call prepare() in the thread that is to run the loop, and then loop() to have it process messages until the loop is stopped.<br><strong>About mainthread,a Looper has been created automatically. We can get the Looper by</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Looper <span class="title">getMainLooper</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
+<p>Typical example of the implementation of a Looper thread, using the separation of <code>prepare()</code> and <code>loop()</code> to create an initial Handler to communicate with the Looper.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> Handler mHandler;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        Looper.prepare();</div><div class="line"></div><div class="line">        mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">                <span class="comment">// process incoming messages here</span></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        Looper.loop();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>-Message Queue:</strong></p>
+<p>Low-level class holding the list of messages to be dispatched by a Looper. Messages are not added directly to a MessageQueue, but rather through Handler objects associated with the Looper.</p>
+<p>You can retrieve the MessageQueue for the current thread with Looper.myQueue().<br><em>MessageQueue myQueue ()<br>Return the MessageQueue object associated with the current thread. This must be called from a thread running a Looper, or a NullPointerException will be thrown.</em></p>
+<p><strong>-Handle:</strong></p>
+<p>Handler can send and receive messages:</p>
+<pre><code>boolean sendMessage (Message msg)
+</code></pre><p>Pushes a message onto the end of the message queue after all pending messages before the current time. It will be received in <strong>handleMessage(Message)</strong>, in the thread attached to this handler</p>
+<pre><code>boolean sendMessageDelayed (Message msg, long delayMillis)
+</code></pre><p>Enqueue a message into the message queue after all pending messages before (current time + delayMillis). You will receive it in <strong>handleMessage(Message)</strong>, in the thread attached to this handler.</p>
+<pre><code>boolean post (Runnable r)
+</code></pre><p>Causes the Runnable r to be added to the message queue. The runnable will be run on the thread to which this handler is attached.</p>
+<pre><code>boolean postDelayed (Runnable r, long delayMillis)
+</code></pre><p>Causes the Runnable r to be added to the message queue, to be run after the specified amount of time elapses. The runnable will be run on the thread to which this handler is attached. The time-base is uptimeMillis(). Time spent in deep sleep will add an additional delay to execution.</p>
+<p>Above two methods of “post” are actually using “send Method”.look this:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Causes the Runnable r to be added to the message queue.</div><div class="line">   * The runnable will be run on the thread to which this handler is </div><div class="line">   * attached. </div><div class="line">   *  </div><div class="line">   * <span class="doctag">@param</span> r The Runnable that will be executed.</div><div class="line">   * </div><div class="line">   * <span class="doctag">@return</span> Returns true if the Runnable was successfully placed in to the </div><div class="line">   *         message queue.  Returns false on failure, usually because the</div><div class="line">   *         looper processing the message queue is exiting.</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">post</span><span class="params">(Runnable r)</span></span></div><div class="line">  &#123;</div><div class="line">     <span class="keyword">return</span>  sendMessageDelayed(getPostMessage(r), <span class="number">0</span>);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>Receive message:</p>
+<pre><code>void handleMessage (Message msg)
+</code></pre><p>Subclasses must implement this to receive messages.</p>
+<p>####Supplement:####</p>
+<p><strong>When was the MessageQueue created？</strong><br>Looper created at <code>Looper.prepare()</code>(mainthread automatically create it.)<br>Handler create by yourself.</p>
+<p>When was the MessageQueue create?</p>
+<p>In Looper’s construction method:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);</div><div class="line">    mThread = Thread.currentThread();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>There is a new MessageQueue object.We can understand that a thread corresponding a MessageQueue. Each of MessafeQueue can’t exist without Looper.</p>
+<p><strong>What role does ThreadLocal play in Handle?</strong><br>Look this:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);</div><div class="line">       &#125;</div><div class="line">       sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>sThreadLocal is a ThreadLocal object,it can store variables in a thread. After variables stored, only can obtain them in the specified thread.</p>
+<p><strong>Looper,Handler,MessageQueue ‘s reference relationship</strong></p>
+<p>A Handler be sure hold corresponding MessageQueue and Looper.<br>A thread have only one Looper and  MessageQueue at most.<br>A thread can have a number of Handler.</p>
+<p><strong> Handler leads to memory leak </strong></p>
+<p>Generally write Handler:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">	Handler mHandler = <span class="keyword">new</span> Handler()&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerMessage</span><span class="params">(Message msg)</span></span>&#123;</div><div class="line">	mImageView.setImageBitmap(mBitmap);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Above codes maybe leads to memory leak! Because Handler object will implicitly hold a external class(generally is a activity) reference when we use the internal class to create Handler, but rather there are some Messages haven’t been processed yet after exit Acitivity that leads to memory leak.</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/11/18/BubbleSort/">
+                BubbleSort
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-18</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>About BubbleSort,</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/10/13/Android--Hide-Status-Bar/">
+                Android--Hide Status Bar
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-10-13</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//Hide title bar</span></div><div class="line"><span class="keyword">this</span>.requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line"></div><div class="line"><span class="comment">//Hide stutas bar</span></div><div class="line"><span class="keyword">this</span>.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</div></pre></td></tr></table></figure>
+<p>Global setting:<br>in <strong>AndroidManifest.xml</strong> set <code>android:theme=&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</code></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/10/12/About-Hexo/">
+                Establish blog
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-10-12</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h3 id="It-only-need-takes-5-steps-to-establish-the-Blog-with-GitHub-and-Hexo-also-you-can-have-your-own-domain-name-as-you-buy-domain-from-any-ICP-This-tutorial-is-for-WINDOWS-I-have-no-money-to-pay-for-MAC-Pro"><a href="#It-only-need-takes-5-steps-to-establish-the-Blog-with-GitHub-and-Hexo-also-you-can-have-your-own-domain-name-as-you-buy-domain-from-any-ICP-This-tutorial-is-for-WINDOWS-I-have-no-money-to-pay-for-MAC-Pro" class="headerlink" title="It only need takes 5 steps to establish the Blog with GitHub and Hexo,also you can have your own domain name, as you buy domain from any ICP.(This tutorial is for WINDOWS,I have no money to pay for MAC Pro -.-)"></a>It only need takes 5 steps to establish the Blog with <a href="https://github.com/" target="_blank" rel="external">GitHub</a> and <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>,also you can have your own domain name, as you buy domain from any ICP.(This tutorial is for WINDOWS,I have no money to pay for MAC Pro -.-)</h3><p>Without further delay,I’ll tell you how to do.</p>
+<p><strong>step 1:</strong> Install Hexo,before that you should install <a href="https://git-scm.com/" target="_blank" rel="external">Git</a>(here is <a href="http://jingyan.baidu.com/article/90895e0fb3495f64ed6b0b50.html" target="_blank" rel="external">how to install Git</a>) and <a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>.(It’s so easy,download and double-click [xxx.msi]).If you have done what I said above,open CMD(WIN+R) type <code>npm install -g hexo-cli</code></p>
+<p><strong>step 2:</strong> Build a new “<strong>Repository</strong>“,The name <strong>must</strong> be set to “<strong>username.github.io</strong>“(ex:hpy1012.github.io)</p>
+<p><strong>step 3:</strong> Chose a floder what you like(Ex:”F:\Blog”),right-click then chose “<strong>Git Bash Here</strong>“,type <code>hexo init</code> and <code>npm install</code>. It’s ok for your localhost configuration.You can try to debug it. Type <code>hexo g</code> and <code>hexo s --debug</code> then open your browser write Url “<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>“. <strong>Did you see the blog</strong>? But that’s not the end.</p>
+<p><strong>step 4:</strong> Deploy it to the github.We should modify the “_config.yml”(root directory).Did you find <code>deploy:</code> and <code>type:</code>? Modify <code>type:github</code> and <strong>add</strong> <code>repository: https://github.com/username/username.github.io</code> and <code>branch: master</code></p>
+<p><strong>step 5:</strong> Open <strong>Git Bash</strong> type <code>hexo clean</code> , <code>hexo g</code> , <code>hexo d</code>. You can access URL:”username.github.io”,it’s your blog.(Do you want have your own domain name for your blog?Buy one from a ICP,add 2 records as “@ CNAME username.github.io” and “www CNAME  username.github.io”.)</p>
+<p>If you have some advices ,contact me by Radio2Chef@gmail.com.</p>
+
+        </div>
+    
+
+</div>
+            
+        </section>
+    </div>
+</div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrap-pagination">
+                <a class="" href="/">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a>
+                <a class="disabled" href="/">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Contact me with Radio2Chef@Gmail.com or add me QQ:1579987591
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/03/Android-事件分发/">Android 事件分发</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/17/Tips-for-Hexo/">Tips for Hexo</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/02/10/Android-view小记/">Android-View小记</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/hpy1012">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:Radio2Chef@Gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Radio2Chef
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

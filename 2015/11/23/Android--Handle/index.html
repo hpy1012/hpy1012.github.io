@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="What’s “Handle”?Handle is a mechanism about updating UI, also can processing message.ex:All Activities’s life cycly callback through it.According to d">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Radio2Chef">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android--Handle"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Radio2Chef&#39;s Profile"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Android--Handle - Radio2Chef&#39;s Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/11/23/Android--Handle/">
+                Android--Handle
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-23</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h5 id="What’s-“Handle”"><a href="#What’s-“Handle”" class="headerlink" title="What’s “Handle”?"></a>What’s “Handle”?</h5><p>Handle is a <strong>mechanism</strong> about updating UI, also can processing message.ex:All Activities’s life cycly callback through it.According to diffrerent message,do the corresponding branch processing.<br>As Android Documents:<br><strong>There are two main uses for a Handler:(1) to schedule messages and runnables to be executed as some point in the future; and (2) to enqueue an action to be performed on a different thread than your own.</strong></p>
+<h5 id="Why-should-we-use-it"><a href="#Why-should-we-use-it" class="headerlink" title="Why should we use it?"></a>Why should we use it?</h5><p>Because Android generally updates UI in the mainthread,however in the real world, we need to access UI in sub thread.</p>
+<h5 id="Principle-of-Message-mechanism"><a href="#Principle-of-Message-mechanism" class="headerlink" title="Principle of Message mechanism"></a>Principle of Message mechanism</h5><p>Message mechanism inculds 3 department</p>
+<p><strong>-Looper:</strong></p>
+<p>Class used to run a message loop for a thread. Threads by default do not have a message loop associated with them; to create one, call prepare() in the thread that is to run the loop, and then loop() to have it process messages until the loop is stopped.<br><strong>About mainthread,a Looper has been created automatically. We can get the Looper by</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Looper <span class="title">getMainLooper</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
+<p>Typical example of the implementation of a Looper thread, using the separation of <code>prepare()</code> and <code>loop()</code> to create an initial Handler to communicate with the Looper.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> Handler mHandler;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        Looper.prepare();</div><div class="line"></div><div class="line">        mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">                <span class="comment">// process incoming messages here</span></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        Looper.loop();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>-Message Queue:</strong></p>
+<p>Low-level class holding the list of messages to be dispatched by a Looper. Messages are not added directly to a MessageQueue, but rather through Handler objects associated with the Looper.</p>
+<p>You can retrieve the MessageQueue for the current thread with Looper.myQueue().<br><em>MessageQueue myQueue ()<br>Return the MessageQueue object associated with the current thread. This must be called from a thread running a Looper, or a NullPointerException will be thrown.</em></p>
+<p><strong>-Handle:</strong></p>
+<p>Handler can send and receive messages:</p>
+<pre><code>boolean sendMessage (Message msg)
+</code></pre><p>Pushes a message onto the end of the message queue after all pending messages before the current time. It will be received in <strong>handleMessage(Message)</strong>, in the thread attached to this handler</p>
+<pre><code>boolean sendMessageDelayed (Message msg, long delayMillis)
+</code></pre><p>Enqueue a message into the message queue after all pending messages before (current time + delayMillis). You will receive it in <strong>handleMessage(Message)</strong>, in the thread attached to this handler.</p>
+<pre><code>boolean post (Runnable r)
+</code></pre><p>Causes the Runnable r to be added to the message queue. The runnable will be run on the thread to which this handler is attached.</p>
+<pre><code>boolean postDelayed (Runnable r, long delayMillis)
+</code></pre><p>Causes the Runnable r to be added to the message queue, to be run after the specified amount of time elapses. The runnable will be run on the thread to which this handler is attached. The time-base is uptimeMillis(). Time spent in deep sleep will add an additional delay to execution.</p>
+<p>Above two methods of “post” are actually using “send Method”.look this:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Causes the Runnable r to be added to the message queue.</div><div class="line">   * The runnable will be run on the thread to which this handler is </div><div class="line">   * attached. </div><div class="line">   *  </div><div class="line">   * <span class="doctag">@param</span> r The Runnable that will be executed.</div><div class="line">   * </div><div class="line">   * <span class="doctag">@return</span> Returns true if the Runnable was successfully placed in to the </div><div class="line">   *         message queue.  Returns false on failure, usually because the</div><div class="line">   *         looper processing the message queue is exiting.</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">post</span><span class="params">(Runnable r)</span></span></div><div class="line">  &#123;</div><div class="line">     <span class="keyword">return</span>  sendMessageDelayed(getPostMessage(r), <span class="number">0</span>);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>Receive message:</p>
+<pre><code>void handleMessage (Message msg)
+</code></pre><p>Subclasses must implement this to receive messages.</p>
+<p>####Supplement:####</p>
+<p><strong>When was the MessageQueue created？</strong><br>Looper created at <code>Looper.prepare()</code>(mainthread automatically create it.)<br>Handler create by yourself.</p>
+<p>When was the MessageQueue create?</p>
+<p>In Looper’s construction method:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);</div><div class="line">    mThread = Thread.currentThread();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>There is a new MessageQueue object.We can understand that a thread corresponding a MessageQueue. Each of MessafeQueue can’t exist without Looper.</p>
+<p><strong>What role does ThreadLocal play in Handle?</strong><br>Look this:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);</div><div class="line">       &#125;</div><div class="line">       sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>sThreadLocal is a ThreadLocal object,it can store variables in a thread. After variables stored, only can obtain them in the specified thread.</p>
+<p><strong>Looper,Handler,MessageQueue ‘s reference relationship</strong></p>
+<p>A Handler be sure hold corresponding MessageQueue and Looper.<br>A thread have only one Looper and  MessageQueue at most.<br>A thread can have a number of Handler.</p>
+<p><strong> Handler leads to memory leak </strong></p>
+<p>Generally write Handler:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">	Handler mHandler = <span class="keyword">new</span> Handler()&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerMessage</span><span class="params">(Message msg)</span></span>&#123;</div><div class="line">	mImageView.setImageBitmap(mBitmap);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Above codes maybe leads to memory leak! Because Handler object will implicitly hold a external class(generally is a activity) reference when we use the internal class to create Handler, but rather there are some Messages haven’t been processed yet after exit Acitivity that leads to memory leak.</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Android/">#Android</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Contact me with Radio2Chef@Gmail.com or add me QQ:1579987591
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/03/Android-事件分发/">Android 事件分发</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/17/Tips-for-Hexo/">Tips for Hexo</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/02/10/Android-view小记/">Android-View小记</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/hpy1012">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:Radio2Chef@Gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Radio2Chef
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

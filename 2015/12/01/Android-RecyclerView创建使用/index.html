@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="1.引入相关的包。
+123compile &#39;com.android.support:appcompat-v7:24.2.1&#39;compile &#39;com.android.support:design:24.2.1&#39;compile &#39;com.android.support:recyclerview-v7:">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Radio2Chef">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android RecyclerView创建使用"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Radio2Chef&#39;s Profile"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Android RecyclerView创建使用 - Radio2Chef&#39;s Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/12/01/Android-RecyclerView创建使用/">
+                Android RecyclerView创建使用
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-01</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <ul>
+<li><p>1.引入相关的包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.android.support:appcompat-v7:24.2.1'</span></div><div class="line">compile <span class="string">'com.android.support:design:24.2.1'</span></div><div class="line">compile <span class="string">'com.android.support:recyclerview-v7:24.2.1'</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>2.创建Adapter。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.hpy1012.study.adapter;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.app.Application;</div><div class="line"><span class="keyword">import</span> android.graphics.Rect;</div><div class="line"><span class="keyword">import</span> android.support.v7.widget.RecyclerView;</div><div class="line"><span class="keyword">import</span> android.view.LayoutInflater;</div><div class="line"><span class="keyword">import</span> android.view.View;</div><div class="line"><span class="keyword">import</span> android.view.ViewGroup;</div><div class="line"><span class="keyword">import</span> android.widget.Button;</div><div class="line"><span class="keyword">import</span> android.widget.EditText;</div><div class="line"><span class="keyword">import</span> android.widget.LinearLayout;</div><div class="line"><span class="keyword">import</span> android.widget.Toast;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.hpy1012.study.MyApp;</div><div class="line"><span class="keyword">import</span> com.hpy1012.study.Mybean;</div><div class="line"><span class="keyword">import</span> com.hpy1012.study.R;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">import</span> butterknife.BindView;</div><div class="line"><span class="keyword">import</span> butterknife.ButterKnife;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by hpy1012 on 2016/12/1.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyRecyclerViewAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">MyRecyclerViewAdapter</span>.<span class="title">ViewHolder</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> List&lt;Mybean&gt; mBeanList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    <span class="keyword">private</span> View mView;</div><div class="line">    <span class="keyword">private</span> ViewHolder mViewHolder;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 在创建adapter时,传入数据。</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> list</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyRecyclerViewAdapter</span><span class="params">(List&lt;Mybean&gt; list)</span> </span>&#123;</div><div class="line">        mBeanList = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 更新数据时更新UI</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> list</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateData</span><span class="params">(List&lt;Mybean&gt; list)</span> </span>&#123;</div><div class="line">        mBeanList = list;</div><div class="line">        notifyDataSetChanged();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        <span class="comment">//实例化展示的view</span></div><div class="line">        mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview, parent,<span class="keyword">false</span>);</div><div class="line">        <span class="comment">//实例化ViewHolder</span></div><div class="line">        mViewHolder = <span class="keyword">new</span> ViewHolder(mView);</div><div class="line">        <span class="keyword">return</span> mViewHolder;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 在这里绑定数据</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> holder</div><div class="line">     * <span class="doctag">@param</span> position</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="comment">//把list里的单个对象塞给tag,方便以后操作</span></div><div class="line">        holder.itemView.setTag(mBeanList.get(position));</div><div class="line">        holder.btn.setText(mBeanList.get(position).getButton());</div><div class="line">        holder.et1.setText(mBeanList.get(position).getEdittext1());</div><div class="line">        holder.et2.setText(mBeanList.get(position).getEdittext2());</div><div class="line">        holder.btn.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">                Toast.makeText(MyApp.getInstance(),holder.btn.getText(),Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 有多少个item</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mBeanList == <span class="keyword">null</span> ? <span class="number">0</span> : mBeanList.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * findById的操作由butterknife来实现</div><div class="line">     * 这里将ViewHolder定义为static 是为了避免相互引用，假如逻辑复杂后，在ViewHolder中有耗时操作，会出现内存泄漏。</div><div class="line">     */</div><div class="line">  <span class="keyword">static</span>  <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        <span class="meta">@BindView</span>(R.id.btn)</div><div class="line">        Button btn;</div><div class="line">        <span class="meta">@BindView</span>(R.id.et_1)</div><div class="line">        EditText et1;</div><div class="line">        <span class="meta">@BindView</span>(R.id.et_2)</div><div class="line">        EditText et2;</div><div class="line">        <span class="meta">@BindView</span>(R.id.linearLayout)</div><div class="line">        LinearLayout linearLayout;</div><div class="line"></div><div class="line">       ViewHolder(View itemView) &#123;</div><div class="line">            <span class="keyword">super</span>(itemView);</div><div class="line">            ButterKnife.bind(<span class="keyword">this</span>, itemView);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	 <span class="comment">/**</span></div><div class="line">     * 设置行间样式的类</div><div class="line">     */</div><div class="line">    <span class="keyword">static</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpaceItemDecoration</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ItemDecoration</span></span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mSpace;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mTop;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mBottom;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mLeft;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">int</span> mRight;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SpaceItemDecoration</span><span class="params">(<span class="keyword">int</span> space)</span></span>&#123;</div><div class="line">            mSpace=space;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SpaceItemDecoration</span><span class="params">(<span class="keyword">int</span> top,<span class="keyword">int</span> bottom,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</div><div class="line">            mTop=top;</div><div class="line">            mBottom=bottom;</div><div class="line">            mLeft=left;</div><div class="line">            mRight=right;</div><div class="line">        &#125;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItemOffsets</span><span class="params">(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)</span> </span>&#123;</div><div class="line">           <span class="comment">//outRect.top outRect.bottom outRect.right outRect.left</span></div><div class="line">            <span class="keyword">if</span>(mSpace!=<span class="number">0</span>)&#123;</div><div class="line">                outRect.top=mSpace;</div><div class="line">                outRect.bottom=mSpace;</div><div class="line">                outRect.right=mSpace;</div><div class="line">                outRect.left=mSpace;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                outRect.top=mTop;</div><div class="line">                outRect.bottom=mBottom;</div><div class="line">                outRect.right=mRight;</div><div class="line">                outRect.left=mLeft;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意：mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview, parent,false); </p>
+<p>顺便解释下这个函数：LayoutInflater.inflate(int resource,ViewGroup root,boolean attachToRoot)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * Inflate a new view hierarchy from the specified xml resource. Throws</div><div class="line">    * &#123;<span class="doctag">@link</span> InflateException&#125; if there is an error.</div><div class="line">    * </div><div class="line">    * <span class="doctag">@param</span> resource ID for an XML layout resource to load (e.g.,</div><div class="line">    *        &lt;code&gt;R.layout.main_page&lt;/code&gt;)</div><div class="line">    * <span class="doctag">@param</span> root Optional view to be the parent of the generated hierarchy (if</div><div class="line">    *        &lt;em&gt;attachToRoot&lt;/em&gt; is true), or else simply an object that</div><div class="line">    *        provides a set of LayoutParams values for root of the returned</div><div class="line">    *        hierarchy (if &lt;em&gt;attachToRoot&lt;/em&gt; is false.)</div><div class="line">    * <span class="doctag">@param</span> attachToRoot Whether the inflated hierarchy should be attached to</div><div class="line">    *        the root parameter? If false, root is only used to create the</div><div class="line">    *        correct subclass of LayoutParams for the root view in the XML.</div><div class="line">    * <span class="doctag">@return</span> The root View of the inflated hierarchy. If root was supplied and</div><div class="line">    *         attachToRoot is true, this is root; otherwise it is the root of</div><div class="line">    *         the inflated XML file.</div><div class="line">    */</div></pre></td></tr></table></figure>
+<p>resource:要加载的资源ID。<br>root:<strong>当 attachToRoot 为 false的时候，这个函数返回的是xml的根布局。为true的时候，并且root存在的时候，将xml装载到root下。</strong></p>
+<ul>
+<li>3.在Activity中的代码：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">      <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">      setContentView(R.layout.activity_main);</div><div class="line">      ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line">      initData();</div><div class="line">      initView();</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">   * 生成数据</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</div><div class="line">      context = <span class="keyword">this</span>.getApplicationContext();</div><div class="line">      Mybean mybean1 = <span class="keyword">new</span> Mybean();</div><div class="line">      mybean1.setButton(<span class="string">"mybean1_button"</span>);</div><div class="line">      mybean1.setEdittext1(<span class="string">"mybean1_edittex1"</span>);</div><div class="line">      mybean1.setEdittext2(<span class="string">"mybean1_edittex2"</span>);</div><div class="line">      Mybean mybean2 = <span class="keyword">new</span> Mybean();</div><div class="line">      mybean2.setButton(<span class="string">"mybean2_button"</span>);</div><div class="line">      mybean2.setEdittext1(<span class="string">"mybean2_edittex1"</span>);</div><div class="line">      mybean2.setEdittext2(<span class="string">"mybean2_edittex2"</span>);</div><div class="line">      list.add(mybean1);</div><div class="line">      list.add(mybean2);</div><div class="line">  &#125;</div><div class="line"><span class="comment">/**</span></div><div class="line">   * 注入数据，绘画</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initView</span><span class="params">()</span> </span>&#123;</div><div class="line">      mAdapter = <span class="keyword">new</span> MyRecyclerViewAdapter(list);</div><div class="line">      <span class="comment">//这里使用线性布局</span></div><div class="line">      recyclerView.setLayoutManager(<span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>));</div><div class="line"><span class="comment">//这里设置间</span></div><div class="line">      MyRecyclerViewAdapter.SpaceItemDecoration spaceItemDecoration = <span class="keyword">new</span> MyRecyclerViewAdapter.SpaceItemDecoration(<span class="number">50</span>);</div><div class="line">      recyclerView.addItemDecoration(spaceItemDecoration);</div><div class="line">      recyclerView.setAdapter(mAdapter);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Android/">#Android</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Contact me with Radio2Chef@Gmail.com or add me QQ:1579987591
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/03/Android-事件分发/">Android 事件分发</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/17/Tips-for-Hexo/">Tips for Hexo</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/02/10/Android-view小记/">Android-View小记</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/hpy1012">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:Radio2Chef@Gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Radio2Chef
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

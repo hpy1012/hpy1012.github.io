@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="IntentFilter Matching Rules were rules about implicit Intent.
+IntentFilter contains three kinds of filtering information–action | category | data.
+act">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Radio2Chef">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="IntentFilter Matching Rules"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Radio2Chef&#39;s Profile"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>IntentFilter Matching Rules - Radio2Chef&#39;s Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2015/11/29/IntentFilter-Matching-Rules/">
+                IntentFilter Matching Rules
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-29</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>IntentFilter Matching Rules were rules about <strong>implicit</strong> Intent.</p>
+<p>IntentFilter contains three kinds of filtering information–<strong>action | category | data.</strong></p>
+<p>action:It must exists in Intent and same as one of <strong>Filter Rules</strong>.(Android system has been predefined some actions)<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.c"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>There is java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setAction(<span class="string">"com.hpy.action.b"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<p>category:Intent could have no category, yet no matter how many categories they have to completely matched one to one when category exists in Intent.<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">intent.addCategory(<span class="string">"com.hpy.category.a"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.hpy.category.b"</span>);</div></pre></td></tr></table></figure></p>
+<p>“android.intent.category.DEFAULT” is a default value when we used<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">	startActivity(intent);</div><div class="line"><span class="comment">//or</span></div><div class="line">	startActivityForResult(intent);</div></pre></td></tr></table></figure></p>
+<p>data:It is similar to action in matching rules,but it’s more complex.<br>It’s contains of two parts.One is <strong>mimeType</strong> means media type(image/jpeg,audio/mpeg4-generic or video/*).The other one is URI.</p>
+<p>There is URI sturcture:<br>    <code>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/[path]|[pathprefix]|[pathpattern]</code><br>like these:<br>    <code>content://com.hpy.project:200/folder/subfolder/etc</code><br>    <code>http://www.baidu.com:80/serach/info</code></p>
+<p>ex:(complete data)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">intent.setDataAndType(Uri.pares(<span class="string">"file://abc"</span>),<span class="string">"image/png"</span>)</div></pre></td></tr></table></figure></p>
+<p>xml:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"video/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"audio/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Can’t use <code>setType()</code> after <code>setData()</code> and vice versa, source code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> Intent <span class="title">setData</span><span class="params">(Uri data)</span></span>&#123;</div><div class="line">		mData = data;</div><div class="line">		mType = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Android/">#Android</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Contact me with Radio2Chef@Gmail.com or add me QQ:1579987591
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/02/03/Android-事件分发/">Android 事件分发</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/11/17/Tips-for-Hexo/">Tips for Hexo</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/02/10/Android-view小记/">Android-View小记</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/hpy1012">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:Radio2Chef@Gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Radio2Chef
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

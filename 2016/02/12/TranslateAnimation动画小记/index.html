@@ -10,6 +10,9 @@
 
     <!--Description-->
     
+        <meta name="description" content="Android提供了四种动画：TranslateAnimation 位移动画AlphaAnimation 透明动画ScaleAnimation 缩放动画RotateAnimaion 旋转动画
+针对今天的TranslateAnimation:1public　TranslateAnimation(flo">
+    
 
     <!--Author-->
     
@@ -18,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Radio2Chef&#39;s Profile"/>
+        <meta property="og:title" content="TranslateAnimation动画小记"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +32,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>Archiv: 2016/2 - Radio2Chef&#39;s Profile</title>
+    <title>TranslateAnimation动画小记 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -103,9 +106,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -113,221 +114,55 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">2016/2</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2015/10/12/About-Hexo/">
-        <span class="archive-date">
-            Oct 2015
-        </span>
-        Establish blog
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2016/02/12/TranslateAnimation动画小记/">
+                TranslateAnimation动画小记
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-12</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>Android提供了四种动画：<br>TranslateAnimation 位移动画<br>AlphaAnimation 透明动画<br>ScaleAnimation 缩放动画<br>RotateAnimaion 旋转动画</p>
+<p>针对今天的TranslateAnimation:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public　TranslateAnimation(float fromXDelta, float toXDelta, float fromYDelta, float toYDelta)</div></pre></td></tr></table></figure></p>
+<p>Delta，顾名思义表示的是一个后一个和前一个的差值。XDelta即表示在X方向上的差值，同理YDelta表示在Y方向的差值。若XDelta&gt;0，则说明控件向右侧发生移动，否则向左侧移动，Y轴方向是相同的道理。现在来说下各个参数的意思：<br>        fromXDelta：控件的开始移动前的位置，为什么是Delta呢？因为在此之前，该控件可能已经发生过了位移，因此它已经偏离了控件最初始的位置。因此采用了距离最初始位置的偏移量。<br>        toXDelta：相同道理，想要移动的终点位置距离最初始位置的偏移量。记住，一定不要混淆的是，不要把这个最初始位置当成是移动开始前控件的位置，否则将会发生错误移动。后面两个参数表示Y方向上的，和X方向上的同理。需要说明的是，这个是绝对偏移量，是以像素为单位进行计算的</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Android/">#Android</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/09/Andoird-获取图片路径有中文/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Andoird 获取图片路径有中文
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/11/23/Android--Handle/">
-        <span class="archive-date">
-            Nov 2015
-        </span>
-        Android--Handle
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/10/13/Android--Hide-Status-Bar/">
-        <span class="archive-date">
-            Oct 2015
-        </span>
-        Android--Hide Status Bar
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/14/Android-CrashHandler/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Android CrashHandler
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/01/Android-RecyclerView创建使用/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Android RecyclerView创建使用
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2017/02/03/Android-事件分发/">
-        <span class="archive-date">
-            Feb 2017
-        </span>
-        Android 事件分发
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/28/Android-权限管理/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Android 权限管理
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/02/10/Android-view小记/">
-        <span class="archive-date">
-            Feb 2016
-        </span>
-        Android-View小记
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/15/Android-view的隐藏显示动画的简单实现/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Android view的隐藏显示动画的简单实现
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/27/BottomNavigation小问题/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        BottomNavigation小问题
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/01/Android-预览遇到的小问题/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Android 预览遇到的小问题
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/11/18/BubbleSort/">
-        <span class="archive-date">
-            Nov 2015
-        </span>
-        BubbleSort
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/11/29/IntentFilter-Matching-Rules/">
-        <span class="archive-date">
-            Nov 2015
-        </span>
-        IntentFilter Matching Rules
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/05/Java-关于注解/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Java 关于注解
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/02/12/PropertyAnimation属性动画小记/">
-        <span class="archive-date">
-            Feb 2016
-        </span>
-        PropertyAnimation属性动画小记
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/11/17/Tips-for-Hexo/">
-        <span class="archive-date">
-            Nov 2016
-        </span>
-        Tips for Hexo
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/01/Android-焦点问题/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Android 焦点问题
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/12/07/Java-内部类小记/">
-        <span class="archive-date">
-            Dec 2015
-        </span>
-        Java 内部类小记
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/02/12/动画插值器interpolator/">
-        <span class="archive-date">
-            Feb 2016
-        </span>
-        动画插值器interpolator
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/12/13/Java-同步锁浅析/">
-        <span class="archive-date">
-            Dec 2016
-        </span>
-        Java 同步锁浅析
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2015/11/28/Tips-valueOf-paresDouble/">
-        <span class="archive-date">
-            Nov 2015
-        </span>
-        Tips - valueOf() & paresXxx()
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2016/02/12/TranslateAnimation动画小记/">
-        <span class="archive-date">
-            Feb 2016
-        </span>
-        TranslateAnimation动画小记
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
 

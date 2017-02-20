@@ -151,6 +151,10 @@
 <p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">  </div><div class="line">animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;  </div><div class="line">        int curValue = (int)animation.getAnimatedValue();  </div><div class="line">        Log.d(&quot;qijian&quot;,&quot;curValue:&quot;+curValue);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
 <p>在上面的代码中，我们通过addUpdateListener添加了一个监听，在监听传回的结果中，是表示当前状态的ValueAnimator实例，我们通过animation.getAnimatedValue()得到当前值。然后通过Log打印出来，结果如下：</p>
 <p><img src="http://ol82eik7m.bkt.clouddn.com/ValueAnimatorLog.png" alt="pic1"></p>
+<ol>
+<li>ValueAnimator 只负责对指定的数字区间进行动画运算</li>
+<li>我们需要对运算过程进行监听，然后自己对控件做动画操作</li>
+</ol>
 
     </div>
 
@@ -192,6 +196,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/02/20/toorbar小记/">toolbar小记</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/02/03/Android-事件分发/">Android 事件分发</a>
             </li>
             
@@ -201,10 +209,6 @@
             
             <li>
                 <a class="footer-post" href="/2016/11/17/Tips-for-Hexo/">Tips for Hexo</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/02/12/动画插值器interpolator/">动画插值器interpolator</a>
             </li>
             
         </ul>

@@ -10,8 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="Java语言的关键字，当它用来修饰一个方法或者一个代码块的时候，能够保证在同一时刻最多只有一个线程执行该段代码。
-一、当两个并发线程访问同一个对象object中的这个synchronized(this)同步代码块时，一个时间内只能有一个线程得到执行。另一个线程必须等待当前线程执行完这个代码块以后才能">
+        <meta name="description" content="如果想使用toolbar代替原来的actionbar,需要在初始化时声明12Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);setSupportActionBar(mToolbar);
+添加左上角「系统自带的」返回按钮1234567ge">
     
 
     <!--Author-->
@@ -21,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Java 同步锁浅析"/>
+        <meta property="og:title" content="toolbar小记"/>
     
 
     <!--Open Graph Description-->
@@ -43,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>Java 同步锁浅析 - Radio2Chef&#39;s Profile</title>
+    <title>toolbar小记 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -123,13 +123,13 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2016/12/13/Java-同步锁浅析/">
-                Java 同步锁浅析
+            <a href="/2017/02/20/toorbar小记/">
+                toolbar小记
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2016-12-13</span>
+                <span class="date">2017-02-20</span>
             
             <a href="#disqus_thread" class="comments">Kommentare</a>
             
@@ -142,13 +142,32 @@
         
 
         <!-- Post Content -->
-        <p>Java语言的关键字，当它用来修饰一个方法或者一个代码块的时候，能够保证在同一时刻最多只有一个线程执行该段代码。</p>
-<p><strong>一</strong>、当两个并发线程访问同一个对象object中的这个synchronized(this)同步代码块时，一个时间内只能有一个线程得到执行。另一个线程必须等待当前线程执行完这个代码块以后才能执行该代码块。</p>
-<p><strong>二</strong>、然而，当一个线程访问object的一个synchronized(this)同步代码块时，另一个线程仍然可以访问该object中的非synchronized(this)同步代码块。</p>
-<p><strong>三</strong>、尤其关键的是，当一个线程访问object的一个synchronized(this)同步代码块时，其他线程对object中所有其它synchronized(this)同步代码块的访问将被阻塞。</p>
-<p><strong>四</strong>、第三个例子同样适用其它同步代码块。也就是说，当一个线程访问object的一个synchronized(this)同步代码块时，它就获得了这个object的对象锁。结果，其它线程对该object对象所有同步代码部分的访问都被暂时阻塞。</p>
-<p><strong>五</strong>、以上规则对其它对象锁同样适用.</p>
+        <p>如果想使用toolbar代替原来的actionbar,需要在初始化时声明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">setSupportActionBar(mToolbar);</div></pre></td></tr></table></figure></p>
+<p>添加左上角「系统自带的」返回按钮<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">getSupportActionBar().setDisplayHomeAsUpEnabled(true);</div><div class="line">        mToolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                onBackPressed();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>添加按钮</strong></p>
+<ul>
+<li>添加设置menu.xml文件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</div><div class="line"></div><div class="line">    &lt;item</div><div class="line">        android:id=&quot;@+id/action_favorite&quot;</div><div class="line">        android:icon=&quot;@drawable/ic_action_refresh&quot;</div><div class="line">        android:title=&quot;@string/refresh&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;/&gt;</div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>填充设置好的menu </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;       </div><div class="line">getMenuInflater().inflate(R.menu.my_toolbar_item,menu);</div><div class="line">      return true;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加listener</p>
+</li>
+</ul>
+<pre><code>@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_refresh:
+                toastShow(&quot;刷新一下&quot;);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
+    }
+</code></pre>
     </div>
 
     
@@ -156,7 +175,7 @@
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Java/">#Java</a>
+            <a href="/tags/Android/">#Android</a>
         </div>
     
 

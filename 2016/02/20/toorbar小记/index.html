@@ -10,8 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="Picture可以看作是一个录制Canvas操作的录像机。
-使用Picture相比于再次调用绘图API，开销是比较小的，也就是说对于重复的操作可以更加省时省力。">
+        <meta name="description" content="如果想使用toolbar代替原来的actionbar,需要在初始化时声明12Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);setSupportActionBar(mToolbar);
+添加左上角「系统自带的」返回按钮1234567ge">
     
 
     <!--Author-->
@@ -21,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="自定义View学习-picture"/>
+        <meta property="og:title" content="toolbar小记"/>
     
 
     <!--Open Graph Description-->
@@ -43,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>自定义View学习-picture - Radio2Chef&#39;s Profile</title>
+    <title>toolbar小记 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -123,8 +123,8 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2016/02/20/自定义View学习-picture/">
-                自定义View学习-picture
+            <a href="/2016/02/20/toorbar小记/">
+                toolbar小记
             </a>
         </h1>
         <div class="post-info">
@@ -142,8 +142,34 @@
         
 
         <!-- Post Content -->
-        <p>Picture可以看作是一个录制Canvas操作的录像机。</p>
-<p>使用Picture相比于再次调用绘图API，开销是比较小的，也就是说对于重复的操作可以更加省时省力。</p>
+        <p>如果想使用toolbar代替原来的actionbar,需要在初始化时声明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">setSupportActionBar(mToolbar);</div></pre></td></tr></table></figure></p>
+<p>添加左上角「系统自带的」返回按钮<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">getSupportActionBar().setDisplayHomeAsUpEnabled(true);</div><div class="line">        mToolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                onBackPressed();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p><strong>添加按钮</strong></p>
+<ul>
+<li>添加设置menu.xml文件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</div><div class="line"></div><div class="line">    &lt;item</div><div class="line">        android:id=&quot;@+id/action_favorite&quot;</div><div class="line">        android:icon=&quot;@drawable/ic_action_refresh&quot;</div><div class="line">        android:title=&quot;@string/refresh&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;/&gt;</div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>填充设置好的menu </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;       </div><div class="line">getMenuInflater().inflate(R.menu.my_toolbar_item,menu);</div><div class="line">      return true;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加listener</p>
+</li>
+</ul>
+<pre><code>@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_refresh:
+                toastShow(&quot;刷新一下&quot;);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+</code></pre><hr>
+<p>Toolbar标题居中需要用假的textview来代替title并设置textview的位置layout_gravity=center</p>
+<p>toolbar返回按钮的颜色 需要引用一下theme的一项属性<br><code>&lt;item name=&quot;colorControlNormal&quot;&gt;@android:color/white&lt;/item&gt;</code></p>
 
     </div>
 

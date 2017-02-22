@@ -123,6 +123,44 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2015/11/29/IntentFilter-Matching-Rules/">
+                IntentFilter Matching Rules
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-11-29</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>IntentFilter Matching Rules were rules about <strong>implicit</strong> Intent.</p>
+<p>IntentFilter contains three kinds of filtering information–<strong>action | category | data.</strong></p>
+<p>action:It must exists in Intent and same as one of <strong>Filter Rules</strong>.(Android system has been predefined some actions)<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.c"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>There is java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setAction(<span class="string">"com.hpy.action.b"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
+<p>category:Intent could have no category, yet no matter how many categories they have to completely matched one to one when category exists in Intent.<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">intent.addCategory(<span class="string">"com.hpy.category.a"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.hpy.category.b"</span>);</div></pre></td></tr></table></figure></p>
+<p>“android.intent.category.DEFAULT” is a default value when we used<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">	startActivity(intent);</div><div class="line"><span class="comment">//or</span></div><div class="line">	startActivityForResult(intent);</div></pre></td></tr></table></figure></p>
+<p>data:It is similar to action in matching rules,but it’s more complex.<br>It’s contains of two parts.One is <strong>mimeType</strong> means media type(image/jpeg,audio/mpeg4-generic or video/*).The other one is URI.</p>
+<p>There is URI sturcture:<br>    <code>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/[path]|[pathprefix]|[pathpattern]</code><br>like these:<br>    <code>content://com.hpy.project:200/folder/subfolder/etc</code><br>    <code>http://www.baidu.com:80/serach/info</code></p>
+<p>ex:(complete data)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">intent.setDataAndType(Uri.pares(<span class="string">"file://abc"</span>),<span class="string">"image/png"</span>)</div></pre></td></tr></table></figure></p>
+<p>xml:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"video/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"audio/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Can’t use <code>setType()</code> after <code>setData()</code> and vice versa, source code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> Intent <span class="title">setData</span><span class="params">(Uri data)</span></span>&#123;</div><div class="line">		mData = data;</div><div class="line">		mType = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2015/11/28/Tips-valueOf-paresDouble/">
                 Tips - valueOf() & paresXxx()
             </a>
@@ -368,15 +406,15 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2017/02/20/app分享转发时卡顿解决/">app分享转发时卡顿解决</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/02/03/Android-事件分发/">Android 事件分发</a>
-            </li>
-            
-            <li>
                 <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/02/22/viewpager图片滑动卡顿问题解决/">viewpager图片滑动卡顿问题解决</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/02/20/app分享转发时卡顿解决/">app分享转发时卡顿解决</a>
             </li>
             
             <li>

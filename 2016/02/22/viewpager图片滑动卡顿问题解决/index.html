@@ -10,7 +10,10 @@
 
     <!--Description-->
     
-        <meta name="description" content="Don’t forget that separate : with the first word!!!">
+        <meta name="description" content="今天发现引导页用的viewpager滑动图片卡顿，发现是图片放置的位置不对，那几张(720x1280)图片竟然放在drawable下，改到xhdpi文件夹下就好了。
+原因就是屏幕适配，下面放一个适配比
+
+分类目录    ldpi    mdpi    hdpi    xhdpi    xxhdpi ">
     
 
     <!--Author-->
@@ -20,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Tips for Hexo"/>
+        <meta property="og:title" content="viewpager图片滑动卡顿问题解决"/>
     
 
     <!--Open Graph Description-->
@@ -42,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>Tips for Hexo - Radio2Chef&#39;s Profile</title>
+    <title>viewpager图片滑动卡顿问题解决 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -122,13 +125,13 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2015/11/17/Tips-for-Hexo/">
-                Tips for Hexo
+            <a href="/2016/02/22/viewpager图片滑动卡顿问题解决/">
+                viewpager图片滑动卡顿问题解决
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2015-11-17</span>
+                <span class="date">2016-02-22</span>
             
             <a href="#disqus_thread" class="comments">Kommentare</a>
             
@@ -141,7 +144,14 @@
         
 
         <!-- Post Content -->
-        <p>Don’t forget that separate <strong><code>:</code></strong> with the first word<strong>!!!</strong></p>
+        <p>今天发现引导页用的viewpager滑动图片卡顿，发现是图片放置的位置不对，那几张(720x1280)图片竟然放在drawable下，改到xhdpi文件夹下就好了。</p>
+<p>原因就是屏幕适配，下面放一个适配比</p>
+<ul>
+<li>分类目录    ldpi    mdpi    hdpi    xhdpi    xxhdpi    xxxhdpi</li>
+<li>密度（dpi）    ~160    ~240    ~320     ~480    ~640</li>
+<li>图片比例    1.5    2    3    4    6    8</li>
+<li>倍数    0.75x    1x    1.5x    2x    3x    4x</li>
+</ul>
 
     </div>
 
@@ -150,7 +160,7 @@
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Tips/">#Tips</a>
+            <a href="/tags/Android/">#Android</a>
         </div>
     
 

@@ -10,7 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="Don’t forget that separate : with the first word!!!">
+        <meta name="description" content="1public boolean dispatchTouchEvent(MotionEvent ev)
+用来进行事件的分发，如果事件能够传递给当前View,那么此方法一定会被调用，返回结果受当前View的onTouchEvent和下级View的dispatchTouchEvent方法的影响，表示是否消">
     
 
     <!--Author-->
@@ -20,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Tips for Hexo"/>
+        <meta property="og:title" content="Android 事件分发"/>
     
 
     <!--Open Graph Description-->
@@ -42,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>Tips for Hexo - Radio2Chef&#39;s Profile</title>
+    <title>Android 事件分发 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -122,13 +123,13 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2015/11/17/Tips-for-Hexo/">
-                Tips for Hexo
+            <a href="/2016/02/03/Android-事件分发/">
+                Android 事件分发
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2015-11-17</span>
+                <span class="date">2016-02-03</span>
             
             <a href="#disqus_thread" class="comments">Kommentare</a>
             
@@ -141,7 +142,13 @@
         
 
         <!-- Post Content -->
-        <p>Don’t forget that separate <strong><code>:</code></strong> with the first word<strong>!!!</strong></p>
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span></div></pre></td></tr></table></figure>
+<p>用来进行事件的分发，如果事件能够传递给当前View,那么此方法<strong>一定</strong>会被调用，返回结果受当前View的onTouchEvent和下级View的dispatchTouchEvent方法的影响，表示是否消耗当前事件。</p>
+<p><code>public boolean onInterceptTouchEvent(MotionEvent ev)</code><br>在上述方法内部调用，用来判断是否拦截某个事件，如果当前View拦截了某个事件，那么在同一个事件序列中，此方法不会被再次调用，返回结果表示是否拦截当前事件。</p>
+<p><code>public boolean onTouchEvent(MotionEvent ev)</code>‘<br>在dispatchTouchEvent方法中调用，用来处理点击事件，返回结果表示是否消耗当前事件，如果不消耗，则在同一个事件序列中，当前View无法再次接受到事件。</p>
+<p><strong>三者关系如下：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</div><div class="line">	<span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">if</span> (onInterceptTouchEvent(ev))&#123;</div><div class="line">		consume = onTouchEvent(ev);</div><div class="line">	&#125;<span class="keyword">else</span> &#123;</div><div class="line">		consume = child.dispatchTouchEvent(ev);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果你想对触摸事件进行拦截，那么你需要覆写onInterceptTouchEvent方法，并且返回true。然后后续的事件就会被转移到该ViewGroup的onTouchEvent方法进行处理，而在后续的事件处理过程中onInterceptTouchEvent中也不会收到后续事件，因此你也需要覆写onTouchEvent方法。</p>
+<p><strong>在模拟器上的『一次』点击事件中，dispatchTouchEvent中有四次MotionEvent动作，前两次MotionEvent为Down，后两次为Up，并且只有最后一次Up才返回的false即向下传递。</strong></p>
 
     </div>
 
@@ -150,7 +157,7 @@
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Tips/">#Tips</a>
+            <a href="/tags/Android/">#Android</a>
         </div>
     
 

@@ -10,6 +10,11 @@
 
     <!--Description-->
     
+        <meta name="description" content="RSA加密使用：
+先在Android从服务器获取公钥，再利用encrypt()方法加密。服务器再解密
+工具类：
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515">
+    
 
     <!--Author-->
     
@@ -18,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Radio2Chef&#39;s Profile"/>
+        <meta property="og:title" content="RSA--Android端加密，服务端解密"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +34,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>Radio2Chef&#39;s Profile</title>
+    <title>RSA--Android端加密，服务端解密 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -111,49 +116,14 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">Radio2Chef's Profile</h1>
-        
     </div>
 </header>
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/12/13/Java-同步锁浅析/">
-                Java 同步锁浅析
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-12-13</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Java语言的关键字，当它用来修饰一个方法或者一个代码块的时候，能够保证在同一时刻最多只有一个线程执行该段代码。</p>
-<p><strong>一</strong>、当两个并发线程访问同一个对象object中的这个synchronized(this)同步代码块时，一个时间内只能有一个线程得到执行。另一个线程必须等待当前线程执行完这个代码块以后才能执行该代码块。</p>
-<p><strong>二</strong>、然而，当一个线程访问object的一个synchronized(this)同步代码块时，另一个线程仍然可以访问该object中的非synchronized(this)同步代码块。</p>
-<p><strong>三</strong>、尤其关键的是，当一个线程访问object的一个synchronized(this)同步代码块时，其他线程对object中所有其它synchronized(this)同步代码块的访问将被阻塞。</p>
-<p><strong>四</strong>、第三个例子同样适用其它同步代码块。也就是说，当一个线程访问object的一个synchronized(this)同步代码块时，它就获得了这个object的对象锁。结果，其它线程对该object对象所有同步代码部分的访问都被暂时阻塞。</p>
-<p><strong>五</strong>、以上规则对其它对象锁同样适用.</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/2016/02/27/RSA-Android端加密，服务端解密/">
                 RSA--Android端加密，服务端解密
@@ -163,14 +133,18 @@
             
                 <span class="date">2016-02-27</span>
             
-            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
             
         </div>
     </div>
 
-    
-        <div class="content">
-            <p>RSA加密使用：</p>
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>RSA加密使用：</p>
 <p>先在Android从服务器获取公钥，再利用encrypt()方法加密。<br>服务器再解密</p>
 <p>工具类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sun.misc.BASE64Decoder;</div><div class="line"><span class="keyword">import</span> sun.misc.BASE64Encoder;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Radio2chef@gmail.com</div><div class="line"> * &lt;p&gt;</div><div class="line"> * Created by hepengyang.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RSAUtils</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 指定加密算法为RSA</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ALGORITHM = <span class="string">"RSA"</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Android算法</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ANDROID_ALGORITHM = <span class="string">"RSA/ECB/PKCS1Padding"</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 密钥长度，用来初始化</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> KEYSIZE = <span class="number">1024</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 指定公钥存放字符串</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String PublicKey = <span class="string">"PublicKey"</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 指定私钥存放字符串</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String PrivateKey = <span class="string">"PrivateKey"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String init = generateKeyPair();</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 生成密钥对</div><div class="line">     *</div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">generateKeyPair</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">//        /** RSA算法要求有一个可信任的随机数源 */</span></div><div class="line"><span class="comment">//        SecureRandom secureRandom = new SecureRandom();</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line"></div><div class="line">            <span class="comment">/** 为RSA算法创建一个KeyPairGenerator对象 */</span></div><div class="line">            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);</div><div class="line"></div><div class="line">            <span class="comment">/** 利用上面的随机数据源初始化这个KeyPairGenerator对象 */</span></div><div class="line"><span class="comment">//        keyPairGenerator.initialize(KEYSIZE, secureRandom);</span></div><div class="line">            keyPairGenerator.initialize(KEYSIZE);</div><div class="line"></div><div class="line">            <span class="comment">/** 生成密匙对 */</span></div><div class="line">            KeyPair keyPair = keyPairGenerator.generateKeyPair();</div><div class="line"></div><div class="line">            <span class="comment">/** 得到公钥 */</span></div><div class="line">            Key publicKey = keyPair.getPublic();</div><div class="line"></div><div class="line">            <span class="comment">/** 得到私钥 */</span></div><div class="line">            Key privateKey = keyPair.getPrivate();</div><div class="line"></div><div class="line">            PublicKey = <span class="keyword">new</span> String(<span class="keyword">new</span> BASE64Encoder().encodeBuffer(publicKey.getEncoded()));</div><div class="line">            PrivateKey = <span class="keyword">new</span> String(<span class="keyword">new</span> BASE64Encoder().encodeBuffer(privateKey.getEncoded()));</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 加密方法</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> source 源数据</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encrypt</span><span class="params">(String publicKeyapp, String source)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);</div><div class="line">        X509EncodedKeySpec pKCS8EncodedKeySpec = <span class="keyword">new</span> X509EncodedKeySpec(<span class="keyword">new</span> BASE64Decoder().decodeBuffer(publicKeyapp));</div><div class="line">        Key publicKey = keyFactory.generatePublic(pKCS8EncodedKeySpec);</div><div class="line">        <span class="comment">/** 得到Cipher对象来实现对源数据的RSA加密 */</span></div><div class="line">        Cipher cipher = Cipher.getInstance(ANDROID_ALGORITHM);</div><div class="line">        cipher.init(Cipher.ENCRYPT_MODE, publicKey);</div><div class="line">        <span class="keyword">byte</span>[] b = source.getBytes();</div><div class="line">        <span class="comment">/** 执行加密操作 */</span></div><div class="line">        <span class="keyword">byte</span>[] b1 = cipher.doFinal(b);</div><div class="line">        BASE64Encoder encoder = <span class="keyword">new</span> BASE64Encoder();</div><div class="line">        <span class="keyword">return</span> encoder.encode(b1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 解密算法</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> cryptograph 密文</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decrypt</span><span class="params">(String cryptograph)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);</div><div class="line">        PKCS8EncodedKeySpec pKCS8EncodedKeySpec = <span class="keyword">new</span> PKCS8EncodedKeySpec(<span class="keyword">new</span> BASE64Decoder().decodeBuffer(PrivateKey));</div><div class="line">        Key privateKey = keyFactory.generatePrivate(pKCS8EncodedKeySpec);</div><div class="line">        <span class="comment">/** 得到Cipher对象对已用公钥加密的数据进行RSA解密 */</span></div><div class="line">        Cipher cipher = Cipher.getInstance(<span class="string">"RSA/ECB/PKCS1Padding"</span>);</div><div class="line">        cipher.init(Cipher.DECRYPT_MODE, privateKey);</div><div class="line">        BASE64Decoder decoder = <span class="keyword">new</span> BASE64Decoder();</div><div class="line">        <span class="keyword">byte</span>[] b1 = decoder.decodeBuffer(cryptograph);</div><div class="line">        <span class="comment">/** 执行解密操作 */</span></div><div class="line">        <span class="keyword">byte</span>[] b = cipher.doFinal(b1);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(b);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">   <span class="comment">/* public static String encrypt(String source,String publicKey) throws Exception &#123;</span></div><div class="line">        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);</div><div class="line">        X509EncodedKeySpec pKCS8EncodedKeySpec =new X509EncodedKeySpec (new BASE64Decoder().decodeBuffer(publicKey));</div><div class="line">        Key key = keyFactory.generatePublic(pKCS8EncodedKeySpec);</div><div class="line">        */<span class="comment">/** 得到Cipher对象来实现对源数据的RSA加密 */</span><span class="comment">/*</span></div><div class="line">        Cipher cipher = Cipher.getInstance(ALGORITHM);</div><div class="line">        cipher.init(Cipher.ENCRYPT_MODE, key);</div><div class="line">        byte[] b = source.getBytes();</div><div class="line">        */</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 执行加密操作</div><div class="line">     */<span class="comment">/*</span></div><div class="line">        byte[] b1 = cipher.doFinal(b);</div><div class="line">        BASE64Encoder encoder = new BASE64Encoder();</div><div class="line">        return encoder.encode(b1);</div><div class="line">    &#125;*/</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPublicKey</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> PublicKey;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPrivateKey</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> PrivateKey;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -178,313 +152,25 @@
 <p><strong>注意：</strong></p>
 <p>android端和服务器端的算法如果都用『RSA』的话，是不一样的，得以Android端为准，即</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Android算法</div><div class="line">   */</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ANDROID_ALGORITHM = <span class="string">"RSA/ECB/PKCS1Padding"</span>;</div></pre></td></tr></table></figure>
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/23/Butterknife的一些小问题/">
-                Butterknife的一些小问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-23</span>
-            
-            
-            
-        </div>
     </div>
 
     
-        <div class="content">
-            <p>在使用Butterknife中，如果想要绑定”include”标签中的元素，”include”标签不能有ID，否则会覆盖它里面的元素，如果布局中需要依赖include,直接依赖它里面的父布局ID。</p>
 
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Android/">#Android</a>
         </div>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/23/自定义View的xml属性前缀/">
-                自定义View的xml属性前缀
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-23</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xmlns:android="http://schemas.android.com/apk/res/android"  </div><div class="line">xmlns:app="http://schemas.android.com/apk/res-auto"</div></pre></td></tr></table></figure>
-<p>这个是在申明命名空间,View中要想自己生命的属性有意义，则需要为属性加一个命名空间前缀，如”android”或者”app”。 </p>
-<p>也可以自己定义如:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlns:hpy="http://schemas.android.com/apk/res-auto"</div></pre></td></tr></table></figure>
-<p>现在Android studio只能用res-auto，以前写包名的方法被废弃了。<br>但是经过实验，如果存在<strong>xmlns:app</strong>自己定义的命名空间会被覆盖。</p>
-<p>用法:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;  </div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>  </span></div><div class="line">    <span class="attr">xmlns:hpy</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>  </div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span>  </div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;  </div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">com.hpy.mytextview.MyView</span>  </span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span>  </div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span>  </div><div class="line">        <span class="attr">hpy:text</span>=<span class="string">"这是自定义属性"</span>  </div><div class="line">        <span class="attr">hpy:textColor</span>=<span class="string">"#ff0000"</span>/&gt;  </div><div class="line">  </div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>如何自定义它呢？</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;  </div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"TestView"</span>&gt;</span>  </div><div class="line">        <span class="comment">&lt;!--属性名   属性类型--&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"textColor"</span> <span class="attr">format</span>=<span class="string">"color"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>java里的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>(context);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>(context, attrs);  </div><div class="line">        <span class="comment">//得到TypedArray  </span></div><div class="line">        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TestView);  </div><div class="line">  </div><div class="line">        String text = (String)a.getText(R.styleable.TestView_text);  </div><div class="line">  </div><div class="line">        <span class="keyword">int</span> textColor = a.getColor(R.styleable.TestView_textColor, <span class="number">0xff000000</span>);  </div><div class="line">  </div><div class="line">        Log.d(<span class="string">"test"</span>, <span class="string">"text:"</span> + text);  </div><div class="line">  </div><div class="line">        Log.d(<span class="string">"test"</span>, <span class="string">"textColor:"</span> + textColor);  </div><div class="line">  </div><div class="line">        a.recycle();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/22/viewpager图片滑动卡顿问题解决/">
-                viewpager图片滑动卡顿问题解决
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-22</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天发现引导页用的viewpager滑动图片卡顿，发现是图片放置的位置不对，那几张(720x1280)图片竟然放在drawable下，改到xhdpi文件夹下就好了。</p>
-<p>原因就是屏幕适配，下面放一个适配比</p>
-<ul>
-<li>分类目录    ldpi    mdpi    hdpi    xhdpi    xxhdpi    xxxhdpi</li>
-<li>密度（dpi）    ~160    ~240    ~320     ~480    ~640</li>
-<li>图片比例    1.5    2    3    4    6    8</li>
-<li>倍数    0.75x    1x    1.5x    2x    3x    4x</li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/20/app分享转发时卡顿解决/">
-                app分享转发时卡顿解决
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-20</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><strong>问题原因：</strong>是for循环遍历5次，每次都要查询本地安装的App,然后匹配。</p>
-<p><strong>解决办法：</strong>首次去除本地安装的App的list,后面直接比较。能稍微优化。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/20/toorbar小记/">
-                toolbar小记
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-20</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>如果想使用toolbar代替原来的actionbar,需要在初始化时声明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">setSupportActionBar(mToolbar);</div></pre></td></tr></table></figure></p>
-<p>添加左上角「系统自带的」返回按钮<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">getSupportActionBar().setDisplayHomeAsUpEnabled(true);</div><div class="line">        mToolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                onBackPressed();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
-<p><strong>添加按钮</strong></p>
-<ul>
-<li>添加设置menu.xml文件。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</div><div class="line"></div><div class="line">    &lt;item</div><div class="line">        android:id=&quot;@+id/action_favorite&quot;</div><div class="line">        android:icon=&quot;@drawable/ic_action_refresh&quot;</div><div class="line">        android:title=&quot;@string/refresh&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;/&gt;</div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>填充设置好的menu </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;       </div><div class="line">getMenuInflater().inflate(R.menu.my_toolbar_item,menu);</div><div class="line">      return true;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>添加listener</p>
-</li>
-</ul>
-<pre><code>@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_refresh:
-                toastShow(&quot;刷新一下&quot;);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-</code></pre><hr>
-<p>Toolbar标题居中需要用假的textview来代替title并设置textview的位置layout_gravity=center</p>
-<p>toolbar返回按钮的颜色 需要引用一下android:theme的一项属性<br><code>&lt;item name=&quot;colorControlNormal&quot;&gt;@android:color/white&lt;/item&gt;</code></p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/20/自定义View学习-picture/">
-                自定义View学习-picture
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-20</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Picture可以看作是一个录制Canvas操作的录像机。</p>
-<p>使用Picture相比于再次调用绘图API，开销是比较小的，也就是说对于重复的操作可以更加省时省力。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/12/动画插值器interpolator/">
-                动画插值器interpolator
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-12</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>AccelerateDecelerateInterpolator在动画开始与介绍的地方速率改变比较慢，在中间的时候加速</p>
-<p>AccelerateInterpolator在动画开始的地方速率改变比较慢，然后开始加速</p>
-<p>AnticipateInterpolator开始的时候向后然后向前甩</p>
-<p>AnticipateOvershootInterpolator开始的时候向后然后向前甩一定值后返回最后的值</p>
-<p>BounceInterpolator动画结束的时候弹起</p>
-<p>CycleInterpolator动画循环播放特定的次数，速率改变沿着正弦曲线</p>
-<p>DecelerateInterpolator在动画开始的地方快然后慢</p>
-<p>LinearInterpolator以常量速率改变</p>
-<p>OvershootInterpolator向前甩一定值后再回到原来位置</p>
-<p>Interpolator属性是Animation类的一个XML属性，所以alpha、scale、rotate、translate、set都会继承得到这个属性。Interpolator被译为插值器，其实我不大能从字面上理解为什么会这样译，其实他是一个指定动画如何变化的东东，跟PS里的动作有点类似：随便拿来一张图片，应用一个动作，图片就会指定变化。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/12/PropertyAnimation属性动画小记/">
-                PropertyAnimation属性动画小记
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-12</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天遇到了ValueAnimator,他是属于Property Animator的一种，另外一种为ObjectAnimator。</p>
-<p><strong>什么是属性动画</strong>：<br>View Animation（四种）仅能对指定的控件做动画，但是PropertyAnimator是通过改变控件某一属性值来做动画的。<br>比如可以改变颜色。</p>
-<p>它们两个最大的不同就是<strong>viewAnimation没有改变控件内部的属性值，而PropertyAnimator相反。</strong></p>
-<p>ValueAnimation简单示例第一步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
-<p>在这里我们利用ValueAnimator.ofInt创建了一个值从0到400的动画，动画时长是1s，然后让动画开始。从这段代码中可以看出，ValueAnimator没有跟任何的控件相关联，那也正好说明ValueAnimator只是对值做动画运算，而不是针对控件的，我们需要监听ValueAnimator的动画过程来自己对控件做操作。</p>
-<p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">  </div><div class="line">animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;  </div><div class="line">        int curValue = (int)animation.getAnimatedValue();  </div><div class="line">        Log.d(&quot;qijian&quot;,&quot;curValue:&quot;+curValue);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
-<p>在上面的代码中，我们通过addUpdateListener添加了一个监听，在监听传回的结果中，是表示当前状态的ValueAnimator实例，我们通过animation.getAnimatedValue()得到当前值。然后通过Log打印出来，结果如下：</p>
-<p><img src="http://ol82eik7m.bkt.clouddn.com/ValueAnimatorLog.png" alt="pic1"></p>
-<ol>
-<li>ValueAnimator 只负责对指定的数字区间进行动画运算</li>
-<li>我们需要对运算过程进行监听，然后自己对控件做动画操作</li>
-</ol>
-
-        </div>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-
 
 </div>
 

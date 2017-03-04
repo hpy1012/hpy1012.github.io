@@ -123,6 +123,70 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/02/20/自定义View学习-picture/">
+                自定义View学习-picture
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-20</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>Picture可以看作是一个录制Canvas操作的录像机。</p>
+<p>使用Picture相比于再次调用绘图API，开销是比较小的，也就是说对于重复的操作可以更加省时省力。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/02/12/动画插值器interpolator/">
+                动画插值器interpolator
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-12</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>AccelerateDecelerateInterpolator在动画开始与介绍的地方速率改变比较慢，在中间的时候加速</p>
+<p>AccelerateInterpolator在动画开始的地方速率改变比较慢，然后开始加速</p>
+<p>AnticipateInterpolator开始的时候向后然后向前甩</p>
+<p>AnticipateOvershootInterpolator开始的时候向后然后向前甩一定值后返回最后的值</p>
+<p>BounceInterpolator动画结束的时候弹起</p>
+<p>CycleInterpolator动画循环播放特定的次数，速率改变沿着正弦曲线</p>
+<p>DecelerateInterpolator在动画开始的地方快然后慢</p>
+<p>LinearInterpolator以常量速率改变</p>
+<p>OvershootInterpolator向前甩一定值后再回到原来位置</p>
+<p>Interpolator属性是Animation类的一个XML属性，所以alpha、scale、rotate、translate、set都会继承得到这个属性。Interpolator被译为插值器，其实我不大能从字面上理解为什么会这样译，其实他是一个指定动画如何变化的东东，跟PS里的动作有点类似：随便拿来一张图片，应用一个动作，图片就会指定变化。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/02/12/PropertyAnimation属性动画小记/">
                 PropertyAnimation属性动画小记
             </a>
@@ -364,68 +428,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/09/Andoird-获取图片路径有中文/">
-                Andoird 获取图片路径有中文
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-09</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>当通过系统的文件夹获取图片的URL的时候，可能包含中文路径，需要用<br><code>java
-Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failure delivering result 的错误。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/07/Java-内部类小记/">
-                Java 内部类小记
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-07</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>内部类用的比较少，今天在写adapter的时候用到了，记录一下。</p>
-<ul>
-<li>为什么要使用内部类</li>
-</ul>
-<p>为什么要使用内部类？在《Think in java》中有这样一句话：使用内部类最吸引人的原因是：每个内部类都能独立地继承一个（接口的）实现，所以无论外围类是否已经继承了某个（接口的）实现，对于内部类都没有影响。</p>
-<ul>
-<li>怎么创建它的实例<br>OuterClass.InnerClass innerClass = new OuterClass.InnerClass();</li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -472,15 +474,15 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
             </li>
             
             <li>
+                <a class="footer-post" href="/2016/03/05/GreenDao基本使用及封装/">GreenDao基本使用及封装</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/03/03/Android背景色小技巧/">Android背景色小技巧</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/03/02/assets和raw目录的区别/">assets和raw目录的区别</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/02/27/RSA-Android端加密，服务端解密/">RSA--Android端加密，服务端解密</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/02/23/Butterknife的一些小问题/">Butterknife的一些小问题</a>
             </li>
             
         </ul>

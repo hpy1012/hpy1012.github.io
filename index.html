@@ -155,6 +155,72 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/03/05/GreenDao基本使用及封装/">
+                GreenDao基本使用及封装
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-05</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>GreenDAO是一个ORM框架类似后端的Hibernate。</p>
+<p>优点：轻量级、快速、内存开销小、简单一用的api、性能高度优化、操作简单、支持get\update\delete等操作。</p>
+<p>###<strong>配置</strong><br>针对3.0+的，先在build.gradle(Project:xxx)中配置:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">        mavenCentral()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">        classpath <span class="string">'org.greenrobot:greendao-gradle-plugin:3.2.1'</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>再进入build.gradle(app)中配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'org.greenrobot.greendao'</span></div><div class="line"></div><div class="line">android &#123;</div><div class="line">	  greendao&#123;</div><div class="line">        <span class="comment">// 数据库版本号</span></div><div class="line">        schemaVersion <span class="number">1</span></div><div class="line">        <span class="comment">// 设置DaoMaster，DaoSession，Dao包名 由GreenDao自动生成代码所在的包名，默认的是在项目包下面新建一个gen。</span></div><div class="line">        daoPackage <span class="string">'com.hpy.cn.gen'</span></div><div class="line">        <span class="comment">// 设置DaoMaster，DaoSession，Dao目录 设置自动生成代码的目录。</span></div><div class="line">        targetGenDir <span class="string">'src/main/java'</span></div><div class="line">        <span class="comment">//设置生成单元测试目录</span></div><div class="line">        <span class="comment">// targetGenDirTest</span></div><div class="line">        <span class="comment">//设置自动生成单元测试用例</span></div><div class="line">        <span class="comment">// generateTests</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">dependencies&#123;</div><div class="line">	compile <span class="string">'org.greenrobot:greendao:3.2.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着定义一个实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span> <span class="comment">//标识实体类，GreenDao会映射成sqlite中的一个表</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestEntity</span> </span>&#123;</div><div class="line"></div><div class="line">   <span class="meta">@Id</span><span class="comment">//标识主键</span></div><div class="line">   <span class="keyword">private</span> <span class="keyword">int</span> id;</div><div class="line">   </div><div class="line">   <span class="keyword">private</span> String name;</div><div class="line">   </div><div class="line">   <span class="meta">@Property</span>(nameInDb = <span class="string">"sex"</span>)<span class="comment">//标识该属性在表中对应的列名称</span></div><div class="line">   <span class="keyword">private</span> String sex;</div><div class="line">   </div><div class="line">   <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">   <span class="keyword">private</span> Date time;</div><div class="line">   <span class="keyword">private</span> String nickName;</div><div class="line">   </div><div class="line">   <span class="meta">@Transient</span><span class="comment">//标识该属性不映射到表中</span></div><div class="line">   <span class="keyword">private</span> String address;</div></pre></td></tr></table></figure>
+<p>接着Make Project一下。这个实体类会<strong>自动生成</strong>Getter和Setter方法，以及我们定义的daoPackage<img src="http://ol82eik7m.bkt.clouddn.com/greendao.png" alt="daoPackage"><br>绿色的DBManager需要我们自己来封装一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.hpy.cn.gen;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"><span class="keyword">import</span> android.database.sqlite.SQLiteDatabase;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.greenrobot.greendao.query.QueryBuilder;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Radio2chef@gmail.com</div><div class="line"> * &lt;p&gt;</div><div class="line"> * Created by hepengyang.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DBManager</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  <span class="keyword">final</span> String   TAG = DBManager.class.getSimpleName();</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  <span class="keyword">final</span> String  DB_NAME=<span class="string">"jamy.db"</span>;<span class="comment">//数据库名称</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span>  <span class="keyword">static</span> DBManager mDBManager;<span class="comment">//多线程访问</span></div><div class="line">    <span class="keyword">private</span>  <span class="keyword">static</span> DaoMaster.DevOpenHelper mHelper;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span>  DaoMaster mDaoMaster;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DaoSession mDaoSession;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SQLiteDatabase db;</div><div class="line">    <span class="keyword">private</span> Context context;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">DBManager</span><span class="params">(Context context)</span></span>&#123;</div><div class="line">        <span class="keyword">this</span>.context=context;&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DBManager <span class="title">getInstance</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mDBManager == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (DBManager.class) &#123;</div><div class="line">                <span class="keyword">if</span> (mDBManager == <span class="keyword">null</span>) &#123;</div><div class="line">                    mDBManager = <span class="keyword">new</span> DBManager(context);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mDBManager;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 判断数据库是否存在，如果不存在则创建</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> DaoMaster <span class="title">getDaoMaster</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == mDaoMaster)&#123;</div><div class="line">            mHelper =  <span class="keyword">new</span> DaoMaster.DevOpenHelper(context,DB_NAME,<span class="keyword">null</span>);</div><div class="line">            mDaoMaster = <span class="keyword">new</span> DaoMaster(mHelper.getWritableDatabase());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mDaoMaster;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 完成对数据库的增删查找</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> DaoSession <span class="title">getDaoSession</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == mDaoSession)&#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> == mDaoMaster)&#123;</div><div class="line">                mDaoMaster = getDaoMaster();</div><div class="line">            &#125;</div><div class="line">            mDaoSession = mDaoMaster.newSession();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> mDaoSession;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 设置debug模式开启或关闭，默认关闭</div><div class="line">     * <span class="doctag">@param</span> flag</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDebug</span><span class="params">(<span class="keyword">boolean</span> flag)</span></span>&#123;</div><div class="line">        QueryBuilder.LOG_SQL = flag;</div><div class="line">        QueryBuilder.LOG_VALUES = flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 关闭数据库</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeDataBase</span><span class="params">()</span></span>&#123;</div><div class="line">        closeHelper();</div><div class="line">        closeDaoSession();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeDaoSession</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> != mDaoSession)&#123;</div><div class="line">            mDaoSession.clear();</div><div class="line">            mDaoSession = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">closeHelper</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> (mHelper!=<span class="keyword">null</span>)&#123;</div><div class="line">            mHelper.close();</div><div class="line">            mHelper = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在基本可以使用的舒服了，但是也可以进一步封装。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.hpy.cn.zhtemplate.util;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.content.Context;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.hpy.cn.gen.DBManager;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Radio2chef@gmail.com</div><div class="line"> * &lt;p&gt;</div><div class="line"> * Created by hepengyang.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaoUtils</span>&lt;<span class="title">Entity</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"DaoUtils"</span>;</div><div class="line">    <span class="keyword">private</span> DBManager manager;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DaoUtils</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        manager = DBManager.getInstance(context);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 插入操作</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> entity entity</div><div class="line">     * <span class="doctag">@return</span> boolean</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertEntity</span><span class="params">(Entity entity)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        flag = manager.getDaoSession().insert(entity) != -<span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 插入多条数据</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> entities entities</div><div class="line">     * <span class="doctag">@return</span> boolean</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insertMulitEntity</span><span class="params">(<span class="keyword">final</span> List&lt;Entity&gt; entities)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            manager.getDaoSession().runInTx(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                    <span class="keyword">for</span> (Entity e : entities) &#123;</div><div class="line">                        manager.getDaoSession().insertOrReplace(e);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            flag = <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 更新操作</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> entity entity</div><div class="line">     * <span class="doctag">@return</span> boolean</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">updateEntity</span><span class="params">(Entity entity)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            manager.getDaoSession().update(entity);</div><div class="line">            flag = <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 删除操作</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> entity entity</div><div class="line">     * <span class="doctag">@return</span> boolean</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteEntity</span><span class="params">(Entity entity)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            manager.getDaoSession().delete(entity);</div><div class="line">            flag = <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 删除所有记录</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> entity entityClass</div><div class="line">     * <span class="doctag">@return</span> boolean</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deleteAll</span><span class="params">(Entity entity)</span> </span>&#123;</div><div class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            manager.getDaoSession().deleteAll(entity.getClass());</div><div class="line">            flag = <span class="keyword">true</span>;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> flag;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 查询所有记录</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> List&lt;Entity&gt;</div><div class="line">     */</div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Entity&gt; <span class="title">listAll</span><span class="params">(Entity entity)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (List&lt;Entity&gt;) manager.getDaoSession().loadAll(entity.getClass());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 查询主键</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> key key</div><div class="line">     * <span class="doctag">@return</span> Entity</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> Entity <span class="title">quetyOneByKey</span><span class="params">(Entity entity, Long key)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (Entity) manager.getDaoSession().load(entity.getClass(), key);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/03/03/Android背景色小技巧/">
+                Android背景色小技巧
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-03</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>遇到嵌套中背景色相同的，比如都是white，即使用Alpha把底层的那个View给虚化，上层的white颜色的东西还是显示不出来。</p>
+<p>所以只要换一个色值差不多的就行。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/03/02/assets和raw目录的区别/">
                 assets和raw目录的区别
             </a>
@@ -399,70 +465,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/20/自定义View学习-picture/">
-                自定义View学习-picture
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-20</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Picture可以看作是一个录制Canvas操作的录像机。</p>
-<p>使用Picture相比于再次调用绘图API，开销是比较小的，也就是说对于重复的操作可以更加省时省力。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/12/动画插值器interpolator/">
-                动画插值器interpolator
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-12</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>AccelerateDecelerateInterpolator在动画开始与介绍的地方速率改变比较慢，在中间的时候加速</p>
-<p>AccelerateInterpolator在动画开始的地方速率改变比较慢，然后开始加速</p>
-<p>AnticipateInterpolator开始的时候向后然后向前甩</p>
-<p>AnticipateOvershootInterpolator开始的时候向后然后向前甩一定值后返回最后的值</p>
-<p>BounceInterpolator动画结束的时候弹起</p>
-<p>CycleInterpolator动画循环播放特定的次数，速率改变沿着正弦曲线</p>
-<p>DecelerateInterpolator在动画开始的地方快然后慢</p>
-<p>LinearInterpolator以常量速率改变</p>
-<p>OvershootInterpolator向前甩一定值后再回到原来位置</p>
-<p>Interpolator属性是Animation类的一个XML属性，所以alpha、scale、rotate、translate、set都会继承得到这个属性。Interpolator被译为插值器，其实我不大能从字面上理解为什么会这样译，其实他是一个指定动画如何变化的东东，跟PS里的动作有点类似：随便拿来一张图片，应用一个动作，图片就会指定变化。</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -509,15 +511,15 @@ public boolean onOptionsItemSelected(MenuItem item) {
             </li>
             
             <li>
+                <a class="footer-post" href="/2016/03/05/GreenDao基本使用及封装/">GreenDao基本使用及封装</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2016/03/03/Android背景色小技巧/">Android背景色小技巧</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/03/02/assets和raw目录的区别/">assets和raw目录的区别</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/02/27/RSA-Android端加密，服务端解密/">RSA--Android端加密，服务端解密</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/02/23/Butterknife的一些小问题/">Butterknife的一些小问题</a>
             </li>
             
         </ul>

@@ -155,6 +155,48 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/03/08/Gson解析泛型数组出错的解决办法/">
+                Gson解析泛型数组出错的解决办法
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-08</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>问题，使用Retrofit时，出现『com.google.gson.internal.LinkedTreeMap cannot be cast to object』<br>为什么呢？</p>
+<p>先看看我们的接受类responseEntity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResponseEntity</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> String msg;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> success;</div><div class="line">    <span class="keyword">private</span> String token;</div><div class="line">    <span class="keyword">private</span> E obj;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> msg;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMsg</span><span class="params">(String msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.msg = msg;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> code;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(<span class="keyword">int</span> code)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.code = code;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSuccess</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> success;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSuccess</span><span class="params">(<span class="keyword">boolean</span> success)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.success = success;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">getObj</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> obj;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setObj</span><span class="params">(E obj)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.obj = obj;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> token;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.token = token;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里的E是个泛型，泛型有个问题就是会进行类型擦除（Java中的泛型基本上都是在编译器这个层次来实现的。在生成的Java字节码中是不包含泛型中的类型信息的。使用泛型的时候加上的类型参数，会在编译器在编译的时候去掉。这个过程就称为类型擦除）。</p>
+<p>再看一下我们的目标json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"code"</span>: <span class="number">200</span>,</div><div class="line">    <span class="attr">"msg"</span>: <span class="string">""</span>,</div><div class="line">    <span class="attr">"obj"</span>: &#123;</div><div class="line">        <span class="attr">"fault"</span>: [],</div><div class="line">        <span class="attr">"level"</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"id"</span>: <span class="string">"3e7c9b71-e475-4757-adde-d35b2ccd4e3d"</span>,</div><div class="line">                <span class="attr">"text"</span>: <span class="string">"4"</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"id"</span>: <span class="string">"977c67c4-287a-4453-ad2d-436404f0c74a"</span>,</div><div class="line">                <span class="attr">"text"</span>: <span class="string">"1"</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"id"</span>: <span class="string">"b817cfca-9ad3-4c1c-83b7-5854946381ad"</span>,</div><div class="line">                <span class="attr">"text"</span>: <span class="string">"3"</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"id"</span>: <span class="string">"d6d4f758-3704-447c-9bfd-0d0fbac8737f"</span>,</div><div class="line">                <span class="attr">"text"</span>: <span class="string">"2"</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"id"</span>: <span class="string">"db14e3c1-8c0f-401f-afad-1019fc91fcb4"</span>,</div><div class="line">                <span class="attr">"text"</span>: <span class="string">"5"</span></div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"success"</span>: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到是比较标准的json有code,有msg,有data(obj)。但是data里面包含list集合。</p>
+<p>####<strong>原因就是：数组在类型擦除的时候没法转化成我们的实体entity</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//恩网上有很多方法，比如修改responsedata&lt;T&gt; 让obj从泛型变成</span></div><div class="line"><span class="comment">//了一个自定义类型的泛型如Data&lt;T&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListResponse</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">HttpResponse</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> ListEntity&lt;T&gt; resut;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListEntity</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">        <span class="keyword">public</span> Data&lt;T&gt; data;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Data</span>&lt;<span class="title">T</span>&gt;</span>&#123;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> total;</div><div class="line">        <span class="keyword">public</span> List&lt;T&gt; list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是我发现这个东西太死了，当有不确定数量的list你咋办？</p>
+<p>##后面弄出来了一个有点麻烦但是很灵活的办法</p>
+<p>上代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">LevelAndFaultEntity levelAndFaultEntity = (LevelAndFaultEntity) model.getObj();</div><div class="line">                      Gson gson=<span class="keyword">new</span> Gson();</div><div class="line">                      Type type=<span class="keyword">new</span> TypeToken&lt;List&lt;Select&gt;&gt;()&#123;&#125;.getType();</div><div class="line">                      List&lt;Select&gt; levelSelect =gson.fromJson(gson.toJson(levelAndFaultEntity.getLevel()),type); <span class="comment">//(List&lt;Select&gt;) levelAndFaultEntity.getLevel();</span></div><div class="line">                      List&lt;Select&gt; descrSelect = gson.fromJson(gson.toJson(levelAndFaultEntity.getFault()),type);</div></pre></td></tr></table></figure>
+<p>应该能看懂，LevelAndFaultEntity是我们的泛型T,model里面包含了两个list,类型为Select。</p>
+<p>我们先把拿到的levelAndFaultEntity.getLevel()写成json再重新转成List<select>。<br>为了理解我们把重新转的json贴出来<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"3e7c9b71-e475-4757-adde-d35b2ccd4e3d"</span>,</div><div class="line">        <span class="attr">"text"</span>: <span class="string">"4"</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"977c67c4-287a-4453-ad2d-436404f0c74a"</span>,</div><div class="line">        <span class="attr">"text"</span>: <span class="string">"1"</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"b817cfca-9ad3-4c1c-83b7-5854946381ad"</span>,</div><div class="line">        <span class="attr">"text"</span>: <span class="string">"3"</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"d6d4f758-3704-447c-9bfd-0d0fbac8737f"</span>,</div><div class="line">        <span class="attr">"text"</span>: <span class="string">"2"</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"db14e3c1-8c0f-401f-afad-1019fc91fcb4"</span>,</div><div class="line">        <span class="attr">"text"</span>: <span class="string">"5"</span></div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure></select></p>
+<p>Look,这个不就是list类型，我们这直接用typetoken转成List<select>类型就好了~！！</select></p>
+<p>特此记录，搞了我好久。。。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/03/07/retrofit在intercepter（拦截器）添加token/">
                 Retrofit在intercepter（拦截器）添加token
             </a>
@@ -416,34 +458,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/20/app分享转发时卡顿解决/">
-                app分享转发时卡顿解决
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-20</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p><strong>问题原因：</strong>是for循环遍历5次，每次都要查询本地安装的App,然后匹配。</p>
-<p><strong>解决办法：</strong>首次去除本地安装的App的list,后面直接比较。能稍微优化。</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -490,15 +504,15 @@
             </li>
             
             <li>
+                <a class="footer-post" href="/2016/03/08/Gson解析泛型数组出错的解决办法/">Gson解析泛型数组出错的解决办法</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/03/07/retrofit在intercepter（拦截器）添加token/">Retrofit在intercepter（拦截器）</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2016/03/05/GreenDao基本使用及封装/">GreenDao基本使用及封装</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/03/03/Android背景色小技巧/">Android背景色小技巧</a>
             </li>
             
         </ul>

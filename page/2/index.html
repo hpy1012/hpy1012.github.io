@@ -123,6 +123,40 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/02/22/viewpager图片滑动卡顿问题解决/">
+                viewpager图片滑动卡顿问题解决
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天发现引导页用的viewpager滑动图片卡顿，发现是图片放置的位置不对，那几张(720x1280)图片竟然放在drawable下，改到xhdpi文件夹下就好了。</p>
+<p>原因就是屏幕适配，下面放一个适配比</p>
+<ul>
+<li>分类目录    ldpi    mdpi    hdpi    xhdpi    xxhdpi    xxxhdpi</li>
+<li>密度（dpi）    ~160    ~240    ~320     ~480    ~640</li>
+<li>图片比例    1.5    2    3    4    6    8</li>
+<li>倍数    0.75x    1x    1.5x    2x    3x    4x</li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/02/20/app分享转发时卡顿解决/">
                 app分享转发时卡顿解决
             </a>
@@ -424,33 +458,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/27/BottomNavigation小问题/">
-                BottomNavigation小问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-27</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天遇到的问题是：使用原生v4包中的底部导航栏，menuitem点击后，并未出现动画和切换到点击的menuitem上。<br>原因：事件未消耗，继续向下传递了。<br>解决办法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(menuItem.getItemId())</div><div class="line">&#123;</div><div class="line">	<span class="keyword">case</span> R.id.xxx:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//消耗掉改事件 不能break;</span></div><div class="line">	<span class="keyword">case</span> R.id.yyy:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -497,15 +504,15 @@ public boolean onOptionsItemSelected(MenuItem item) {
             </li>
             
             <li>
+                <a class="footer-post" href="/2016/03/13/TabLayout简析及使用/">TabLayout简析及使用</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2016/03/08/Gson解析泛型数组出错的解决办法/">Gson解析泛型数组出错的解决办法</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2016/03/07/retrofit在intercepter（拦截器）添加token/">Retrofit在intercepter（拦截器）</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/03/05/GreenDao基本使用及封装/">GreenDao基本使用及封装</a>
             </li>
             
         </ul>

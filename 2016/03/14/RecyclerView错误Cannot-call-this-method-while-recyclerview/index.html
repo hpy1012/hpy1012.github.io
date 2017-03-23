@@ -10,8 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="在维护一个项目过程中,发现一个listview中的item里包含一个edittext和一个button,会出现一个抢焦点的情况。
-edittext有一个强焦点，使得item本身变得无法相应点击事件，">
+        <meta name="description" content="今天在遇到Recyclerview的item中含有一个checkbox，需要监听其状态，并且用notifyDataSetChanged();更新UI的时候出错。
+Cannot call this method while RecyclerView is computing a layout or s">
     
 
     <!--Author-->
@@ -21,7 +21,7 @@ edittext有一个强焦点，使得item本身变得无法相应点击事件，">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Android 焦点问题"/>
+        <meta property="og:title" content="RecyclerView错误Cannot call this method while recyclerview..."/>
     
 
     <!--Open Graph Description-->
@@ -43,7 +43,7 @@ edittext有一个强焦点，使得item本身变得无法相应点击事件，">
 
     <!-- Title -->
     
-    <title>Android 焦点问题 - Radio2Chef&#39;s Profile</title>
+    <title>RecyclerView错误Cannot call this method while recyclerview... - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -123,13 +123,13 @@ edittext有一个强焦点，使得item本身变得无法相应点击事件，">
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2015/12/01/Android-焦点问题/">
-                Android 焦点问题
+            <a href="/2016/03/14/RecyclerView错误Cannot-call-this-method-while-recyclerview/">
+                RecyclerView错误Cannot call this method while recyclerview...
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2015-12-01</span>
+                <span class="date">2016-03-14</span>
             
             <a href="#disqus_thread" class="comments">Kommentare</a>
             
@@ -142,9 +142,12 @@ edittext有一个强焦点，使得item本身变得无法相应点击事件，">
         
 
         <!-- Post Content -->
-        <p>在维护一个项目过程中,发现一个listview中的item里包含一个edittext和一个button,会出现一个抢焦点的情况。</p>
-<p>edittext有一个强焦点，使得item本身变得无法相应点击事件，</p>
-
+        <p>今天在遇到Recyclerview的item中含有一个checkbox，需要监听其状态，并且用<code>notifyDataSetChanged();</code>更新UI的时候出错。</p>
+<p>Cannot call this method while RecyclerView is computing a layout or scrolling。</p>
+<p>这是由于recyclerviewAdapter里面涉及很多线程操作。</p>
+<p><strong>解决办法。利用一个判断，判断它是否更新完了这个控件。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> onbind;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">final</span> <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">      holder.itemView.setTag(mList.get(position));</div><div class="line">onbind = <span class="keyword">true</span>;</div><div class="line">      holder.checkbox.setChecked(mList.get(position).isSelected());</div><div class="line">      onBind = <span class="keyword">false</span>;</div><div class="line">      holder.checkbox.setOnCheckedChangeListener(<span class="keyword">new</span> CompoundButton.OnCheckedChangeListener() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCheckedChanged</span><span class="params">(CompoundButton buttonView, <span class="keyword">boolean</span> isChecked)</span> </span>&#123;</div><div class="line">              mList.get(position).setSelected(isChecked);</div><div class="line">              <span class="keyword">if</span> (!onBind) &#123;</div><div class="line">                  notifyDataSetChanged();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
     </div>
 
     

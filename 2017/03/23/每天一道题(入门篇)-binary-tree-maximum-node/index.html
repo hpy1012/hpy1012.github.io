@@ -10,9 +10,10 @@
 
     <!--Description-->
     
-        <meta name="description" content="“从Android3.0开始，View增加了额外的几个参数：X,Y,translationX,translationY. 其中x和y是View左上角的坐标，而translationX和translationY是View左上角相对于父容器的偏移量”
-–摘自《Android开发艺术探索》
-view.ge">
+        <meta name="description" content="题目：
+1234567//Find the maximum node in a binary tree, return the node.     1   /   \ -5     2 / \   /  \0   3 -4  -5
+答案：
+123456789101112131415161718192">
     
 
     <!--Author-->
@@ -22,7 +23,7 @@ view.ge">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Android-View小记"/>
+        <meta property="og:title" content="每天一道题(入门篇)--binary tree maximum node"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +45,7 @@ view.ge">
 
     <!-- Title -->
     
-    <title>Android-View小记 - Radio2Chef&#39;s Profile</title>
+    <title>每天一道题(入门篇)--binary tree maximum node - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -124,13 +125,13 @@ view.ge">
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2016/02/10/Android-view小记/">
-                Android-View小记
+            <a href="/2017/03/23/每天一道题(入门篇)-binary-tree-maximum-node/">
+                每天一道题(入门篇)--binary tree maximum node
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2016-02-10</span>
+                <span class="date">2017-03-23</span>
             
             <a href="#disqus_thread" class="comments">Kommentare</a>
             
@@ -143,9 +144,13 @@ view.ge">
         
 
         <!-- Post Content -->
-        <p>“从Android3.0开始，View增加了额外的几个参数：X,Y,translationX,translationY. 其中x和y是View左上角的坐标，而translationX和translationY是View<strong>左上角</strong>相对于父容器的偏移量”</p>
-<p>–摘自《Android开发艺术探索》</p>
-<p>view.getTranslationX()计算的是该view的偏移量。初始值为0，向左偏移值为负，向右偏移值为正。</p>
+        <p>题目：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Find the maximum node in a binary tree, return the node.</span></div><div class="line"></div><div class="line">     <span class="number">1</span></div><div class="line">   /   \</div><div class="line"> -<span class="number">5</span>     <span class="number">2</span></div><div class="line"> / \   /  \</div><div class="line"><span class="number">0</span>   <span class="number">3</span> -<span class="number">4</span>  -<span class="number">5</span></div></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> root the root of binary tree</div><div class="line">     * <span class="doctag">@return</span> the max ndoe</div><div class="line">     */</div><div class="line">       <span class="function"><span class="keyword">public</span> TreeNode <span class="title">maxNode</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="comment">// Write your code here</span></div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line"></div><div class="line">        TreeNode left = maxNode(root.left);</div><div class="line">        TreeNode right = maxNode(root.right);</div><div class="line">        <span class="keyword">return</span> max(root, max(left, right));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">TreeNode <span class="title">max</span><span class="params">(TreeNode a, TreeNode b)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (a == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> b;</div><div class="line">        <span class="keyword">if</span> (b == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">return</span> a;</div><div class="line">        <span class="keyword">if</span> (a.value &gt; b.value) &#123;</div><div class="line">            <span class="keyword">return</span> a;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> b;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###简析：<br>首选明确二叉树的节点的结构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">int</span> value;</div><div class="line">    <span class="keyword">static</span> TreeNode left = <span class="keyword">new</span> TreeNode();</div><div class="line">    <span class="keyword">static</span> TreeNode right = <span class="keyword">new</span> TreeNode();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是用的一个递归，right.equals(root右结点及它所有子节点中最大的值)，left.equals(root左结点及它所有子节点中最大的值)，最后将root结点的值与他左右结点中的最大值比较。</p>
 
     </div>
 
@@ -154,7 +159,7 @@ view.ge">
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Android/">#Android</a>
+            <a href="/tags/Algorithm/">#Algorithm</a>
         </div>
     
 

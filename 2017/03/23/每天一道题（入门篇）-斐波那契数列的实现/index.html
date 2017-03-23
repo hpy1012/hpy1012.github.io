@@ -10,9 +10,20 @@
 
     <!--Description-->
     
-        <meta name="description" content="“从Android3.0开始，View增加了额外的几个参数：X,Y,translationX,translationY. 其中x和y是View左上角的坐标，而translationX和translationY是View左上角相对于父容器的偏移量”
-–摘自《Android开发艺术探索》
-view.ge">
+        <meta name="description" content="###斐波那契数列：
+
+前2个数是 0 和 1 。
+第 i 个数是第 i-1 个数和第i-2 个数的和。
+
+斐波那契数列的前十个数字是：
+10, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+###要求：
+
+给定1，返回0
+给定2，返回1
+给定10，返回34
+
+###简析：斐波那">
     
 
     <!--Author-->
@@ -22,7 +33,7 @@ view.ge">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Android-View小记"/>
+        <meta property="og:title" content="每天一道题（入门篇）--斐波那契数列的实现"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +55,7 @@ view.ge">
 
     <!-- Title -->
     
-    <title>Android-View小记 - Radio2Chef&#39;s Profile</title>
+    <title>每天一道题（入门篇）--斐波那契数列的实现 - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -124,13 +135,13 @@ view.ge">
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2016/02/10/Android-view小记/">
-                Android-View小记
+            <a href="/2017/03/23/每天一道题（入门篇）-斐波那契数列的实现/">
+                每天一道题（入门篇）--斐波那契数列的实现
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2016-02-10</span>
+                <span class="date">2017-03-23</span>
             
             <a href="#disqus_thread" class="comments">Kommentare</a>
             
@@ -143,10 +154,24 @@ view.ge">
         
 
         <!-- Post Content -->
-        <p>“从Android3.0开始，View增加了额外的几个参数：X,Y,translationX,translationY. 其中x和y是View左上角的坐标，而translationX和translationY是View<strong>左上角</strong>相对于父容器的偏移量”</p>
-<p>–摘自《Android开发艺术探索》</p>
-<p>view.getTranslationX()计算的是该view的偏移量。初始值为0，向左偏移值为负，向右偏移值为正。</p>
-
+        <p>###斐波那契数列：</p>
+<ul>
+<li>前2个数是 0 和 1 。</li>
+<li>第 i 个数是第 i-1 个数和第i-2 个数的和。</li>
+</ul>
+<p>斐波那契数列的前十个数字是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">21</span>, <span class="number">34</span> ...</div></pre></td></tr></table></figure>
+<p>###要求：</p>
+<ul>
+<li>给定1，返回0</li>
+<li>给定2，返回1</li>
+<li>给定10，返回34</li>
+</ul>
+<p>###简析：<br>斐波那契数列一般有递归和非递归的实现，递归的效率不高，用Int类型的时候，计算到f(47)会溢出。</p>
+<p>递归的实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Long <span class="title">fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>)&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">	&#125; <span class="keyword">else</span>&#123;</div><div class="line">	<span class="keyword">return</span> fibonacci(n-<span class="number">1</span>) + fibonacci(n-<span class="number">2</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>非递归的实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> BigInteger <span class="title">fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> BigInteger(<span class="string">"0"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">2</span>)&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">new</span> BigInteger(<span class="string">"1"</span>);</div><div class="line">	&#125; </div><div class="line">	BigInteger num1 = <span class="keyword">new</span> BigInteger(<span class="string">"0"</span>);</div><div class="line">	BigInteger num2 = <span class="keyword">new</span> BigInteger(<span class="string">"1"</span>);</div><div class="line">	BigInteger temp = <span class="keyword">new</span> BigInteger(<span class="string">"0"</span>);</div><div class="line">	</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;n;i++)&#123;</div><div class="line">	temp = num2; <span class="comment">//暂时存储后一个数</span></div><div class="line">	num2 = num2.add(num1); <span class="comment">//前一个数加后一个数，即为所求数</span></div><div class="line">	num1 = temp; <span class="comment">//将后一个数变成前一个数</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> num2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
     </div>
 
     
@@ -154,7 +179,7 @@ view.ge">
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Android/">#Android</a>
+            <a href="/tags/Algorithm/">#Algorithm</a>
         </div>
     
 

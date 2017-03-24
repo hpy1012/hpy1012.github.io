@@ -123,6 +123,40 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2017/03/24/每天一道题-入门篇-选择排序/">
+                每天一道题(入门篇)--选择排序
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-03-24</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>###题目：<br>将一堆整数排序。</p>
+<p>###样例：<br>对于数组 [3, 2, 1, 4, 5], 排序后为：[1, 2, 3, 4, 5]。</p>
+<p>###简析：<br>选择排序的原理，首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后再从剩余未排序元素中继续寻找最小（大）元素，放到已排序序列的末尾。</p>
+<p>#####优点：<br>选择排序的主要优点与数据移动有关。如果某个元素位于正确的最终位置上，则它不会被移动。选择排序每次交换一对元素，它们当中至少有一个将被移到其最终位置上，因此对n个元素的表进行排序总共进行至多n-1次交换。在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种。</p>
+<p>#####复杂度：<br>选择排序的交换操作介于 0和（n-1）次之间。选择排序的比较操作为  n(n-1)/2 次之间。选择排序的赋值操作介于 0 和 3(n-1) 次之间。</p>
+<p>比较次数即<strong>时间复杂度</strong> O(n^2)，比较次数与关键字的初始状态无关，总的比较次数 N=(n-1)+(n-2)+…+1=n <em> (n-1)/2。交换次数 O(n)，最好情况是，已经有序，交换0次；<strong>最坏情况是，逆序</strong>，交换 n-1次。交换次数比冒泡排序较少，由于交换所需CPU时间比比较所需的CPU时间多，n值较小时，选择排序比冒泡排序快。<br>原地操作几乎是选择排序的唯一优点，当空间复杂度要求较高时，可以考虑选择排序；<em>*实际适用的场合非常罕见。</em></em></p>
+<p>#####java代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortIntegers</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</div><div class="line">        <span class="comment">// Write your code here</span></div><div class="line">        <span class="keyword">int</span> i;<span class="comment">//需要做的排序次数</span></div><div class="line">        <span class="keyword">int</span> j;<span class="comment">//需要做的比较次数</span></div><div class="line">        <span class="keyword">int</span> min;<span class="comment">//记录最小值</span></div><div class="line">        <span class="keyword">int</span> len = A.length;</div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span> ;i&lt;len - <span class="number">1</span>; i++)&#123; <span class="comment">//做第i趟排序</span></div><div class="line">            min = i;</div><div class="line">            <span class="keyword">for</span>(j = min + <span class="number">1</span> ;j &lt; len;j++)&#123;</div><div class="line">                <span class="keyword">if</span>(A[j] &lt; A[min])&#123;</div><div class="line">                   min = j;       <span class="comment">//记录下第i趟最小值的位置</span></div><div class="line">                &#125;</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            <span class="keyword">if</span>(i!=min)&#123;  <span class="comment">//当前i不是最小值的情况交换</span></div><div class="line">                <span class="keyword">int</span> temp = A[i];</div><div class="line">                    A[i] = A[min];</div><div class="line">                    A[min] = temp;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>各排序时间复杂度：<br><img src="http://ol82eik7m.bkt.clouddn.com/%E5%90%84%E7%A7%8D%E6%8E%92%E5%BA%8F%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg" alt="时间复杂度"></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">
                 每天一道题（入门篇）--删除链表中的元素
             </a>
@@ -446,34 +480,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/03/03/Android背景色小技巧/">
-                Android背景色小技巧
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-03-03</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>遇到嵌套中背景色相同的，比如都是white，即使用Alpha把底层的那个View给虚化，上层的white颜色的东西还是显示不出来。</p>
-<p>所以只要换一个色值差不多的就行。</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -516,6 +522,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
             </li>
             
@@ -525,10 +535,6 @@
             
             <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题(入门篇)-binary-tree-maximum-node/">每天一道题(入门篇)--binary tree m</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
             </li>
             
         </ul>

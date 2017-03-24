@@ -123,6 +123,34 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/03/03/Android背景色小技巧/">
+                Android背景色小技巧
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-03-03</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>遇到嵌套中背景色相同的，比如都是white，即使用Alpha把底层的那个View给虚化，上层的white颜色的东西还是显示不出来。</p>
+<p>所以只要换一个色值差不多的就行。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/03/02/assets和raw目录的区别/">
                 assets和raw目录的区别
             </a>
@@ -431,44 +459,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/12/PropertyAnimation属性动画小记/">
-                PropertyAnimation属性动画小记
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-12</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天遇到了ValueAnimator,他是属于Property Animator的一种，另外一种为ObjectAnimator。</p>
-<p><strong>什么是属性动画</strong>：<br>View Animation（四种）仅能对指定的控件做动画，但是PropertyAnimator是通过改变控件某一属性值来做动画的。<br>比如可以改变颜色。</p>
-<p>它们两个最大的不同就是<strong>viewAnimation没有改变控件内部的属性值，而PropertyAnimator相反。</strong></p>
-<p>ValueAnimation简单示例第一步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
-<p>在这里我们利用ValueAnimator.ofInt创建了一个值从0到400的动画，动画时长是1s，然后让动画开始。从这段代码中可以看出，ValueAnimator没有跟任何的控件相关联，那也正好说明ValueAnimator只是对值做动画运算，而不是针对控件的，我们需要监听ValueAnimator的动画过程来自己对控件做操作。</p>
-<p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">  </div><div class="line">animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;  </div><div class="line">        int curValue = (int)animation.getAnimatedValue();  </div><div class="line">        Log.d(&quot;qijian&quot;,&quot;curValue:&quot;+curValue);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
-<p>在上面的代码中，我们通过addUpdateListener添加了一个监听，在监听传回的结果中，是表示当前状态的ValueAnimator实例，我们通过animation.getAnimatedValue()得到当前值。然后通过Log打印出来，结果如下：</p>
-<p><img src="http://ol82eik7m.bkt.clouddn.com/ValueAnimatorLog.png" alt="pic1"></p>
-<ol>
-<li>ValueAnimator 只负责对指定的数字区间进行动画运算</li>
-<li>我们需要对运算过程进行监听，然后自己对控件做动画操作</li>
-</ol>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -511,6 +501,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
             </li>
             
@@ -520,10 +514,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
             
             <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题(入门篇)-binary-tree-maximum-node/">每天一道题(入门篇)--binary tree m</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
             </li>
             
         </ul>

@@ -123,6 +123,44 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/02/12/PropertyAnimation属性动画小记/">
+                PropertyAnimation属性动画小记
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-12</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天遇到了ValueAnimator,他是属于Property Animator的一种，另外一种为ObjectAnimator。</p>
+<p><strong>什么是属性动画</strong>：<br>View Animation（四种）仅能对指定的控件做动画，但是PropertyAnimator是通过改变控件某一属性值来做动画的。<br>比如可以改变颜色。</p>
+<p>它们两个最大的不同就是<strong>viewAnimation没有改变控件内部的属性值，而PropertyAnimator相反。</strong></p>
+<p>ValueAnimation简单示例第一步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
+<p>在这里我们利用ValueAnimator.ofInt创建了一个值从0到400的动画，动画时长是1s，然后让动画开始。从这段代码中可以看出，ValueAnimator没有跟任何的控件相关联，那也正好说明ValueAnimator只是对值做动画运算，而不是针对控件的，我们需要监听ValueAnimator的动画过程来自己对控件做操作。</p>
+<p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ValueAnimator animator = ValueAnimator.ofInt(0,400);  </div><div class="line">animator.setDuration(1000);  </div><div class="line">  </div><div class="line">animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;  </div><div class="line">    @Override  </div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;  </div><div class="line">        int curValue = (int)animation.getAnimatedValue();  </div><div class="line">        Log.d(&quot;qijian&quot;,&quot;curValue:&quot;+curValue);  </div><div class="line">    &#125;  </div><div class="line">&#125;);  </div><div class="line">animator.start();</div></pre></td></tr></table></figure></p>
+<p>在上面的代码中，我们通过addUpdateListener添加了一个监听，在监听传回的结果中，是表示当前状态的ValueAnimator实例，我们通过animation.getAnimatedValue()得到当前值。然后通过Log打印出来，结果如下：</p>
+<p><img src="http://ol82eik7m.bkt.clouddn.com/ValueAnimatorLog.png" alt="pic1"></p>
+<ol>
+<li>ValueAnimator 只负责对指定的数字区间进行动画运算</li>
+<li>我们需要对运算过程进行监听，然后自己对控件做动画操作</li>
+</ol>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/02/12/TranslateAnimation动画小记/">
                 TranslateAnimation动画小记
             </a>
@@ -388,106 +426,6 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/05/Java-关于注解/">
-                Java 关于注解
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-05</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>什么是注解？</p>
-<p>Annotations, a form of metadata, provide data about a program that is not part of the program itself. Annotations have no direct effect on the operation of the code they annotate.</p>
-<p>这段话来自<a href="https://docs.oracle.com/javase/tutorial/java/annotations/" target="_blank" rel="external">Java官方教程</a>，说明注解Annotation是一种元数据，为程序提供数据，但它并不是程序的一部分（是有点难以理解，大概就是一种注入数据的感觉，跟spring的IOC有点像）。<br>注解不会对他们注解完的代码有直接影响。</p>
-<ul>
-<li><p><strong>注解的形式：</strong></p>
-<p>1.最简单的形式: <code>@Enity</code> 在注解的名字前加一个 @ </p>
-<p>2.可以带参数<code>@Author(name=&quot;hpy&quot;,date=&quot;2015-12-05&quot;)class Myclass{...}</code></p>
-<p>3.如果只有一个参数叫做value，可以省略name字段<code>@SuppressWarnings(&quot;unchecked&quot;)void myMethod(){...}</code></p>
-<p>4.可以同时支持多个注解<code>@Author(name = &quot;Jane Doe&quot;)@EBook class MyClass{...}</code></p>
-</li>
-</ul>
-<hr>
-<ul>
-<li><p><strong>我们能在哪里用注解:</strong></p>
-<p>1.类实例化的时候： new @interned Myobject();</p>
-<p>2.类型转换：myString = (@NonNull String)str;</p>
-<p>3.implements 的时候：class UnmodifiableList<t> implements @Readonly List&lt;@Readonly T&gt; { … }</t></p>
-<p>4.抛出异常声明的时候：void monitorTemperature() throws @Critical TemperatureException { … }</p>
-</li>
-</ul>
-<hr>
-<ul>
-<li><p><strong>四个元注解：</strong></p>
-<p><strong>1.@Target</strong>–说明了Annotation所修饰的范围：Annotation可被用于packages、types(类、接口、枚举、Annotation类型)、类型成员(方法、构造方法、成员变量、枚举值)、方法参数和本地变量（循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
-<p><strong>作用：用于描述注解的使用范围</strong></p>
-<p><strong>取值有：</strong></p>
-<p>1.CONSTRUCTOR:用于描述构造器<br>　　2.FIELD:用于描述域<br>　　3.LOCAL_VARIABLE:用于描述局部变量<br>　　4.METHOD:用于描述方法<br>　　5.PACKAGE:用于描述包<br>　　6.PARAMETER:用于描述参数<br>　　7.TYPE:用于描述类、接口(包括注解类型) 或enum声明</p>
-<p>ex:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Table &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 数据表名称注解，默认值为类名称</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tableName</span><span class="params">()</span> <span class="keyword">default</span> "className"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> NoDBColumn &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>注解 Table 可以用于注解类、接口(包括注解类型) 或 enum 声明,而注解 NoDBColumn 仅可用于注解类的成员变量。</p>
-<pre><code>**2.@Retention:**--定义了该 Annotation 被保留的时间长短：某些 Annotation 仅出现在源代码中，而被编译器丢弃；而另一些被编译在class文件中；编译在 class 文件中的 Annotation 可能会被虚拟机忽略，而另一些在 class 被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个 meta-Annotation 可以 Annotation 的“生命周期”限制。
-
-**作用：表示需要在什么级别保存该注释信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效**        
-
-**取值（RetentionPoicy）有：**
-
-1.SOURCE:在源文件中有效（即源文件保留）
-2.CLASS:在class文件中有效（即class保留）
-3.RUNTIME:在运行时有效（即运行时保留）
-</code></pre><p>Retention meta-annotation类型有唯一的value作为成员，它的取值来自java.lang.annotation.RetentionPolicy的枚举类型值。具体实例如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Column &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> "fieldName"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">setFuncName</span><span class="params">()</span> <span class="keyword">default</span> "setField"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFuncName</span><span class="params">()</span> <span class="keyword">default</span> "getField"</span>; </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">defaultDBValue</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Column注解的的RetentionPolicy的属性值是RUTIME,这样注解处理器可以通过反射，获取到该注解的属性值，从而去做一些运行时的逻辑处理。</p>
-<pre><code>**3.@Documented:**
-
-@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Column &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> "fieldName"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">setFuncName</span><span class="params">()</span> <span class="keyword">default</span> "setField"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getFuncName</span><span class="params">()</span> <span class="keyword">default</span> "getField"</span>; </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">defaultDBValue</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<pre><code>**4.@Inherited:**
-
-@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。
-</code></pre><p>　　注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</p>
-<p>　　当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * </div><div class="line"> * <span class="doctag">@author</span> peida</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="meta">@Inherited</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Greeting &#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> FontColor&#123; BULE,RED,GREEN&#125;;</div><div class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">FontColor <span class="title">fontColor</span><span class="params">()</span> <span class="keyword">default</span> FontColor.GREEN</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<ul>
-<li><strong>自定义注解：</strong></li>
-</ul>
-<p>　　使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。@interface用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
-<p>定义注解格式： public @interface 注解名 {定义体}</p>
-<pre><code>注解参数的可支持数据类型：
-
-1.所有基本数据类型（int,float,boolean,byte,double,char,long,short)2.String类型
-3.Class类型
-4.enum类型
-5.Annotation类型
-6.以上所有类型的数组
-</code></pre><p>Annotation类型里面的参数该怎么设定: </p>
-<pre><code>1.只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型
-
-2.参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String;　
-
-3.如果只有一个参数成员,最好把参数名称设为&quot;value&quot;,后加小括号.例:下面的例子FruitName注解就只有一个参数成员。
-</code></pre><p>　　简单的自定义注解和使用注解实例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> annotation;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.lang.annotation.Documented;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</div><div class="line"><span class="keyword">import</span> java.lang.annotation.Target;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 水果名称注解</div><div class="line"> * <span class="doctag">@author</span> peida</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="meta">@Target</span>(ElementType.FIELD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> FruitName &#123;</div><div class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>定义了注解，并在需要的时候给相关类，类属性加上注解信息，如果没有响应的注解信息处理流程，注解可以说是没有实用价值。如何让注解真真的发挥作用，主要就在于注解处理方法。</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -530,6 +468,10 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
             </li>
             
@@ -539,10 +481,6 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
             
             <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题(入门篇)-binary-tree-maximum-node/">每天一道题(入门篇)--binary tree m</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2016/12/13/Java-同步锁浅析/">Java 同步锁浅析</a>
             </li>
             
         </ul>

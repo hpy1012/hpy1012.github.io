@@ -123,6 +123,127 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2015/12/15/Android-view的隐藏显示动画的简单实现/">
+                Android view的隐藏显示动画的简单实现
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-15</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <ul>
+<li><p>1.在java代码里的实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在xml中先把这些Visible设置为gone</span></div><div class="line">Button btn = (Button)findViewById(R.id.btn);</div><div class="line"><span class="comment">//透明从0到1 时间1s</span></div><div class="line">AlphaAnimation alphaAnimation = <span class="keyword">new</span> AlphaAnimation(<span class="number">0</span>,<span class="number">1</span>);</div><div class="line">alphaAnimation.setDuration(<span class="number">1000</span>);</div><div class="line">btn.setAnimation(alphaAnimation);</div><div class="line">btn.setVisibility(View.VISIBLE);</div></pre></td></tr></table></figure>
+</li>
+<li><p>2.利用res/anim/文件夹下的.xml文件</p>
+</li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/14/Android-CrashHandler/">
+                Android CrashHandler
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-14</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CrashHandler</span> <span class="keyword">implements</span> <span class="title">Thread</span>.<span class="title">UncaughtExceptionHandler</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"CrashHandler"</span>;</div><div class="line"></div><div class="line">    <span class="comment">//系统默认的UncaughtException处理类</span></div><div class="line">    <span class="keyword">private</span> Thread.UncaughtExceptionHandler mDefaultHandler;</div><div class="line">    <span class="comment">//CrashHandler实例</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CrashHandler INSTANCE = <span class="keyword">new</span> CrashHandler();</div><div class="line">    <span class="comment">//程序的Context对象</span></div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line">    <span class="comment">//用来存储设备信息和异常信息</span></div><div class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; infos = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</div><div class="line"></div><div class="line">    <span class="comment">//用于格式化日期,作为日志文件名的一部分</span></div><div class="line">    <span class="keyword">private</span> DateFormat formatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd-HH-mm-ss"</span>);</div><div class="line"></div><div class="line">    <span class="comment">/** 保证只有一个CrashHandler实例 */</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">CrashHandler</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** 获取CrashHandler实例 ,单例模式 */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CrashHandler <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 初始化</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> context</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">        <span class="comment">//获取系统默认的UncaughtException处理器</span></div><div class="line">        mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();</div><div class="line">        <span class="comment">//设置该CrashHandler为程序的默认处理器</span></div><div class="line">        Thread.setDefaultUncaughtExceptionHandler(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当UncaughtException发生时会转入该函数来处理</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uncaughtException</span><span class="params">(Thread thread, Throwable ex)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!handleException(ex) &amp;&amp; mDefaultHandler != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">//如果用户没有处理则让系统默认的异常处理器来处理</span></div><div class="line">            mDefaultHandler.uncaughtException(thread, ex);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Thread.sleep(<span class="number">3000</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"error : "</span>, e);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//退出程序</span></div><div class="line">            android.os.Process.killProcess(android.os.Process.myPid());</div><div class="line">            System.exit(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> ex</div><div class="line">     * <span class="doctag">@return</span> true:如果处理了该异常信息;否则返回false.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">handleException</span><span class="params">(Throwable ex)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (ex == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//使用Toast来显示异常信息</span></div><div class="line">        <span class="keyword">new</span> Thread() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                Looper.prepare();</div><div class="line">                Toast.makeText(mContext, <span class="string">"很抱歉,程序出现异常,即将退出."</span>, Toast.LENGTH_LONG).show();</div><div class="line">                Looper.loop();</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div><div class="line">        <span class="comment">//收集设备参数信息</span></div><div class="line">        collectDeviceInfo(mContext);</div><div class="line">        <span class="comment">//保存日志文件</span></div><div class="line">        saveCrashInfo2File(ex);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 收集设备参数信息</div><div class="line">     * <span class="doctag">@param</span> ctx</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">collectDeviceInfo</span><span class="params">(Context ctx)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            PackageManager pm = ctx.getPackageManager();</div><div class="line">            PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);</div><div class="line">            <span class="keyword">if</span> (pi != <span class="keyword">null</span>) &#123;</div><div class="line">                String versionName = pi.versionName == <span class="keyword">null</span> ? <span class="string">"null"</span> : pi.versionName;</div><div class="line">                String versionCode = pi.versionCode + <span class="string">""</span>;</div><div class="line">                infos.put(<span class="string">"versionName"</span>, versionName);</div><div class="line">                infos.put(<span class="string">"versionCode"</span>, versionCode);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"an error occured when collect package info"</span>, e);</div><div class="line">        &#125;</div><div class="line">        Field[] fields = Build.class.getDeclaredFields();</div><div class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                field.setAccessible(<span class="keyword">true</span>);</div><div class="line">                infos.put(field.getName(), field.get(<span class="keyword">null</span>).toString());</div><div class="line">                Log.d(TAG, field.getName() + <span class="string">" : "</span> + field.get(<span class="keyword">null</span>));</div><div class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"an error occured when collect crash info"</span>, e);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 保存错误信息到文件中</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> ex</div><div class="line">     * <span class="doctag">@return</span>  返回文件名称,便于将文件传送到服务器</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">saveCrashInfo2File</span><span class="params">(Throwable ex)</span> </span>&#123;</div><div class="line"></div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : infos.entrySet()) &#123;</div><div class="line">            String key = entry.getKey();</div><div class="line">            String value = entry.getValue();</div><div class="line">            sb.append(key + <span class="string">"="</span> + value + <span class="string">"\n"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Writer writer = <span class="keyword">new</span> StringWriter();</div><div class="line">        PrintWriter printWriter = <span class="keyword">new</span> PrintWriter(writer);</div><div class="line">        ex.printStackTrace(printWriter);</div><div class="line">        Throwable cause = ex.getCause();</div><div class="line">        <span class="keyword">while</span> (cause != <span class="keyword">null</span>) &#123;</div><div class="line">            cause.printStackTrace(printWriter);</div><div class="line">            cause = cause.getCause();</div><div class="line">        &#125;</div><div class="line">        printWriter.close();</div><div class="line">        String result = writer.toString();</div><div class="line">        sb.append(result);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">long</span> timestamp = System.currentTimeMillis();</div><div class="line">            String time = formatter.format(<span class="keyword">new</span> Date());</div><div class="line">            String fileName = <span class="string">"crash-"</span> + time + <span class="string">"-"</span> + timestamp + <span class="string">".txt"</span>;</div><div class="line">            <span class="keyword">if</span> (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</div><div class="line">                String path = <span class="string">"/sdcard/hpy_crash/"</span>;</div><div class="line">                File dir = <span class="keyword">new</span> File(path);</div><div class="line">                <span class="keyword">if</span> (!dir.exists()) &#123;</div><div class="line">                    dir.mkdirs();</div><div class="line">                &#125;</div><div class="line">                FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(path+fileName);</div><div class="line">                fos.write(sb.toString().getBytes());</div><div class="line">                fos.close();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> fileName;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"an error occured while writing file..."</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/09/Andoird-获取图片路径有中文/">
+                Andoird 获取图片路径有中文
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-09</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>当通过系统的文件夹获取图片的URL的时候，可能包含中文路径，需要用<br><code>java
+Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failure delivering result 的错误。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/07/Java-内部类小记/">
+                Java 内部类小记
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-07</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>内部类用的比较少，今天在写adapter的时候用到了，记录一下。</p>
+<ul>
+<li>为什么要使用内部类</li>
+</ul>
+<p>为什么要使用内部类？在《Think in java》中有这样一句话：使用内部类最吸引人的原因是：每个内部类都能独立地继承一个（接口的）实现，所以无论外围类是否已经继承了某个（接口的）实现，对于内部类都没有影响。</p>
+<ul>
+<li>怎么创建它的实例<br>OuterClass.InnerClass innerClass = new OuterClass.InnerClass();</li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2015/12/05/Java-关于注解/">
                 Java 关于注解
             </a>
@@ -381,153 +502,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/23/Android--Handle/">
-                Android--Handle
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-23</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h5 id="What’s-“Handle”"><a href="#What’s-“Handle”" class="headerlink" title="What’s “Handle”?"></a>What’s “Handle”?</h5><p>Handle is a <strong>mechanism</strong> about updating UI, also can processing message.ex:All Activities’s life cycly callback through it.According to diffrerent message,do the corresponding branch processing.<br>As Android Documents:<br><strong>There are two main uses for a Handler:(1) to schedule messages and runnables to be executed as some point in the future; and (2) to enqueue an action to be performed on a different thread than your own.</strong></p>
-<h5 id="Why-should-we-use-it"><a href="#Why-should-we-use-it" class="headerlink" title="Why should we use it?"></a>Why should we use it?</h5><p>Because Android generally updates UI in the mainthread,however in the real world, we need to access UI in sub thread.</p>
-<h5 id="Principle-of-Message-mechanism"><a href="#Principle-of-Message-mechanism" class="headerlink" title="Principle of Message mechanism"></a>Principle of Message mechanism</h5><p>Message mechanism inculds 3 department</p>
-<p><strong>-Looper:</strong></p>
-<p>Class used to run a message loop for a thread. Threads by default do not have a message loop associated with them; to create one, call prepare() in the thread that is to run the loop, and then loop() to have it process messages until the loop is stopped.<br><strong>About mainthread,a Looper has been created automatically. We can get the Looper by</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Looper <span class="title">getMainLooper</span><span class="params">()</span></span></div></pre></td></tr></table></figure></p>
-<p>Typical example of the implementation of a Looper thread, using the separation of <code>prepare()</code> and <code>loop()</code> to create an initial Handler to communicate with the Looper.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> Handler mHandler;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        Looper.prepare();</div><div class="line"></div><div class="line">        mHandler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">                <span class="comment">// process incoming messages here</span></div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        Looper.loop();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>-Message Queue:</strong></p>
-<p>Low-level class holding the list of messages to be dispatched by a Looper. Messages are not added directly to a MessageQueue, but rather through Handler objects associated with the Looper.</p>
-<p>You can retrieve the MessageQueue for the current thread with Looper.myQueue().<br><em>MessageQueue myQueue ()<br>Return the MessageQueue object associated with the current thread. This must be called from a thread running a Looper, or a NullPointerException will be thrown.</em></p>
-<p><strong>-Handle:</strong></p>
-<p>Handler can send and receive messages:</p>
-<pre><code>boolean sendMessage (Message msg)
-</code></pre><p>Pushes a message onto the end of the message queue after all pending messages before the current time. It will be received in <strong>handleMessage(Message)</strong>, in the thread attached to this handler</p>
-<pre><code>boolean sendMessageDelayed (Message msg, long delayMillis)
-</code></pre><p>Enqueue a message into the message queue after all pending messages before (current time + delayMillis). You will receive it in <strong>handleMessage(Message)</strong>, in the thread attached to this handler.</p>
-<pre><code>boolean post (Runnable r)
-</code></pre><p>Causes the Runnable r to be added to the message queue. The runnable will be run on the thread to which this handler is attached.</p>
-<pre><code>boolean postDelayed (Runnable r, long delayMillis)
-</code></pre><p>Causes the Runnable r to be added to the message queue, to be run after the specified amount of time elapses. The runnable will be run on the thread to which this handler is attached. The time-base is uptimeMillis(). Time spent in deep sleep will add an additional delay to execution.</p>
-<p>Above two methods of “post” are actually using “send Method”.look this:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Causes the Runnable r to be added to the message queue.</div><div class="line">   * The runnable will be run on the thread to which this handler is </div><div class="line">   * attached. </div><div class="line">   *  </div><div class="line">   * <span class="doctag">@param</span> r The Runnable that will be executed.</div><div class="line">   * </div><div class="line">   * <span class="doctag">@return</span> Returns true if the Runnable was successfully placed in to the </div><div class="line">   *         message queue.  Returns false on failure, usually because the</div><div class="line">   *         looper processing the message queue is exiting.</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">post</span><span class="params">(Runnable r)</span></span></div><div class="line">  &#123;</div><div class="line">     <span class="keyword">return</span>  sendMessageDelayed(getPostMessage(r), <span class="number">0</span>);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>Receive message:</p>
-<pre><code>void handleMessage (Message msg)
-</code></pre><p>Subclasses must implement this to receive messages.</p>
-<p>####Supplement:####</p>
-<p><strong>When was the MessageQueue created？</strong><br>Looper created at <code>Looper.prepare()</code>(mainthread automatically create it.)<br>Handler create by yourself.</p>
-<p>When was the MessageQueue create?</p>
-<p>In Looper’s construction method:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">    mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);</div><div class="line">    mThread = Thread.currentThread();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>There is a new MessageQueue object.We can understand that a thread corresponding a MessageQueue. Each of MessafeQueue can’t exist without Looper.</p>
-<p><strong>What role does ThreadLocal play in Handle?</strong><br>Look this:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);</div><div class="line">       &#125;</div><div class="line">       sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p>sThreadLocal is a ThreadLocal object,it can store variables in a thread. After variables stored, only can obtain them in the specified thread.</p>
-<p><strong>Looper,Handler,MessageQueue ‘s reference relationship</strong></p>
-<p>A Handler be sure hold corresponding MessageQueue and Looper.<br>A thread have only one Looper and  MessageQueue at most.<br>A thread can have a number of Handler.</p>
-<p><strong> Handler leads to memory leak </strong></p>
-<p>Generally write Handler:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">	Handler mHandler = <span class="keyword">new</span> Handler()&#123;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerMessage</span><span class="params">(Message msg)</span></span>&#123;</div><div class="line">	mImageView.setImageBitmap(mBitmap);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Above codes maybe leads to memory leak! Because Handler object will implicitly hold a external class(generally is a activity) reference when we use the internal class to create Handler, but rather there are some Messages haven’t been processed yet after exit Acitivity that leads to memory leak.</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/18/BubbleSort/">
-                BubbleSort
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-18</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>About BubbleSort,</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/17/Tips-for-Hexo/">
-                Tips for Hexo
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-17</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>Don’t forget that separate <strong><code>:</code></strong> with the first word<strong>!!!</strong></p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/10/13/Android--Hide-Status-Bar/">
-                Android--Hide Status Bar
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-10-13</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//Hide title bar</span></div><div class="line"><span class="keyword">this</span>.requestWindowFeature(Window.FEATURE_NO_TITLE);</div><div class="line"></div><div class="line"><span class="comment">//Hide stutas bar</span></div><div class="line"><span class="keyword">this</span>.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);</div></pre></td></tr></table></figure>
-<p>Global setting:<br>in <strong>AndroidManifest.xml</strong> set <code>android:theme=&quot;@android:style/Theme.NoTitleBar.Fullscreen&quot;</code></p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -570,19 +544,19 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-冒泡排序/">每天一道题（入门篇）--冒泡排序</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-斐波那契数列的实现/">每天一道题（入门篇）--斐波那契数列的实现</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题(入门篇)-binary-tree-maximum-node/">每天一道题(入门篇)--binary tree m</a>
             </li>
             
         </ul>

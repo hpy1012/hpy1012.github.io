@@ -123,6 +123,152 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/02/20/app分享转发时卡顿解决/">
+                app分享转发时卡顿解决
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-20</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><strong>问题原因：</strong>是for循环遍历5次，每次都要查询本地安装的App,然后匹配。</p>
+<p><strong>解决办法：</strong>首次去除本地安装的App的list,后面直接比较。能稍微优化。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/02/20/toolbar小记/">
+                toolbar小记
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-20</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>如果想使用toolbar代替原来的actionbar,需要在初始化时声明<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);</div><div class="line">setSupportActionBar(mToolbar);</div></pre></td></tr></table></figure></p>
+<p>添加左上角「系统自带的」返回按钮<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">getSupportActionBar().setDisplayHomeAsUpEnabled(true);</div><div class="line">        mToolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                onBackPressed();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p>##<strong>添加按钮</strong></p>
+<p>###* 添加设置menu.xml文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</div><div class="line"></div><div class="line">    &lt;item</div><div class="line">        android:id=&quot;@+id/action_favorite&quot;</div><div class="line">        android:icon=&quot;@drawable/ic_action_refresh&quot;</div><div class="line">        android:title=&quot;@string/refresh&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;/&gt;</div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure>
+<p>###* 填充设置好的menu<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;       </div><div class="line">getMenuInflater().inflate(R.menu.my_toolbar_item,menu);</div><div class="line">      return true;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>###* 添加listener</p>
+<pre><code>@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_refresh:
+                toastShow(&quot;刷新一下&quot;);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+</code></pre><hr>
+<p>Toolbar标题居中需要用假的textview来代替title并设置textview的位置layout_gravity=center</p>
+<p>toolbar返回按钮的颜色 需要引用一下android:theme的一项属性<br><code>&lt;item name=&quot;colorControlNormal&quot;&gt;@android:color/white&lt;/item&gt;</code></p>
+<p>###<strong>menu中的item标签showAsAction的属性解释：</strong></p>
+<p>ifRoom    会显示在Item中，但是如果已经有4个或者4个以上的Item时会隐藏在溢出列表中。当然个数并不仅仅局限于4个，依据屏幕的宽窄而定。</p>
+<p>never    永远不会显示。只会在溢出列表中显示，而且只显示标题，所以在定义item的时候，最好把标题都带上。   </p>
+<p>always    无论是否溢出，总会显示。</p>
+<p>withText    withText值示意Action bar要显示文本标题。</p>
+<p>Action bar会尽可能的显示这个标题，但是如果图标有效并且受到Action bar空间的限制，文本标题有可能显示不全。    </p>
+<p>collapseActionView      声明了这个操作视窗应该被折叠到一个按钮中，当用户选择这个按钮时，这个操作视窗展开。否则，这个操作视窗在默认的情况下是可见的，并且即便在用于不适用的时候，也要占据操作栏的有效空间。<br>一般要配合ifRoom一起使用才会有效果。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/02/20/自定义View学习-picture/">
+                自定义View学习-picture
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-20</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>Picture可以看作是一个录制Canvas操作的录像机。</p>
+<p>使用Picture相比于再次调用绘图API，开销是比较小的，也就是说对于重复的操作可以更加省时省力。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/02/12/动画插值器interpolator/">
+                动画插值器interpolator
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-12</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>AccelerateDecelerateInterpolator在动画开始与介绍的地方速率改变比较慢，在中间的时候加速</p>
+<p>AccelerateInterpolator在动画开始的地方速率改变比较慢，然后开始加速</p>
+<p>AnticipateInterpolator开始的时候向后然后向前甩</p>
+<p>AnticipateOvershootInterpolator开始的时候向后然后向前甩一定值后返回最后的值</p>
+<p>BounceInterpolator动画结束的时候弹起</p>
+<p>CycleInterpolator动画循环播放特定的次数，速率改变沿着正弦曲线</p>
+<p>DecelerateInterpolator在动画开始的地方快然后慢</p>
+<p>LinearInterpolator以常量速率改变</p>
+<p>OvershootInterpolator向前甩一定值后再回到原来位置</p>
+<p>Interpolator属性是Animation类的一个XML属性，所以alpha、scale、rotate、translate、set都会继承得到这个属性。Interpolator被译为插值器，其实我不大能从字面上理解为什么会这样译，其实他是一个指定动画如何变化的东东，跟PS里的动作有点类似：随便拿来一张图片，应用一个动作，图片就会指定变化。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/02/12/PropertyAnimation属性动画小记/">
                 PropertyAnimation属性动画小记
             </a>
@@ -305,127 +451,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/15/Android-view的隐藏显示动画的简单实现/">
-                Android view的隐藏显示动画的简单实现
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-15</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <ul>
-<li><p>1.在java代码里的实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在xml中先把这些Visible设置为gone</span></div><div class="line">Button btn = (Button)findViewById(R.id.btn);</div><div class="line"><span class="comment">//透明从0到1 时间1s</span></div><div class="line">AlphaAnimation alphaAnimation = <span class="keyword">new</span> AlphaAnimation(<span class="number">0</span>,<span class="number">1</span>);</div><div class="line">alphaAnimation.setDuration(<span class="number">1000</span>);</div><div class="line">btn.setAnimation(alphaAnimation);</div><div class="line">btn.setVisibility(View.VISIBLE);</div></pre></td></tr></table></figure>
-</li>
-<li><p>2.利用res/anim/文件夹下的.xml文件</p>
-</li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/14/Android-CrashHandler/">
-                Android CrashHandler
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-14</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CrashHandler</span> <span class="keyword">implements</span> <span class="title">Thread</span>.<span class="title">UncaughtExceptionHandler</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"CrashHandler"</span>;</div><div class="line"></div><div class="line">    <span class="comment">//系统默认的UncaughtException处理类</span></div><div class="line">    <span class="keyword">private</span> Thread.UncaughtExceptionHandler mDefaultHandler;</div><div class="line">    <span class="comment">//CrashHandler实例</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CrashHandler INSTANCE = <span class="keyword">new</span> CrashHandler();</div><div class="line">    <span class="comment">//程序的Context对象</span></div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line">    <span class="comment">//用来存储设备信息和异常信息</span></div><div class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; infos = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</div><div class="line"></div><div class="line">    <span class="comment">//用于格式化日期,作为日志文件名的一部分</span></div><div class="line">    <span class="keyword">private</span> DateFormat formatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd-HH-mm-ss"</span>);</div><div class="line"></div><div class="line">    <span class="comment">/** 保证只有一个CrashHandler实例 */</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">CrashHandler</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/** 获取CrashHandler实例 ,单例模式 */</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CrashHandler <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> INSTANCE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 初始化</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> context</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Context context)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">        <span class="comment">//获取系统默认的UncaughtException处理器</span></div><div class="line">        mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();</div><div class="line">        <span class="comment">//设置该CrashHandler为程序的默认处理器</span></div><div class="line">        Thread.setDefaultUncaughtExceptionHandler(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 当UncaughtException发生时会转入该函数来处理</div><div class="line">     */</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">uncaughtException</span><span class="params">(Thread thread, Throwable ex)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!handleException(ex) &amp;&amp; mDefaultHandler != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">//如果用户没有处理则让系统默认的异常处理器来处理</span></div><div class="line">            mDefaultHandler.uncaughtException(thread, ex);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                Thread.sleep(<span class="number">3000</span>);</div><div class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"error : "</span>, e);</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//退出程序</span></div><div class="line">            android.os.Process.killProcess(android.os.Process.myPid());</div><div class="line">            System.exit(<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 自定义错误处理,收集错误信息 发送错误报告等操作均在此完成.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> ex</div><div class="line">     * <span class="doctag">@return</span> true:如果处理了该异常信息;否则返回false.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">handleException</span><span class="params">(Throwable ex)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (ex == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//使用Toast来显示异常信息</span></div><div class="line">        <span class="keyword">new</span> Thread() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                Looper.prepare();</div><div class="line">                Toast.makeText(mContext, <span class="string">"很抱歉,程序出现异常,即将退出."</span>, Toast.LENGTH_LONG).show();</div><div class="line">                Looper.loop();</div><div class="line">            &#125;</div><div class="line">        &#125;.start();</div><div class="line">        <span class="comment">//收集设备参数信息</span></div><div class="line">        collectDeviceInfo(mContext);</div><div class="line">        <span class="comment">//保存日志文件</span></div><div class="line">        saveCrashInfo2File(ex);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 收集设备参数信息</div><div class="line">     * <span class="doctag">@param</span> ctx</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">collectDeviceInfo</span><span class="params">(Context ctx)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            PackageManager pm = ctx.getPackageManager();</div><div class="line">            PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);</div><div class="line">            <span class="keyword">if</span> (pi != <span class="keyword">null</span>) &#123;</div><div class="line">                String versionName = pi.versionName == <span class="keyword">null</span> ? <span class="string">"null"</span> : pi.versionName;</div><div class="line">                String versionCode = pi.versionCode + <span class="string">""</span>;</div><div class="line">                infos.put(<span class="string">"versionName"</span>, versionName);</div><div class="line">                infos.put(<span class="string">"versionCode"</span>, versionCode);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (PackageManager.NameNotFoundException e) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"an error occured when collect package info"</span>, e);</div><div class="line">        &#125;</div><div class="line">        Field[] fields = Build.class.getDeclaredFields();</div><div class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                field.setAccessible(<span class="keyword">true</span>);</div><div class="line">                infos.put(field.getName(), field.get(<span class="keyword">null</span>).toString());</div><div class="line">                Log.d(TAG, field.getName() + <span class="string">" : "</span> + field.get(<span class="keyword">null</span>));</div><div class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"an error occured when collect crash info"</span>, e);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 保存错误信息到文件中</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> ex</div><div class="line">     * <span class="doctag">@return</span>  返回文件名称,便于将文件传送到服务器</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">saveCrashInfo2File</span><span class="params">(Throwable ex)</span> </span>&#123;</div><div class="line"></div><div class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : infos.entrySet()) &#123;</div><div class="line">            String key = entry.getKey();</div><div class="line">            String value = entry.getValue();</div><div class="line">            sb.append(key + <span class="string">"="</span> + value + <span class="string">"\n"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        Writer writer = <span class="keyword">new</span> StringWriter();</div><div class="line">        PrintWriter printWriter = <span class="keyword">new</span> PrintWriter(writer);</div><div class="line">        ex.printStackTrace(printWriter);</div><div class="line">        Throwable cause = ex.getCause();</div><div class="line">        <span class="keyword">while</span> (cause != <span class="keyword">null</span>) &#123;</div><div class="line">            cause.printStackTrace(printWriter);</div><div class="line">            cause = cause.getCause();</div><div class="line">        &#125;</div><div class="line">        printWriter.close();</div><div class="line">        String result = writer.toString();</div><div class="line">        sb.append(result);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">long</span> timestamp = System.currentTimeMillis();</div><div class="line">            String time = formatter.format(<span class="keyword">new</span> Date());</div><div class="line">            String fileName = <span class="string">"crash-"</span> + time + <span class="string">"-"</span> + timestamp + <span class="string">".txt"</span>;</div><div class="line">            <span class="keyword">if</span> (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) &#123;</div><div class="line">                String path = <span class="string">"/sdcard/hpy_crash/"</span>;</div><div class="line">                File dir = <span class="keyword">new</span> File(path);</div><div class="line">                <span class="keyword">if</span> (!dir.exists()) &#123;</div><div class="line">                    dir.mkdirs();</div><div class="line">                &#125;</div><div class="line">                FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(path+fileName);</div><div class="line">                fos.write(sb.toString().getBytes());</div><div class="line">                fos.close();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> fileName;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            Log.e(TAG, <span class="string">"an error occured while writing file..."</span>, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/09/Andoird-获取图片路径有中文/">
-                Andoird 获取图片路径有中文
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-09</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>当通过系统的文件夹获取图片的URL的时候，可能包含中文路径，需要用<br><code>java
-Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failure delivering result 的错误。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/07/Java-内部类小记/">
-                Java 内部类小记
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-07</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>内部类用的比较少，今天在写adapter的时候用到了，记录一下。</p>
-<ul>
-<li>为什么要使用内部类</li>
-</ul>
-<p>为什么要使用内部类？在《Think in java》中有这样一句话：使用内部类最吸引人的原因是：每个内部类都能独立地继承一个（接口的）实现，所以无论外围类是否已经继承了某个（接口的）实现，对于内部类都没有影响。</p>
-<ul>
-<li>怎么创建它的实例<br>OuterClass.InnerClass innerClass = new OuterClass.InnerClass();</li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -468,19 +493,19 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-冒泡排序/">每天一道题（入门篇）--冒泡排序</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-斐波那契数列的实现/">每天一道题（入门篇）--斐波那契数列的实现</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题(入门篇)-binary-tree-maximum-node/">每天一道题(入门篇)--binary tree m</a>
             </li>
             
         </ul>

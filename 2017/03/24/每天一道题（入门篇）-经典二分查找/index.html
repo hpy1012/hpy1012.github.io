@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="####题目：####在一个排序数组中找一个数，返回该数出现的任意位置，如果不存在，返回-1
+####样例：####给出数组 [1, 2, 2, 4, 5, 5].
+
+对于 target = 2, 返回 1 或者 2.
+对于 target = 5, 返回 4 或者 5.
+对于 target =">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Radio2Chef">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="每天一道题（入门篇）--经典二分查找"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Radio2Chef&#39;s Profile"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>每天一道题（入门篇）--经典二分查找 - Radio2Chef&#39;s Profile</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">
+                每天一道题（入门篇）--经典二分查找
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-03-24</span>
+            
+            <a href="#disqus_thread" class="comments">Kommentare</a>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>####题目：####<br>在一个排序数组中找一个数，返回该数出现的任意位置，如果不存在，返回-1</p>
+<p>####样例：####<br>给出数组 [1, 2, 2, 4, 5, 5].</p>
+<ul>
+<li>对于 target = 2, 返回 1 或者 2.</li>
+<li>对于 target = 5, 返回 4 或者 5.</li>
+<li>对于 target = 6, 返回 -1.</li>
+</ul>
+<p>####简析：####<br>二分查找主要解决『在一堆数中找出指定的数』这类的问题。<br>想要应用二分查找，这『一堆数』必须要有以下特征：</p>
+<ul>
+<li>存储在数组中</li>
+<li>有序排列</li>
+</ul>
+<p>所以如果是用『链表』存储的，就无法应用『二分查找法』了。<br>至于是顺序递增排列还是递减排列，数组中是否存在相同的元素都无所谓。</p>
+<p>二分查找属于『分治法』，分治法基本都可以用递归来实现。</p>
+<p>####二分查找的递归实现：####</p>
+<pre><code class="java"><span class="comment">/** 
+ * 递归方法实现二分查找法. 
+ * <span class="doctag">@param</span> array数组 
+ * <span class="doctag">@param</span> low 数组第一位置 
+ * <span class="doctag">@param</span> high 最高 
+ * <span class="doctag">@param</span> target 要查找的值. 
+ * <span class="doctag">@return</span> 返回值. 
+ */</span> 
+<span class="function"><span class="keyword">int</span> <span class="title">BinSearch</span><span class="params">(<span class="keyword">int</span> Array[],<span class="keyword">int</span> low,<span class="keyword">int</span> high,<span class="keyword">int</span> key)</span></span>{  
+    <span class="keyword">if</span> (low&lt;=high)  
+    {  
+        <span class="keyword">int</span> mid = (low+high)/<span class="number">2</span>;  
+        <span class="keyword">if</span>(key == Array[mid])  
+            <span class="keyword">return</span> mid;  
+        <span class="keyword">else</span> <span class="keyword">if</span>(key&lt;Array[mid])  
+            <span class="comment">//移动low和high  </span>
+            <span class="keyword">return</span> BinSearch(Array,low,mid-<span class="number">1</span>,key);  
+        <span class="keyword">else</span> <span class="keyword">if</span>(key&gt;Array[mid])  
+            <span class="keyword">return</span> BinSearch(Array,mid+<span class="number">1</span>,high,key);  
+    }  
+    <span class="keyword">else</span>  
+        <span class="keyword">return</span> -<span class="number">1</span>;  
+}
+</code></pre>
+<p>####二分查找的非递归实现####</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Algorithm/">#Algorithm</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Contact me with Radio2Chef@Gmail.com or add me QQ:1579987591
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-冒泡排序/">每天一道题（入门篇）--冒泡排序</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/hpy1012">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:Radio2Chef@Gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    Radio2Chef
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

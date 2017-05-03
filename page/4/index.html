@@ -123,6 +123,64 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2015/12/28/Android-权限管理/">
+                Android 权限管理
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-28</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>用的是<a href="https://github.com/hotchemi/PermissionsDispatcher#permissionsdispatcher" target="_blank" rel="external">PermissionDispatcher</a>,以注解的形式来实现权限的管理。</p>
+<p>一些小知识点:<br>在给所需要权限的 Activity 或者 Fragment中 加上注解 <code>@RuntimePermissions</code>后，给所需要权限的方法加上注解 <code>@NeedsPermission(Manifest.permission.CAMERA)</code> <strong>这个方法里写获得权限之后所要进行的操作</strong></p>
+<p>接着重新 make poject 一下,使apt(annotation processing tool)生成对应的类。然后可以在需要调用上面那个方法的地方，调用这个函数（就是调用那个方法）<code>MainActivityPermissionsDispatcher.showCameraWithCheck(this);</code>。</p>
+<p>Android 6.0对权限做了区分，将手机的权限分为危险权限和非危险权限；<br>非危险权限只要在AndroidManifest中加入权限申请就可以使用了。<br>而危险权限只在AndroidManifest中加入权限申请是不行的，在运行的时候会报错。存储卡的读写操作就被定义为危险权限。<br>要使用危险权限除了在AndroidManifest中进行权限申请外，还需要在用到的地方，在程序中手动调用授权弹窗，在程序运行的时候弹出授权框，完成权限的授权。就是6.0的运行时权限。</p>
+<p>解决这个问题的办法大概有几种，<br>1、如果不是必须的话，可以将targetSdk设为23以下，这样的话，权限管理还是6.0之前的方式；<br>2、添加弹窗，通过弹窗动态授权。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2015/12/27/BottomNavigation小问题/">
+                BottomNavigation小问题
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2015-12-27</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天遇到的问题是：使用原生v4包中的底部导航栏，menuitem点击后，并未出现动画和切换到点击的menuitem上。<br>原因：事件未消耗，继续向下传递了。<br>解决办法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(menuItem.getItemId())</div><div class="line">&#123;</div><div class="line">	<span class="keyword">case</span> R.id.xxx:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//消耗掉改事件 不能break;</span></div><div class="line">	<span class="keyword">case</span> R.id.yyy:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2015/12/15/Android-view的隐藏显示动画的简单实现/">
                 Android view的隐藏显示动画的简单实现
             </a>
@@ -436,72 +494,6 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/29/IntentFilter-Matching-Rules/">
-                IntentFilter Matching Rules
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-29</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>IntentFilter Matching Rules were rules about <strong>implicit</strong> Intent.</p>
-<p>IntentFilter contains three kinds of filtering information–<strong>action | category | data.</strong></p>
-<p>action:It must exists in Intent and same as one of <strong>Filter Rules</strong>.(Android system has been predefined some actions)<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.action.c"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>There is java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent();</div><div class="line">intent.setAction(<span class="string">"com.hpy.action.b"</span>);</div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure></p>
-<p>category:Intent could have no category, yet no matter how many categories they have to completely matched one to one when category exists in Intent.<br>ex:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.a"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"com.hpy.category.b"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span> = <span class="string">"android.intent.category.DEFAULT"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>java code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">intent.addCategory(<span class="string">"com.hpy.category.a"</span>);</div><div class="line">intent.addCategory(<span class="string">"com.hpy.category.b"</span>);</div></pre></td></tr></table></figure></p>
-<p>“android.intent.category.DEFAULT” is a default value when we used<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">	startActivity(intent);</div><div class="line"><span class="comment">//or</span></div><div class="line">	startActivityForResult(intent);</div></pre></td></tr></table></figure></p>
-<p>data:It is similar to action in matching rules,but it’s more complex.<br>It’s contains of two parts.One is <strong>mimeType</strong> means media type(image/jpeg,audio/mpeg4-generic or video/*).The other one is URI.</p>
-<p>There is URI sturcture:<br>    <code>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/[path]|[pathprefix]|[pathpattern]</code><br>like these:<br>    <code>content://com.hpy.project:200/folder/subfolder/etc</code><br>    <code>http://www.baidu.com:80/serach/info</code></p>
-<p>ex:(complete data)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">intent.setDataAndType(Uri.pares(<span class="string">"file://abc"</span>),<span class="string">"image/png"</span>)</div></pre></td></tr></table></figure></p>
-<p>xml:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"video/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">data</span> <span class="attr">android:mimeType</span>=<span class="string">"audio/mpeg"</span> <span class="attr">android:scheme</span>=<span class="string">"http"</span> <span class="attr">...</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>Can’t use <code>setType()</code> after <code>setData()</code> and vice versa, source code:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> Intent <span class="title">setData</span><span class="params">(Uri data)</span></span>&#123;</div><div class="line">		mData = data;</div><div class="line">		mType = <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/11/28/Tips-valueOf-paresDouble/">
-                Tips - valueOf() & paresXxx()
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-11-28</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>valueOf() return a <strong>Object</strong> of somelike Integer or Double etc.</p>
-<p>paresXxx() return a <strong>basic data types</strong></p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -544,6 +536,10 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/05/03/产品实习/">产品实习</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
             </li>
             
@@ -553,10 +549,6 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
             
             <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
             </li>
             
         </ul>

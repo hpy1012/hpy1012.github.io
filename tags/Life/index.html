@@ -10,8 +10,6 @@
 
     <!--Description-->
     
-        <meta name="description" content="今天遇到的问题是：使用原生v4包中的底部导航栏，menuitem点击后，并未出现动画和切换到点击的menuitem上。原因：事件未消耗，继续向下传递了。解决办法：1234567switch(menuItem.getItemId())&amp;#123;	case R.id.xxx:	return true;">
-    
 
     <!--Author-->
     
@@ -20,7 +18,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="BottomNavigation小问题"/>
+        <meta property="og:title" content="Radio2Chef&#39;s Profile"/>
     
 
     <!--Open Graph Description-->
@@ -31,7 +29,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
     
 
     <!--Page Cover-->
@@ -42,7 +40,7 @@
 
     <!-- Title -->
     
-    <title>BottomNavigation小问题 - Radio2Chef&#39;s Profile</title>
+    <title>Life - Radio2Chef&#39;s Profile</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -105,7 +103,9 @@
 <div class="container">
 
     <!-- Main Content -->
-    <div class="row">
+    
+
+<div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -113,53 +113,23 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
+            <h1 id="main-title" class="title">#Life</h1>
+        
     </div>
 </header>
 
-        <section class="main">
+        <section class="main archive-container">
             
-<div class="post">
-
-    <div class="post-header">
-        <h1 class="title">
-            <a href="/2015/12/27/BottomNavigation小问题/">
-                BottomNavigation小问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-27</span>
-            
-            <a href="#disqus_thread" class="comments">Kommentare</a>
-            
-        </div>
-    </div>
-
-    <div class="content">
-
-        <!-- Gallery -->
-        
-
-        <!-- Post Content -->
-        <p>今天遇到的问题是：使用原生v4包中的底部导航栏，menuitem点击后，并未出现动画和切换到点击的menuitem上。<br>原因：事件未消耗，继续向下传递了。<br>解决办法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(menuItem.getItemId())</div><div class="line">&#123;</div><div class="line">	<span class="keyword">case</span> R.id.xxx:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//消耗掉改事件 不能break;</span></div><div class="line">	<span class="keyword">case</span> R.id.yyy:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-    </div>
-
-    
-
-    
-        <div class="post-tags">
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Android/">#Android</a>
-        </div>
-    
-
-    <!-- Comments -->
-    
-
+                <div class="archive-post">
+    <a href="/2017/05/03/产品实习/">
+        <span class="archive-date">
+            May 2017
+        </span>
+        产品实习
+    </a>
 </div>
+            
         </section>
-
     </div>
 </div>
 

@@ -123,6 +123,76 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/02/23/自定义View的xml属性前缀/">
+                自定义View的xml属性前缀
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-23</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xmlns:android="http://schemas.android.com/apk/res/android"  </div><div class="line">xmlns:app="http://schemas.android.com/apk/res-auto"</div></pre></td></tr></table></figure>
+<p>这个是在申明命名空间,View中要想自己生命的属性有意义，则需要为属性加一个命名空间前缀，如”android”或者”app”。 </p>
+<p>也可以自己定义如:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlns:hpy="http://schemas.android.com/apk/res-auto"</div></pre></td></tr></table></figure>
+<p>现在Android studio只能用res-auto，以前写包名的方法被废弃了。<br>但是经过实验，如果存在<strong>xmlns:app</strong>自己定义的命名空间会被覆盖。</p>
+<p>用法:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;  </div><div class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>  </span></div><div class="line">    <span class="attr">xmlns:hpy</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>  </div><div class="line">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span>  </div><div class="line">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;  </div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">com.hpy.mytextview.MyView</span>  </span></div><div class="line">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span>  </div><div class="line">        <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span>  </div><div class="line">        <span class="attr">hpy:text</span>=<span class="string">"这是自定义属性"</span>  </div><div class="line">        <span class="attr">hpy:textColor</span>=<span class="string">"#ff0000"</span>/&gt;  </div><div class="line">  </div><div class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如何自定义它呢？</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;  </div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">declare-styleable</span> <span class="attr">name</span>=<span class="string">"TestView"</span>&gt;</span>  </div><div class="line">        <span class="comment">&lt;!--属性名   属性类型--&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">format</span>=<span class="string">"string"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">attr</span> <span class="attr">name</span>=<span class="string">"textColor"</span> <span class="attr">format</span>=<span class="string">"color"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">declare-styleable</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>java里的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyView</span> <span class="keyword">extends</span> <span class="title">View</span> </span>&#123;  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>(context);  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyView</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;  </div><div class="line">        <span class="keyword">super</span>(context, attrs);  </div><div class="line">        <span class="comment">//得到TypedArray  </span></div><div class="line">        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TestView);  </div><div class="line">  </div><div class="line">        String text = (String)a.getText(R.styleable.TestView_text);  </div><div class="line">  </div><div class="line">        <span class="keyword">int</span> textColor = a.getColor(R.styleable.TestView_textColor, <span class="number">0xff000000</span>);  </div><div class="line">  </div><div class="line">        Log.d(<span class="string">"test"</span>, <span class="string">"text:"</span> + text);  </div><div class="line">  </div><div class="line">        Log.d(<span class="string">"test"</span>, <span class="string">"textColor:"</span> + textColor);  </div><div class="line">  </div><div class="line">        a.recycle();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/02/22/viewpager图片滑动卡顿问题解决/">
+                viewpager图片滑动卡顿问题解决
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-22</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天发现引导页用的viewpager滑动图片卡顿，发现是图片放置的位置不对，那几张(720x1280)图片竟然放在drawable下，改到xhdpi文件夹下就好了。</p>
+<p>原因就是屏幕适配，下面放一个适配比</p>
+<ul>
+<li>分类目录    ldpi    mdpi    hdpi    xhdpi    xxhdpi    xxxhdpi</li>
+<li>密度（dpi）    ~160    ~240    ~320     ~480    ~640</li>
+<li>图片比例    1.5    2    3    4    6    8</li>
+<li>倍数    0.75x    1x    1.5x    2x    3x    4x</li>
+</ul>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/02/20/app分享转发时卡顿解决/">
                 app分享转发时卡顿解决
             </a>
@@ -393,64 +463,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/28/Android-权限管理/">
-                Android 权限管理
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-28</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>用的是<a href="https://github.com/hotchemi/PermissionsDispatcher#permissionsdispatcher" target="_blank" rel="external">PermissionDispatcher</a>,以注解的形式来实现权限的管理。</p>
-<p>一些小知识点:<br>在给所需要权限的 Activity 或者 Fragment中 加上注解 <code>@RuntimePermissions</code>后，给所需要权限的方法加上注解 <code>@NeedsPermission(Manifest.permission.CAMERA)</code> <strong>这个方法里写获得权限之后所要进行的操作</strong></p>
-<p>接着重新 make poject 一下,使apt(annotation processing tool)生成对应的类。然后可以在需要调用上面那个方法的地方，调用这个函数（就是调用那个方法）<code>MainActivityPermissionsDispatcher.showCameraWithCheck(this);</code>。</p>
-<p>Android 6.0对权限做了区分，将手机的权限分为危险权限和非危险权限；<br>非危险权限只要在AndroidManifest中加入权限申请就可以使用了。<br>而危险权限只在AndroidManifest中加入权限申请是不行的，在运行的时候会报错。存储卡的读写操作就被定义为危险权限。<br>要使用危险权限除了在AndroidManifest中进行权限申请外，还需要在用到的地方，在程序中手动调用授权弹窗，在程序运行的时候弹出授权框，完成权限的授权。就是6.0的运行时权限。</p>
-<p>解决这个问题的办法大概有几种，<br>1、如果不是必须的话，可以将targetSdk设为23以下，这样的话，权限管理还是6.0之前的方式；<br>2、添加弹窗，通过弹窗动态授权。</p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/27/BottomNavigation小问题/">
-                BottomNavigation小问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-27</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天遇到的问题是：使用原生v4包中的底部导航栏，menuitem点击后，并未出现动画和切换到点击的menuitem上。<br>原因：事件未消耗，继续向下传递了。<br>解决办法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(menuItem.getItemId())</div><div class="line">&#123;</div><div class="line">	<span class="keyword">case</span> R.id.xxx:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;<span class="comment">//消耗掉改事件 不能break;</span></div><div class="line">	<span class="keyword">case</span> R.id.yyy:</div><div class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -493,6 +505,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/05/03/产品实习/">产品实习</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
             </li>
             
@@ -502,10 +518,6 @@ public boolean onOptionsItemSelected(MenuItem item) {
             
             <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
             </li>
             
         </ul>

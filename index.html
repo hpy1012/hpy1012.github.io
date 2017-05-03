@@ -123,6 +123,33 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2017/05/03/产品实习/">
+                产品实习
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-05-03</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天正式开始产品实习，努力努力！</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">
                 每天一道题（入门篇）--经典二分查找
             </a>
@@ -451,13 +478,13 @@
 
     <div class="post-header index">
         <h1 class="title">
-            <a href="/2016/04/03/JAVA-值传递与引用传递/">
-                JAVA-值传递与引用传递
+            <a href="/2016/04/06/Android-键盘遮挡问题/">
+                Android--键盘遮挡问题
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2016-04-03</span>
+                <span class="date">2016-04-06</span>
             
             
             
@@ -466,53 +493,23 @@
 
     
         <div class="content">
-            <p>今天遇到一道题</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</div><div class="line">		num+=<span class="number">5</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> num=<span class="number">20</span>;</div><div class="line">		add(num);</div><div class="line">		System.out.println(num);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出应该是多少呢？<br>答案：20</p>
-<h4 id="这个是值传递和引用传递的区别"><a href="#这个是值传递和引用传递的区别" class="headerlink" title="这个是值传递和引用传递的区别"></a>这个是值传递和引用传递的区别</h4><ol>
-<li>对象是按引用传递的</li>
-<li>Java 应用程序有且仅有的一种参数传递机制，即按值传递</li>
-<li>按值传递意味着当将一个参数传递给一个函数时，函数接收的是原始值的一个副本</li>
-<li>按引用传递意味着当将一个参数传递给一个函数时，函数接收的是原始值的内存地址，而不是值的副本。</li>
+            <p>软键盘弹出遮挡四个要点：</p>
+<ol>
+<li>将layout的最外层用 RelativeLayout ，而不是ScrollView或者LinearLayout</li>
+<li>将需要软键盘跟随的控件放置在RelativeLayout的底部</li>
+<li>让其他控件的位置根据这个控件来设置相对值</li>
+<li>android:windowSoftInputMode=“adjustResize”</li>
 </ol>
-<p>三句话总结一下：</p>
-<ul>
-<li>对象就是传引用</li>
-<li>原始类型就是传值</li>
-<li>String，Integer, Double等immutable类型因为没有提供自身修改的函数，每次操作都是新生成一个对象，所以要特殊对待。可以认为是传值。Integer 和 String 一样。保存value的类变量是Final属性，无法被修改，只能被重新赋值／生成新的对象。 当Integer 做为方法参数传递进方法内时，对其的赋值都会导致 原Integer 的引用被 指向了方法内的栈地址，失去了对原类变量地址的指向。对赋值后的Integer对象做得任何操作，都不会影响原来对象。</li>
-</ul>
+<h3 id="windowSoftInputMode属性解释"><a href="#windowSoftInputMode属性解释" class="headerlink" title="windowSoftInputMode属性解释"></a>windowSoftInputMode属性解释</h3><h4 id="“adjustResize”"><a href="#“adjustResize”" class="headerlink" title="“adjustResize”"></a>“adjustResize”</h4><p>The activity’s main window is always resized to make room for the soft keyboard on screen.<br>该Activity总是调整屏幕的大小以便留出软键盘的空间</p>
+<h4 id="“adjustPan”"><a href="#“adjustPan”" class="headerlink" title="“adjustPan”"></a>“adjustPan”</h4><p>The activity’s main window is not resized to make room for the soft keyboard. Rather, the contents of the window are automatically panned so that the current focus is never obscured by the keyboard and users can always see what they are typing. This is generally less desirable than resizing, because the user may need to close the soft keyboard to get at and interact with obscured parts of the window.<br>当前窗口的内容将自动移动以便当前焦点从不被键盘覆盖和用户能总是看到输入内容的部分</p>
+<h4 id="“stateHidden”"><a href="#“stateHidden”" class="headerlink" title="“stateHidden”"></a>“stateHidden”</h4><p>The soft keyboard is hidden when the user chooses the activity — that is, when the user affirmatively navigates forward to the activity, rather than backs into it because of leaving another activity.<br>用户选择activity时，软键盘总是被隐藏</p>
+<h4 id="“stateAlwaysHidden”"><a href="#“stateAlwaysHidden”" class="headerlink" title="“stateAlwaysHidden”"></a>“stateAlwaysHidden”</h4><p>The soft keyboard is always hidden when the activity’s main window has input focus.<br>当该Activity主窗口获取焦点时，软键盘也总是隐藏的</p>
+<h4 id="“stateUnspecified”"><a href="#“stateUnspecified”" class="headerlink" title="“stateUnspecified”"></a>“stateUnspecified”</h4><p>The state of the soft keyboard (whether it is hidden or visible) is not specified. The system will choose an appropriate state or rely on the setting in the theme.<br>This is the default setting for the behavior of the soft keyboard.<br>未指定软键盘的状态，系统将自动选择一个合适的状态或依赖于主题中的设置，这是默认的设置</p>
+<h4 id="“stateUnchanged”"><a href="#“stateUnchanged”" class="headerlink" title="“stateUnchanged”"></a>“stateUnchanged”</h4><p>The soft keyboard is kept in whatever state it was last in, whether visible or hidden, when the activity comes to the fore.<br>当这个activity出现时，软键盘将一直保持在上一个activity里的状态，无论是隐藏还是显示</p>
+<h4 id="“stateVisible”"><a href="#“stateVisible”" class="headerlink" title="“stateVisible”"></a>“stateVisible”</h4><p>The soft keyboard is visible when that’s normally appropriate (when the user is navigating forward to the activity’s main window).<br>软键盘通常是可见的</p>
+<p><strong>一般来说，用的比较多的还是”stateHidden | adjustResize”和”stateHidden | adjustPan”这两对组合。<br>“adjustResize”在使用时布局会被软键盘顶上去，体验非常不好<br>“adjustPan”在使用时获取焦点的控件下边的View将会被软键盘覆盖</strong></p>
+<p>优化的做法，获取键盘高度然后设置adjustPan弹出键盘高度正好相等</p>
 
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/03/14/RecyclerView错误Cannot-call-this-method-while-recyclerview/">
-                RecyclerView错误Cannot call this method while recyclerview...
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-03-14</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>今天在遇到Recyclerview的item中含有一个checkbox，需要监听其状态，并且用<code>notifyDataSetChanged();</code>更新UI的时候出错。</p>
-<p>Cannot call this method while RecyclerView is computing a layout or scrolling。</p>
-<p>这是由于recyclerviewAdapter里面涉及很多线程操作。</p>
-<p><strong>解决办法。利用一个判断，判断它是否更新完了这个控件。</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> onbind;</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(<span class="keyword">final</span> ViewHolder holder, <span class="keyword">final</span> <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">      holder.itemView.setTag(mList.get(position));</div><div class="line">onbind = <span class="keyword">true</span>;</div><div class="line">      holder.checkbox.setChecked(mList.get(position).isSelected());</div><div class="line">      onBind = <span class="keyword">false</span>;</div><div class="line">      holder.checkbox.setOnCheckedChangeListener(<span class="keyword">new</span> CompoundButton.OnCheckedChangeListener() &#123;</div><div class="line">          <span class="meta">@Override</span></div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCheckedChanged</span><span class="params">(CompoundButton buttonView, <span class="keyword">boolean</span> isChecked)</span> </span>&#123;</div><div class="line">              mList.get(position).setSelected(isChecked);</div><div class="line">              <span class="keyword">if</span> (!onBind) &#123;</div><div class="line">                  notifyDataSetChanged();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
         </div>
     
 
@@ -560,6 +557,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/05/03/产品实习/">产品实习</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
             </li>
             
@@ -569,10 +570,6 @@
             
             <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/23/每天一道题（入门篇）-删除链表中的元素/">每天一道题（入门篇）--删除链表中的元素</a>
             </li>
             
         </ul>

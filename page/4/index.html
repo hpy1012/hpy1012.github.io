@@ -123,6 +123,68 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/02/10/Android-view小记/">
+                Android-View小记
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>“从Android3.0开始，View增加了额外的几个参数：X,Y,translationX,translationY. 其中x和y是View左上角的坐标，而translationX和translationY是View<strong>左上角</strong>相对于父容器的偏移量”</p>
+<p>–摘自《Android开发艺术探索》</p>
+<p>view.getTranslationX()计算的是该view的偏移量。初始值为0，向左偏移值为负，向右偏移值为正。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/02/03/Android-事件分发/">
+                Android 事件分发
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-02-03</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span></div></pre></td></tr></table></figure>
+<p>用来进行事件的分发，如果事件能够传递给当前View,那么此方法<strong>一定</strong>会被调用，返回结果受当前View的onTouchEvent和下级View的dispatchTouchEvent方法的影响，表示是否消耗当前事件。</p>
+<p><code>public boolean onInterceptTouchEvent(MotionEvent ev)</code><br>在上述方法内部调用，用来判断是否拦截某个事件，如果当前View拦截了某个事件，那么在同一个事件序列中，此方法不会被再次调用，返回结果表示是否拦截当前事件。</p>
+<p><code>public boolean onTouchEvent(MotionEvent ev)</code>‘<br>在dispatchTouchEvent方法中调用，用来处理点击事件，返回结果表示是否消耗当前事件，如果不消耗，则在同一个事件序列中，当前View无法再次接受到事件。</p>
+<p><strong>三者关系如下：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</div><div class="line">	<span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</div><div class="line">	<span class="keyword">if</span> (onInterceptTouchEvent(ev))&#123;</div><div class="line">		consume = onTouchEvent(ev);</div><div class="line">	&#125;<span class="keyword">else</span> &#123;</div><div class="line">		consume = child.dispatchTouchEvent(ev);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果你想对触摸事件进行拦截，那么你需要覆写onInterceptTouchEvent方法，并且返回true。然后后续的事件就会被转移到该ViewGroup的onTouchEvent方法进行处理，而在后续的事件处理过程中onInterceptTouchEvent中也不会收到后续事件，因此你也需要覆写onTouchEvent方法。</p>
+<p><strong>在模拟器上的『一次』点击事件中，dispatchTouchEvent中有四次MotionEvent动作，前两次MotionEvent为Down，后两次为Up，并且只有最后一次Up才返回的false即向下传递。</strong></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2015/12/28/Android-权限管理/">
                 Android 权限管理
             </a>
@@ -438,62 +500,6 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/01/Android-预览遇到的小问题/">
-                Android 预览遇到的小问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-01</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>在调试RecyclerView的时候发现预览不了：Exception raised during rendering: Unable to locate mode 0</p>
-<p>原来用的是25version的support包，也没有单独加上recyclerview的包，结果就是上面的报错。<br>把版本调到24.2.1就可以了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'com.android.support:appcompat-v7:24.2.1'</span></div><div class="line">   compile <span class="string">'com.android.support:design:24.2.1'</span></div><div class="line">   compile <span class="string">'com.android.support:recyclerview-v7:24.2.1'</span></div></pre></td></tr></table></figure></p>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2015/12/01/Android-焦点问题/">
-                Android 焦点问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2015-12-01</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>在维护一个项目过程中,发现一个listview中的item里包含一个edittext和一个button,会出现一个抢焦点的情况。</p>
-<p>edittext有一个强焦点，使得item本身变得无法相应点击事件，</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -536,19 +542,19 @@ Uri.decode(String path)</code>这个路径给解码才行,不然会出现 Failur
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/06/23/Python备忘录-切片/">Python备忘录 -- 切片</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/05/19/产品经理数据分析入门（转自简书）/">产品经理数据分析入门（转自简书）</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/05/03/产品实习/">产品实习</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-冒泡排序/">每天一道题（入门篇）--冒泡排序</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
             </li>
             
         </ul>

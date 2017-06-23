@@ -123,6 +123,85 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2017/06/23/Python备忘录-切片/">
+                Python备忘录 -- 切片
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-06-23</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>现有列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">L = [<span class="string">'Michael'</span>, <span class="string">'Sarah'</span>, <span class="string">'Tracy'</span>, <span class="string">'Bob'</span>, <span class="string">'Jack'</span>]</div></pre></td></tr></table></figure>
+<p><code>L[0:3]</code>表示，从索引<code>0</code>开始取，直到索引<code>3</code>为止，但不包括索引<code>3</code>。即索引<code>0</code> <code>1</code> <code>2</code>,正好3个元素。如果第一个索引是<code>0</code>，还可以省略：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">L[:<span class="number">3</span>]</div><div class="line">[<span class="string">'Michaerl'</span>, <span class="string">'Sarah'</span>, <span class="string">'Tracy'</span>]</div></pre></td></tr></table></figure>
+<p>也可以从索引<code>1</code>开始，取出2个元素出来：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">L[<span class="number">1</span>:<span class="number">3</span>]</div><div class="line">[<span class="string">'Sarah'</span>, <span class="string">'tracy'</span>]</div></pre></td></tr></table></figure>
+<p>类似的，Python支持倒数切片：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">L[<span class="number">-2</span>:]</div><div class="line">[<span class="string">'Bob'</span>, <span class="string">'Jack'</span>]</div><div class="line"></div><div class="line">L[<span class="number">-2</span>:<span class="number">-1</span>]</div><div class="line">[<span class="string">'Bob'</span>]</div></pre></td></tr></table></figure>
+<p>步长取切片：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">L[::<span class="number">2</span>]</div><div class="line">[<span class="string">'Michaerl'</span>, <span class="string">'tracy'</span>, <span class="string">'Jack'</span>]</div></pre></td></tr></table></figure>
+<p>tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)[:<span class="number">3</span>]</div><div class="line">(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2017/05/19/产品经理数据分析入门（转自简书）/">
+                产品经理数据分析入门（转自简书）
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017-05-19</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>###一、认识数据###</p>
+<p>####1.1什么是数据####<br>简单来说数据是一种量化事物的手段，就像身高、体重、三围一样，它们都是一个数字指标，代表了事物现实存在的客观情况。</p>
+<p>数据最大的特征就是客观性，无论我们是否触碰它，它就在那里。在面对海量数据的时候，身为产品经理的我们要更像一个「求知者」，如果我们希望从数据中找到答案，我们更应该带着一个「求知」的态度去读取，去分析，去解读。</p>
+<p>####1.2数据与产品的关系####<br>数据可以用来帮助我们验证产品假设是否正确，也可以帮助我们发现产品的问题。</p>
+<p>通常情况下，一个完整的数据需求包括：</p>
+<ol>
+<li>功能设计方案</li>
+<li>功能目的和目标</li>
+<li>功能上线需要跟踪的数据指标</li>
+</ol>
+<p>这里举个例子说明下，网站注册流程功能的数据统计需求：</p>
+<ol>
+<li>注册流程的完整方案设计文档</li>
+<li>做这个功能的意义：让所有新用户快速完成注册流程，并正确提供所需要的个人信息</li>
+<li>所需指标及定义。围绕2中的目标，设计所需要的数据指标，思考哪些数据指标，可以描述目标完成情况；比如：每一个注册环节的用户跳出率，每一个注册填写字段的出错率，各类注册错误的出现频次分布等。</li>
+</ol>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2017/05/03/产品实习/">
                 产品实习
             </a>
@@ -434,87 +513,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/10/10/Android内存泄露-非静态内部类相关/">
-                Android内存泄露--非静态内部类相关
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-10-10</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h4 id="非静态内部类"><a href="#非静态内部类" class="headerlink" title="非静态内部类"></a>非静态内部类</h4><p>非静态内部类，会<strong>隐式</strong>的持有外部类的引用，因为它<strong>依赖于</strong>外部类的创建，所以非静态内部类能够访问外部类的静态和非静态成员。所以当Android中的Activity有非静态内部类容易引起内存泄露。</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> MainActivity extends Activty&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> TestResource mResource = <span class="keyword">null</span>;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContenView(R.layout.activity_main);</div><div class="line">		initData();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(mResource==<span class="keyword">null</span>)&#123;</div><div class="line">			mResource = <span class="keyword">new</span> TestResource();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TestResource</span></span>&#123;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面这个情况就会内存泄露，原因：</p>
-<ol>
-<li>首先，非静态内部类默认隐式持有外部类的引用。</li>
-<li>然后又使用了该非静态内部类创建了一个静态的实例。</li>
-<li>该静态实例的生命周期和应用一样长，就会导致静态实例一致持有该Activity的引用，导致Activity的内存资源不能正常回收。</li>
-</ol>
-<p><strong>解决办法（两种）：</strong></p>
-<ol>
-<li>将内部类TestResource改成静态内部类，因为静态内部类不需要外部类的引用，因此不会持有Activity的引用。</li>
-<li>将mResource提取出来作为一个单例，但需要注意Context的引用，否则也会引起Context的泄露，需要使用applicationContext（全局），因为如果使用Activity的Context时，Activity被回收时，单例还是持有它的Context，内存泄露。</li>
-</ol>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/04/06/Android-键盘遮挡问题/">
-                Android--键盘遮挡问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-04-06</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>软键盘弹出遮挡四个要点：</p>
-<ol>
-<li>将layout的最外层用 RelativeLayout ，而不是ScrollView或者LinearLayout</li>
-<li>将需要软键盘跟随的控件放置在RelativeLayout的底部</li>
-<li>让其他控件的位置根据这个控件来设置相对值</li>
-<li>android:windowSoftInputMode=“adjustResize”</li>
-</ol>
-<h3 id="windowSoftInputMode属性解释"><a href="#windowSoftInputMode属性解释" class="headerlink" title="windowSoftInputMode属性解释"></a>windowSoftInputMode属性解释</h3><h4 id="“adjustResize”"><a href="#“adjustResize”" class="headerlink" title="“adjustResize”"></a>“adjustResize”</h4><p>The activity’s main window is always resized to make room for the soft keyboard on screen.<br>该Activity总是调整屏幕的大小以便留出软键盘的空间</p>
-<h4 id="“adjustPan”"><a href="#“adjustPan”" class="headerlink" title="“adjustPan”"></a>“adjustPan”</h4><p>The activity’s main window is not resized to make room for the soft keyboard. Rather, the contents of the window are automatically panned so that the current focus is never obscured by the keyboard and users can always see what they are typing. This is generally less desirable than resizing, because the user may need to close the soft keyboard to get at and interact with obscured parts of the window.<br>当前窗口的内容将自动移动以便当前焦点从不被键盘覆盖和用户能总是看到输入内容的部分</p>
-<h4 id="“stateHidden”"><a href="#“stateHidden”" class="headerlink" title="“stateHidden”"></a>“stateHidden”</h4><p>The soft keyboard is hidden when the user chooses the activity — that is, when the user affirmatively navigates forward to the activity, rather than backs into it because of leaving another activity.<br>用户选择activity时，软键盘总是被隐藏</p>
-<h4 id="“stateAlwaysHidden”"><a href="#“stateAlwaysHidden”" class="headerlink" title="“stateAlwaysHidden”"></a>“stateAlwaysHidden”</h4><p>The soft keyboard is always hidden when the activity’s main window has input focus.<br>当该Activity主窗口获取焦点时，软键盘也总是隐藏的</p>
-<h4 id="“stateUnspecified”"><a href="#“stateUnspecified”" class="headerlink" title="“stateUnspecified”"></a>“stateUnspecified”</h4><p>The state of the soft keyboard (whether it is hidden or visible) is not specified. The system will choose an appropriate state or rely on the setting in the theme.<br>This is the default setting for the behavior of the soft keyboard.<br>未指定软键盘的状态，系统将自动选择一个合适的状态或依赖于主题中的设置，这是默认的设置</p>
-<h4 id="“stateUnchanged”"><a href="#“stateUnchanged”" class="headerlink" title="“stateUnchanged”"></a>“stateUnchanged”</h4><p>The soft keyboard is kept in whatever state it was last in, whether visible or hidden, when the activity comes to the fore.<br>当这个activity出现时，软键盘将一直保持在上一个activity里的状态，无论是隐藏还是显示</p>
-<h4 id="“stateVisible”"><a href="#“stateVisible”" class="headerlink" title="“stateVisible”"></a>“stateVisible”</h4><p>The soft keyboard is visible when that’s normally appropriate (when the user is navigating forward to the activity’s main window).<br>软键盘通常是可见的</p>
-<p><strong>一般来说，用的比较多的还是”stateHidden | adjustResize”和”stateHidden | adjustPan”这两对组合。<br>“adjustResize”在使用时布局会被软键盘顶上去，体验非常不好<br>“adjustPan”在使用时获取焦点的控件下边的View将会被软键盘覆盖</strong></p>
-<p>优化的做法，获取键盘高度然后设置adjustPan弹出键盘高度正好相等</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -557,19 +555,19 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/06/23/Python备忘录-切片/">Python备忘录 -- 切片</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/05/19/产品经理数据分析入门（转自简书）/">产品经理数据分析入门（转自简书）</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/05/03/产品实习/">产品实习</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-冒泡排序/">每天一道题（入门篇）--冒泡排序</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
             </li>
             
         </ul>

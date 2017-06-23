@@ -123,6 +123,87 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2016/10/10/Android内存泄露-非静态内部类相关/">
+                Android内存泄露--非静态内部类相关
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-10-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h4 id="非静态内部类"><a href="#非静态内部类" class="headerlink" title="非静态内部类"></a>非静态内部类</h4><p>非静态内部类，会<strong>隐式</strong>的持有外部类的引用，因为它<strong>依赖于</strong>外部类的创建，所以非静态内部类能够访问外部类的静态和非静态成员。所以当Android中的Activity有非静态内部类容易引起内存泄露。</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> MainActivity extends Activty&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> TestResource mResource = <span class="keyword">null</span>;</div><div class="line">	</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</div><div class="line">		<span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">		setContenView(R.layout.activity_main);</div><div class="line">		initData();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(mResource==<span class="keyword">null</span>)&#123;</div><div class="line">			mResource = <span class="keyword">new</span> TestResource();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TestResource</span></span>&#123;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这个情况就会内存泄露，原因：</p>
+<ol>
+<li>首先，非静态内部类默认隐式持有外部类的引用。</li>
+<li>然后又使用了该非静态内部类创建了一个静态的实例。</li>
+<li>该静态实例的生命周期和应用一样长，就会导致静态实例一致持有该Activity的引用，导致Activity的内存资源不能正常回收。</li>
+</ol>
+<p><strong>解决办法（两种）：</strong></p>
+<ol>
+<li>将内部类TestResource改成静态内部类，因为静态内部类不需要外部类的引用，因此不会持有Activity的引用。</li>
+<li>将mResource提取出来作为一个单例，但需要注意Context的引用，否则也会引起Context的泄露，需要使用applicationContext（全局），因为如果使用Activity的Context时，Activity被回收时，单例还是持有它的Context，内存泄露。</li>
+</ol>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
+            <a href="/2016/04/06/Android-键盘遮挡问题/">
+                Android--键盘遮挡问题
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2016-04-06</span>
+            
+            
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>软键盘弹出遮挡四个要点：</p>
+<ol>
+<li>将layout的最外层用 RelativeLayout ，而不是ScrollView或者LinearLayout</li>
+<li>将需要软键盘跟随的控件放置在RelativeLayout的底部</li>
+<li>让其他控件的位置根据这个控件来设置相对值</li>
+<li>android:windowSoftInputMode=“adjustResize”</li>
+</ol>
+<h3 id="windowSoftInputMode属性解释"><a href="#windowSoftInputMode属性解释" class="headerlink" title="windowSoftInputMode属性解释"></a>windowSoftInputMode属性解释</h3><h4 id="“adjustResize”"><a href="#“adjustResize”" class="headerlink" title="“adjustResize”"></a>“adjustResize”</h4><p>The activity’s main window is always resized to make room for the soft keyboard on screen.<br>该Activity总是调整屏幕的大小以便留出软键盘的空间</p>
+<h4 id="“adjustPan”"><a href="#“adjustPan”" class="headerlink" title="“adjustPan”"></a>“adjustPan”</h4><p>The activity’s main window is not resized to make room for the soft keyboard. Rather, the contents of the window are automatically panned so that the current focus is never obscured by the keyboard and users can always see what they are typing. This is generally less desirable than resizing, because the user may need to close the soft keyboard to get at and interact with obscured parts of the window.<br>当前窗口的内容将自动移动以便当前焦点从不被键盘覆盖和用户能总是看到输入内容的部分</p>
+<h4 id="“stateHidden”"><a href="#“stateHidden”" class="headerlink" title="“stateHidden”"></a>“stateHidden”</h4><p>The soft keyboard is hidden when the user chooses the activity — that is, when the user affirmatively navigates forward to the activity, rather than backs into it because of leaving another activity.<br>用户选择activity时，软键盘总是被隐藏</p>
+<h4 id="“stateAlwaysHidden”"><a href="#“stateAlwaysHidden”" class="headerlink" title="“stateAlwaysHidden”"></a>“stateAlwaysHidden”</h4><p>The soft keyboard is always hidden when the activity’s main window has input focus.<br>当该Activity主窗口获取焦点时，软键盘也总是隐藏的</p>
+<h4 id="“stateUnspecified”"><a href="#“stateUnspecified”" class="headerlink" title="“stateUnspecified”"></a>“stateUnspecified”</h4><p>The state of the soft keyboard (whether it is hidden or visible) is not specified. The system will choose an appropriate state or rely on the setting in the theme.<br>This is the default setting for the behavior of the soft keyboard.<br>未指定软键盘的状态，系统将自动选择一个合适的状态或依赖于主题中的设置，这是默认的设置</p>
+<h4 id="“stateUnchanged”"><a href="#“stateUnchanged”" class="headerlink" title="“stateUnchanged”"></a>“stateUnchanged”</h4><p>The soft keyboard is kept in whatever state it was last in, whether visible or hidden, when the activity comes to the fore.<br>当这个activity出现时，软键盘将一直保持在上一个activity里的状态，无论是隐藏还是显示</p>
+<h4 id="“stateVisible”"><a href="#“stateVisible”" class="headerlink" title="“stateVisible”"></a>“stateVisible”</h4><p>The soft keyboard is visible when that’s normally appropriate (when the user is navigating forward to the activity’s main window).<br>软键盘通常是可见的</p>
+<p><strong>一般来说，用的比较多的还是”stateHidden | adjustResize”和”stateHidden | adjustPan”这两对组合。<br>“adjustResize”在使用时布局会被软键盘顶上去，体验非常不好<br>“adjustPan”在使用时获取焦点的控件下边的View将会被软键盘覆盖</strong></p>
+<p>优化的做法，获取键盘高度然后设置adjustPan弹出键盘高度正好相等</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2016/04/03/JAVA-值传递与引用传递/">
                 JAVA-值传递与引用传递
             </a>
@@ -407,66 +488,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/27/RSA-Android端加密，服务端解密/">
-                RSA--Android端加密，服务端解密
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-27</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>RSA加密使用：</p>
-<p>先在Android从服务器获取公钥，再利用encrypt()方法加密。<br>服务器再解密</p>
-<p>工具类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> sun.misc.BASE64Decoder;</div><div class="line"><span class="keyword">import</span> sun.misc.BASE64Encoder;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Radio2chef@gmail.com</div><div class="line"> * &lt;p&gt;</div><div class="line"> * Created by hepengyang.</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RSAUtils</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 指定加密算法为RSA</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ALGORITHM = <span class="string">"RSA"</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Android算法</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ANDROID_ALGORITHM = <span class="string">"RSA/ECB/PKCS1Padding"</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 密钥长度，用来初始化</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> KEYSIZE = <span class="number">1024</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 指定公钥存放字符串</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String PublicKey = <span class="string">"PublicKey"</span>;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 指定私钥存放字符串</div><div class="line">     */</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String PrivateKey = <span class="string">"PrivateKey"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String init = generateKeyPair();</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 生成密钥对</div><div class="line">     *</div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">generateKeyPair</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="comment">//        /** RSA算法要求有一个可信任的随机数源 */</span></div><div class="line"><span class="comment">//        SecureRandom secureRandom = new SecureRandom();</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line"></div><div class="line"></div><div class="line">            <span class="comment">/** 为RSA算法创建一个KeyPairGenerator对象 */</span></div><div class="line">            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);</div><div class="line"></div><div class="line">            <span class="comment">/** 利用上面的随机数据源初始化这个KeyPairGenerator对象 */</span></div><div class="line"><span class="comment">//        keyPairGenerator.initialize(KEYSIZE, secureRandom);</span></div><div class="line">            keyPairGenerator.initialize(KEYSIZE);</div><div class="line"></div><div class="line">            <span class="comment">/** 生成密匙对 */</span></div><div class="line">            KeyPair keyPair = keyPairGenerator.generateKeyPair();</div><div class="line"></div><div class="line">            <span class="comment">/** 得到公钥 */</span></div><div class="line">            Key publicKey = keyPair.getPublic();</div><div class="line"></div><div class="line">            <span class="comment">/** 得到私钥 */</span></div><div class="line">            Key privateKey = keyPair.getPrivate();</div><div class="line"></div><div class="line">            PublicKey = <span class="keyword">new</span> String(<span class="keyword">new</span> BASE64Encoder().encodeBuffer(publicKey.getEncoded()));</div><div class="line">            PrivateKey = <span class="keyword">new</span> String(<span class="keyword">new</span> BASE64Encoder().encodeBuffer(privateKey.getEncoded()));</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 加密方法</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> source 源数据</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">encrypt</span><span class="params">(String publicKeyapp, String source)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line"></div><div class="line">        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);</div><div class="line">        X509EncodedKeySpec pKCS8EncodedKeySpec = <span class="keyword">new</span> X509EncodedKeySpec(<span class="keyword">new</span> BASE64Decoder().decodeBuffer(publicKeyapp));</div><div class="line">        Key publicKey = keyFactory.generatePublic(pKCS8EncodedKeySpec);</div><div class="line">        <span class="comment">/** 得到Cipher对象来实现对源数据的RSA加密 */</span></div><div class="line">        Cipher cipher = Cipher.getInstance(ANDROID_ALGORITHM);</div><div class="line">        cipher.init(Cipher.ENCRYPT_MODE, publicKey);</div><div class="line">        <span class="keyword">byte</span>[] b = source.getBytes();</div><div class="line">        <span class="comment">/** 执行加密操作 */</span></div><div class="line">        <span class="keyword">byte</span>[] b1 = cipher.doFinal(b);</div><div class="line">        BASE64Encoder encoder = <span class="keyword">new</span> BASE64Encoder();</div><div class="line">        <span class="keyword">return</span> encoder.encode(b1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 解密算法</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> cryptograph 密文</div><div class="line">     * <span class="doctag">@return</span></div><div class="line">     * <span class="doctag">@throws</span> Exception</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">decrypt</span><span class="params">(String cryptograph)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);</div><div class="line">        PKCS8EncodedKeySpec pKCS8EncodedKeySpec = <span class="keyword">new</span> PKCS8EncodedKeySpec(<span class="keyword">new</span> BASE64Decoder().decodeBuffer(PrivateKey));</div><div class="line">        Key privateKey = keyFactory.generatePrivate(pKCS8EncodedKeySpec);</div><div class="line">        <span class="comment">/** 得到Cipher对象对已用公钥加密的数据进行RSA解密 */</span></div><div class="line">        Cipher cipher = Cipher.getInstance(<span class="string">"RSA/ECB/PKCS1Padding"</span>);</div><div class="line">        cipher.init(Cipher.DECRYPT_MODE, privateKey);</div><div class="line">        BASE64Decoder decoder = <span class="keyword">new</span> BASE64Decoder();</div><div class="line">        <span class="keyword">byte</span>[] b1 = decoder.decodeBuffer(cryptograph);</div><div class="line">        <span class="comment">/** 执行解密操作 */</span></div><div class="line">        <span class="keyword">byte</span>[] b = cipher.doFinal(b1);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String(b);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">   <span class="comment">/* public static String encrypt(String source,String publicKey) throws Exception &#123;</span></div><div class="line">        KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);</div><div class="line">        X509EncodedKeySpec pKCS8EncodedKeySpec =new X509EncodedKeySpec (new BASE64Decoder().decodeBuffer(publicKey));</div><div class="line">        Key key = keyFactory.generatePublic(pKCS8EncodedKeySpec);</div><div class="line">        */<span class="comment">/** 得到Cipher对象来实现对源数据的RSA加密 */</span><span class="comment">/*</span></div><div class="line">        Cipher cipher = Cipher.getInstance(ALGORITHM);</div><div class="line">        cipher.init(Cipher.ENCRYPT_MODE, key);</div><div class="line">        byte[] b = source.getBytes();</div><div class="line">        */</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 执行加密操作</div><div class="line">     */<span class="comment">/*</span></div><div class="line">        byte[] b1 = cipher.doFinal(b);</div><div class="line">        BASE64Encoder encoder = new BASE64Encoder();</div><div class="line">        return encoder.encode(b1);</div><div class="line">    &#125;*/</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPublicKey</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> PublicKey;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPrivateKey</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> PrivateKey;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>BASE64Encoder,BASE64Decoder</strong><br>属于jdk内部jar包类，android端导入的jdk 一般不自带，需要从服务端剥离出来，再导入。</p>
-<p><strong>注意：</strong></p>
-<p>android端和服务器端的算法如果都用『RSA』的话，是不一样的，得以Android端为准，即</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">   * Android算法</div><div class="line">   */</div><div class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ANDROID_ALGORITHM = <span class="string">"RSA/ECB/PKCS1Padding"</span>;</div></pre></td></tr></table></figure>
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2016/02/23/Butterknife的一些小问题/">
-                Butterknife的一些小问题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2016-02-23</span>
-            
-            
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>在使用Butterknife中，如果想要绑定”include”标签中的元素，”include”标签不能有ID，否则会覆盖它里面的元素，如果布局中需要依赖include,直接依赖它里面的父布局ID。</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -509,19 +530,19 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2017/06/23/Python备忘录-切片/">Python备忘录 -- 切片</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/05/19/产品经理数据分析入门（转自简书）/">产品经理数据分析入门（转自简书）</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2017/05/03/产品实习/">产品实习</a>
             </li>
             
             <li>
                 <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-经典二分查找/">每天一道题（入门篇）--经典二分查找</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/24/每天一道题（入门篇）-冒泡排序/">每天一道题（入门篇）--冒泡排序</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2017/03/24/每天一道题-入门篇-选择排序/">每天一道题(入门篇)--选择排序</a>
             </li>
             
         </ul>
